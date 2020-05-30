@@ -1,0 +1,30 @@
+name: nucleoid
+description: nucleoid package
+version: 0.1.0
+homepage: https://flutter.su/nucleoid
+
+environment:
+  sdk: '>=2.7.0 <3.0.0'
+
+dependencies:
+  shelf: ^0.7.5
+  shelf_cookie: ^1.1.1
+  loggable: ^1.0.1
+  args: ^1.5.0
+  yaml: ^2.2.0
+  meta: ^1.1.8
+  http: ^0.12.0+4
+  io: ^0.3.3
+  cooky: ^1.0.2
+  mysql1:
+    git:
+      url: https://github.com/FlutterSu/mysql1_dart.git
+      ref: ae3aad7d75c55543e9e990fbad83682039b80f65
+  nucleoid_built: ^0.1.0
+
+dev_dependencies:
+  pedantic: ^1.8.0
+  test: ^1.6.0
+  build_runner: ^1.7.4
+  build_test: ^0.10.12+1
+  nucleoid_generator: ^0.1.0

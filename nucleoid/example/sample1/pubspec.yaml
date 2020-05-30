@@ -1,0 +1,12 @@
+name: sample1
+description: A simple command-line application.
+
+environment:
+  sdk: '>=2.7.0 <3.0.0'
+
+dependencies:
+  nucleoid:
+    path: ../../
+
+dev_dependencies:
+  pedantic: ^1.8.0
