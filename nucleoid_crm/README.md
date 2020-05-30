@@ -1,22 +1,5 @@
-A library for Dart developers.
+# nucleoid_crm
 
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+## Models MySQL
 
-## Usage
-
-A simple usage example:
-
-```dart
-import 'package:nucleoid_crm/nucleoid_crm.dart';
-
-main() {
-  var awesome = new Awesome();
-}
-```
-
-## Features and bugs
-
-Please file feature requests and bugs at the [issue tracker][tracker].
-
-[tracker]: http://example.com/issues/replaceme
+[UrlModel](lib/src/models/url.g.dart) - built model [UrlModelMySQL](lib/src/models/url.dart)

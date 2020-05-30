@@ -1,5 +1,6 @@
 name: nucleoid_crm
 description: nucleoid crm package
+homepage: https://flutter.su/nucleoid
 version: 0.1.0
 
 environment:
@@ -7,6 +8,7 @@ environment:
 
 dependencies:
   nucleoid: ^0.1.0
+  nucleoid_built: ^0.1.0
 
 dev_dependencies:
   pedantic: ^1.8.0
