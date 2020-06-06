@@ -18,8 +18,7 @@ $ stagehand console-simple
 **Step 2: add dependencies in pubspec.yaml**
 ```yaml
 dependencies:
-  nucleoid:
-    git: git://github.com/FlutterSu/nucleoid.git
+  nucleoid: ^0.1.1
 ```
 Get dependencies:
 ```
@@ -133,8 +132,8 @@ class MyRouter extends Router {
 
 Please file feature requests and bugs at the [issue tracker][tracker].
 
-[tracker]: https://github.com/FlutterSu/nucleoid/issues
+[tracker]: https://github.com/dart-nucleoid/main/issues
 
 
 ## License
-BSD License [license](https://github.com/FlutterSu/nucleoid/blob/master/LICENSE).
+BSD License [license](https://github.com/dart-nucleoid/main/blob/master/LICENSE).

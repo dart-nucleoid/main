@@ -240,3 +240,5 @@ abstract class TimeBuilt implements BuiltNodeElement<ChildNodeElement> {
     Attribute(name: 'datetime'),
   ];
 }
+
+abstract class CodeBuilt implements BuiltNodeElement<ChildNodeElement> {}
