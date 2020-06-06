@@ -1,6 +1,6 @@
 name: nucleoid_generator
 description: nucleoid_generator package
-homepage: https://flutter.su/nucleoid
+homepage: https://github.com/dart-nucleoid/main
 version: 0.1.0
 
 environment:
