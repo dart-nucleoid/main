@@ -1,7 +1,9 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:args/args.dart';
 import 'package:io/io.dart';
+import 'package:nucleoid/nucleoid.dart';
 import 'package:nucleoid/src/build_response/javascript_data.dart';
 import 'package:yaml/yaml.dart';
 
@@ -17,12 +19,14 @@ void main(List<String> args) async {
     case 'clean':
       _clean(argResults);
       break;
-    case 'run':
     case 'help':
     default:
       _help(command);
   }
 }
+
+const String _buildTempDir = 'build_temp';
+const String _buildDir = 'build';
 
 void _help(String action) {
   if (action != 'help') {
@@ -30,11 +34,10 @@ void _help(String action) {
     print('the command "$action" is not recognized.');
   }
   print('\nNUCLEOID HELP COMMAND:');
-  print('1. help nucleoid commands:        \$ pub run nucleoid help');
-  print('2. run nucleoid server:           \$ pub run nucleoid run');
-  print('3. build a standalone executable: \$ pub run nucleoid build');
-  print('           with target dart file: \$ pub run nucleoid build -t bin/server.dart');
-  print('4. clean build:                   \$ pub run nucleoid clean');
+  print('1. help nucleoid commands:                    \$ pub run nucleoid help');
+  print('2. build a standalone executable:             \$ pub run nucleoid build');
+  print('           with target dart file:             \$ pub run nucleoid build -t bin/server.dart');
+  print('3. clean builds and temp files:               \$ pub run nucleoid clean');
   print('');
 }
 
@@ -56,8 +59,8 @@ void _build(ArgResults args) async {
       if (Platform.isWindows) 'exe'
     ].join('.');
     final currentDir = Directory.current;
-    final tempDir = Directory('${currentDir.path}${Platform.pathSeparator}build_temp');
-    final buildDir = Directory('${currentDir.path}${Platform.pathSeparator}build');
+    final tempDir = Directory('${currentDir.path}${Platform.pathSeparator}$_buildTempDir');
+    final buildDir = Directory('${currentDir.path}${Platform.pathSeparator}$_buildDir');
     final tempFileOutput = '${tempDir.path}${Platform.pathSeparator}$binaryFileName';
     final buildFileOutput = '${buildDir.path}${Platform.pathSeparator}$binaryFileName';
 
@@ -122,11 +125,14 @@ void _killLinuxProcess(String fileProcess) {
 void _clean(ArgResults args) {
   print('NUCLEOID START CLEAN:');
   try {
-    final buildDir = Directory('build');
+    final buildDir = Directory(_buildDir);
     if (buildDir.existsSync()) buildDir.deleteSync(recursive: true);
 
-    final tempDir = Directory('build_temp');
+    final tempDir = Directory(_buildTempDir);
     if (tempDir.existsSync()) tempDir.deleteSync(recursive: true);
+
+    final nucleoidDir = Directory(nucleoid);
+    if (nucleoidDir.existsSync()) nucleoidDir.deleteSync(recursive: true);
 
     print('NUCLEOID COMPLETE CLEAN.');
   } catch (e) {

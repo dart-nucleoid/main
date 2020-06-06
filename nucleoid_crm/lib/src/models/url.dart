@@ -1,6 +1,6 @@
 import 'package:nucleoid/factory.dart';
-import 'package:nucleoid_built/model_mysql.dart';
 import 'package:nucleoid/nucleoid.dart';
+import 'package:nucleoid_built/model_mysql.dart';
 
 part 'url.g.dart';
 

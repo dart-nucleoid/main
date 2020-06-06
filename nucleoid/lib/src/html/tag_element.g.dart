@@ -3050,3 +3050,115 @@ class Time extends ChildNodeElement implements TimeBuilt {
         '</time>'
       ].join();
 }
+
+// Code for "abstract class CodeBuilt implements BuiltNodeElement<ChildNodeElement>"
+class Code extends ChildNodeElement implements CodeBuilt {
+  const Code({
+    NodeElement child,
+    List<NodeElement> children,
+    this.accesskey,
+    this.autofocus = false,
+    this.classList,
+    this.contentEditable = false,
+    this.contextmenu,
+    this.dir,
+    this.hidden = false,
+    this.id,
+    this.lang,
+    this.spellcheck = false,
+    this.styleList,
+    this.tabindex,
+    this.title,
+    this.onblur,
+    this.onchange,
+    this.onclick,
+    this.ondblclick,
+    this.onfocus,
+    this.onkeydown,
+    this.onkeypress,
+    this.onkeyup,
+    this.onload,
+    this.onmousedown,
+    this.onmousemove,
+    this.onmouseout,
+    this.onmouseover,
+    this.onmouseup,
+    this.onreset,
+    this.onselect,
+    this.onsubmit,
+    this.onunload,
+  }) : super(child: child, children: children);
+
+  final String accesskey;
+  final bool autofocus;
+  final List<StyleClass> classList;
+  final bool contentEditable;
+  final String contextmenu;
+  final String dir;
+  final bool hidden;
+  final String id;
+  final String lang;
+  final bool spellcheck;
+  final List<StyleElement> styleList;
+  final String tabindex;
+  final String title;
+  final String onblur;
+  final String onchange;
+  final String onclick;
+  final String ondblclick;
+  final String onfocus;
+  final String onkeydown;
+  final String onkeypress;
+  final String onkeyup;
+  final String onload;
+  final String onmousedown;
+  final String onmousemove;
+  final String onmouseout;
+  final String onmouseover;
+  final String onmouseup;
+  final String onreset;
+  final String onselect;
+  final String onsubmit;
+  final String onunload;
+
+  @override
+  String get html => [
+        '<code',
+        if (accesskey != null) ' accesskey="$accesskey"',
+        if (autofocus) ' autofocus',
+        if (classList != null && classList.isNotEmpty)
+          ' class="${classList.map((e) => e.name).join(' ')}"',
+        if (contentEditable) ' contenteditable',
+        if (contextmenu != null) ' contextmenu="$contextmenu"',
+        if (dir != null) ' dir="$dir"',
+        if (hidden) ' hidden',
+        if (id != null) ' id="$id"',
+        if (lang != null) ' lang="$lang"',
+        if (spellcheck) ' spellcheck',
+        if (styleList != null && styleList.isNotEmpty)
+          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+        if (tabindex != null) ' tabindex="$tabindex"',
+        if (title != null) ' title="$title"',
+        if (onblur != null) ' onblur="$onblur"',
+        if (onchange != null) ' onchange="$onchange"',
+        if (onclick != null) ' onclick="$onclick"',
+        if (ondblclick != null) ' ondblclick="$ondblclick"',
+        if (onfocus != null) ' onfocus="$onfocus"',
+        if (onkeydown != null) ' onkeydown="$onkeydown"',
+        if (onkeypress != null) ' onkeypress="$onkeypress"',
+        if (onkeyup != null) ' onkeyup="$onkeyup"',
+        if (onload != null) ' onload="$onload"',
+        if (onmousedown != null) ' onmousedown="$onmousedown"',
+        if (onmousemove != null) ' onmousemove="$onmousemove"',
+        if (onmouseout != null) ' onmouseout="$onmouseout"',
+        if (onmouseover != null) ' onmouseover="$onmouseover"',
+        if (onmouseup != null) ' onmouseup="$onmouseup"',
+        if (onreset != null) ' onreset="$onreset"',
+        if (onselect != null) ' onselect="$onselect"',
+        if (onsubmit != null) ' onsubmit="$onsubmit"',
+        if (onunload != null) ' onunload="$onunload"',
+        '>',
+        super.html,
+        '</code>'
+      ].join();
+}
