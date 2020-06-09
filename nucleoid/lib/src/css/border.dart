@@ -1,20 +1,41 @@
 import '../../html.dart';
 
+enum _TypeBorderCSS { value, inherit, none }
+
 class BorderCSS {
   final ColorCSS color;
   final BorderStyleCSS style;
   final SizeCSS width;
-  final bool inherit;
+  final _TypeBorderCSS type;
 
-  const BorderCSS({this.color, this.style, this.width, this.inherit = false});
+  const BorderCSS({this.color, this.style, this.width}): this.type = _TypeBorderCSS.value;
+  const BorderCSS._withType(this.type) : this.color = null, this.style = null, this.width = null;
 
-  String get text => inherit
-      ? 'inherit'
-      : [
+  String get text {
+    if (type == _TypeBorderCSS.value) {
+      return [
           if (color != null) color.text,
           if (style != null) _mapperBorderStyleCSS(style),
           if (width != null) width.text,
         ].join(' ');
+    } else {
+      return _mapperTypeBorderCSS(type);
+    }
+  }
+
+  String _mapperTypeBorderCSS(_TypeBorderCSS value) {
+    switch (value) {
+      case _TypeBorderCSS.none:
+        return 'none';
+      case _TypeBorderCSS.inherit:
+        return 'inherit';
+      default:
+        throw Exception('Invalid value TypeBorderCSS');
+    }
+  }
+
+  static const inherit = BorderCSS._withType(_TypeBorderCSS.inherit);
+  static const none = BorderCSS._withType(_TypeBorderCSS.none);
 }
 
 enum BorderStyleCSS { none, hidden, dotted, dashed, solid, double, groove, ridge, inset, outset, inherit }

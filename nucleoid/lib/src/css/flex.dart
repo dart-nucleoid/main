@@ -1,3 +1,5 @@
+import '../../html.dart';
+
 enum FlexDirectionCSS { column, columnReverse, row, rowReverse }
 
 String mapperFlexDirectionCSS(FlexDirectionCSS value) {
@@ -112,4 +114,20 @@ String mapperFlexWrapCSS(FlexWrapCSS value) {
     default:
       throw Exception('Invalid value FlexWrapCSS');
   }
+}
+
+class FlexCSS {
+  final num grow;
+  final num shrink;
+  final SizeCSS basis;
+
+  const FlexCSS({this.grow = 0, this.shrink = 1, this.basis = SizeCSS.auto});
+
+  static const auto = FlexCSS(grow: 1, shrink: 1, basis: SizeCSS.auto);
+
+  String get text => [
+        if (grow != null) '$grow',
+        if (shrink != null) '$shrink',
+        if (basis != null) '${basis.text}',
+      ].join(' ');
 }

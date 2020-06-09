@@ -11,7 +11,7 @@ dependencies:
   loggable: ^1.0.1
   nucleoid: ^0.1.1
   nucleoid_crm: ^0.1.0
-  nucleoid_built: ^0.1.0
+  nucleoid_built: ^0.1.1
 
 dev_dependencies:
   pedantic: ^1.7.0

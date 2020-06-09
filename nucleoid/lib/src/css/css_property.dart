@@ -42,7 +42,10 @@ abstract class CSS {
   static const filter = PropertyCSS('filter');
   static const fontFamily = PropertyCSS('font-family');
   static const flexDirection = PropertyCSS('flex-direction');
+  static const flex = PropertyCSS('flex');
+  static const flexBasis = PropertyCSS('flex-basis');
   static const flexGrow = PropertyCSS('flex-grow');
+  static const flexShrink = PropertyCSS('flex-shrink');
   static const flexWrap = PropertyCSS('flex-wrap');
   static const float = PropertyCSS('float');
   static const fontSize = PropertyCSS('font-size');

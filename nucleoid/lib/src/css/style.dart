@@ -31,7 +31,10 @@ class StyleCSS {
   final DisplayCSS display;
   final FilterCSS filter;
   final FlexDirectionCSS flexDirection;
+  final FlexCSS flex;
+  final SizeCSS flexBasis;
   final num flexGrow;
+  final num flexShrink;
   final FlexWrapCSS flexWrap;
   final FloatCSS float;
   final String fontFamily;
@@ -107,7 +110,10 @@ class StyleCSS {
       this.filter,
       this.fontFamily,
       this.flexDirection,
+      this.flex,
+      this.flexBasis,
       this.flexGrow,
+      this.flexShrink,
       this.flexWrap,
       this.float,
       this.fontSize,
@@ -192,7 +198,10 @@ class StyleCSS {
         if (fontFamily != null) '${CSS.fontFamily.text}:$fontFamily${_isImportant(CSS.fontFamily)}',
         if (flexDirection != null)
           '${CSS.flexDirection.text}:${mapperFlexDirectionCSS(flexDirection)}${_isImportant(CSS.flexDirection)}',
+        if (flexBasis != null) '${CSS.flexBasis.text}:${flexBasis.text}${_isImportant(CSS.flexBasis)}',
+        if (flex != null) '${CSS.flex.text}:${flex.text}${_isImportant(CSS.flex)}',
         if (flexGrow != null) '${CSS.flexGrow.text}:${flexGrow}${_isImportant(CSS.flexGrow)}',
+        if (flexShrink != null) '${CSS.flexShrink.text}:${flexShrink}${_isImportant(CSS.flexShrink)}',
         if (flexWrap != null) '${CSS.flexWrap.text}:${mapperFlexWrapCSS(flexWrap)}${_isImportant(CSS.flexWrap)}',
         if (fontSize != null) '${CSS.fontSize.text}:${fontSize.text}${_isImportant(CSS.fontSize)}',
         if (fontWeight != null)

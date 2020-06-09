@@ -1,3 +1,5 @@
+import 'package:nucleoid/nucleoid.dart';
+
 import '../../html.dart';
 
 abstract class NodeElement {
@@ -73,7 +75,7 @@ class StyleElement {
 
 class StyleId extends StyleElement {
   const StyleId({
-    String name,
+    @required String name,
     StyleCSS style,
     Map<int, StyleCSS> width,
     Map<String, StyleCSS> theme,
@@ -96,7 +98,7 @@ class StyleId extends StyleElement {
 
 class StyleClass extends StyleElement {
   const StyleClass({
-    String name,
+    @required String name,
     StyleCSS style,
     Map<int, StyleCSS> width,
     Map<String, StyleCSS> theme,
@@ -157,11 +159,8 @@ String echoAllStyleClass(List<StyleElement> list) {
   return [
     _mergeEchoStyle(resultList.where((e) => e.styleElement.style != null).toList()),
     keys.reversed
-        .map((width) => [
-              '@media screen and (max-width: ${width}px) {\n',
-              _mergeEchoStyle(map[width], width),
-              '}\n'
-            ].join())
+        .map((width) =>
+            ['@media screen and (max-width: ${width}px) {\n', _mergeEchoStyle(map[width], width), '}\n'].join())
         .toList()
         .join('\n')
   ].join('\n');

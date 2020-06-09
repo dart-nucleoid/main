@@ -22,6 +22,7 @@ class Html extends ChildNodeElement implements HtmlBuilt {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -39,6 +40,7 @@ class Html extends ChildNodeElement implements HtmlBuilt {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -59,6 +61,7 @@ class Html extends ChildNodeElement implements HtmlBuilt {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -84,6 +87,7 @@ class Head extends ChildNodeElement implements HeadBuilt {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -99,6 +103,7 @@ class Head extends ChildNodeElement implements HeadBuilt {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -117,6 +122,7 @@ class Head extends ChildNodeElement implements HeadBuilt {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -142,6 +148,7 @@ class Body extends ChildNodeElement implements BodyBuilt {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -175,6 +182,7 @@ class Body extends ChildNodeElement implements BodyBuilt {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -211,6 +219,7 @@ class Body extends ChildNodeElement implements BodyBuilt {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -268,6 +277,7 @@ class Link extends NodeElement implements LinkBuilt {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -288,6 +298,7 @@ class Link extends NodeElement implements LinkBuilt {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -311,6 +322,7 @@ class Link extends NodeElement implements LinkBuilt {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -410,6 +422,7 @@ class Main extends ChildNodeElement implements MainBuilt {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -425,6 +438,7 @@ class Main extends ChildNodeElement implements MainBuilt {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -443,6 +457,7 @@ class Main extends ChildNodeElement implements MainBuilt {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -468,6 +483,7 @@ class Aside extends ChildNodeElement implements AsideBuilt {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -483,6 +499,7 @@ class Aside extends ChildNodeElement implements AsideBuilt {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -501,6 +518,7 @@ class Aside extends ChildNodeElement implements AsideBuilt {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -526,6 +544,7 @@ class Section extends ChildNodeElement implements SectionBuilt {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -559,6 +578,7 @@ class Section extends ChildNodeElement implements SectionBuilt {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -595,6 +615,7 @@ class Section extends ChildNodeElement implements SectionBuilt {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -660,6 +681,7 @@ class Div extends ChildNodeElement implements DivBuilt {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -693,6 +715,7 @@ class Div extends ChildNodeElement implements DivBuilt {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -729,6 +752,7 @@ class Div extends ChildNodeElement implements DivBuilt {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -772,6 +796,7 @@ class H1 extends ChildNodeElement implements H1Built {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -805,6 +830,7 @@ class H1 extends ChildNodeElement implements H1Built {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -841,6 +867,7 @@ class H1 extends ChildNodeElement implements H1Built {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -884,6 +911,7 @@ class H2 extends ChildNodeElement implements H2Built {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -917,6 +945,7 @@ class H2 extends ChildNodeElement implements H2Built {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -953,6 +982,7 @@ class H2 extends ChildNodeElement implements H2Built {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -996,6 +1026,7 @@ class H3 extends ChildNodeElement implements H3Built {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -1029,6 +1060,7 @@ class H3 extends ChildNodeElement implements H3Built {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -1065,6 +1097,7 @@ class H3 extends ChildNodeElement implements H3Built {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -1108,6 +1141,7 @@ class H4 extends ChildNodeElement implements H4Built {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -1141,6 +1175,7 @@ class H4 extends ChildNodeElement implements H4Built {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -1177,6 +1212,7 @@ class H4 extends ChildNodeElement implements H4Built {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -1220,6 +1256,7 @@ class H5 extends ChildNodeElement implements H5Built {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -1253,6 +1290,7 @@ class H5 extends ChildNodeElement implements H5Built {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -1289,6 +1327,7 @@ class H5 extends ChildNodeElement implements H5Built {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -1332,6 +1371,7 @@ class H6 extends ChildNodeElement implements H6Built {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -1365,6 +1405,7 @@ class H6 extends ChildNodeElement implements H6Built {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -1401,6 +1442,7 @@ class H6 extends ChildNodeElement implements H6Built {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -1444,6 +1486,7 @@ class P extends ChildNodeElement implements PBuilt {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -1477,6 +1520,7 @@ class P extends ChildNodeElement implements PBuilt {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -1513,6 +1557,7 @@ class P extends ChildNodeElement implements PBuilt {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -1562,6 +1607,7 @@ class A extends ChildNodeElement implements ABuilt {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -1601,6 +1647,7 @@ class A extends ChildNodeElement implements ABuilt {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -1643,6 +1690,7 @@ class A extends ChildNodeElement implements ABuilt {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -1690,6 +1738,7 @@ class Img extends NodeElement implements ImgBuilt {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -1729,6 +1778,7 @@ class Img extends NodeElement implements ImgBuilt {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -1771,6 +1821,7 @@ class Img extends NodeElement implements ImgBuilt {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -1812,6 +1863,7 @@ class Span extends ChildNodeElement implements SpanBuilt {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -1845,6 +1897,7 @@ class Span extends ChildNodeElement implements SpanBuilt {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -1881,6 +1934,7 @@ class Span extends ChildNodeElement implements SpanBuilt {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -1925,6 +1979,7 @@ class Ul extends ChildNodeElement implements UlBuilt {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -1959,6 +2014,7 @@ class Ul extends ChildNodeElement implements UlBuilt {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -1996,6 +2052,7 @@ class Ul extends ChildNodeElement implements UlBuilt {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -2042,6 +2099,7 @@ class Ol extends ChildNodeElement implements OlBuilt {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -2078,6 +2136,7 @@ class Ol extends ChildNodeElement implements OlBuilt {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -2117,6 +2176,7 @@ class Ol extends ChildNodeElement implements OlBuilt {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -2162,6 +2222,7 @@ class Li extends ChildNodeElement implements LiBuilt {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -2197,6 +2258,7 @@ class Li extends ChildNodeElement implements LiBuilt {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -2235,6 +2297,7 @@ class Li extends ChildNodeElement implements LiBuilt {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -2278,6 +2341,7 @@ class Strong extends ChildNodeElement implements StrongBuilt {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -2311,6 +2375,7 @@ class Strong extends ChildNodeElement implements StrongBuilt {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -2347,6 +2412,7 @@ class Strong extends ChildNodeElement implements StrongBuilt {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -2390,6 +2456,7 @@ class B extends ChildNodeElement implements BBuilt {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -2423,6 +2490,7 @@ class B extends ChildNodeElement implements BBuilt {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -2459,6 +2527,7 @@ class B extends ChildNodeElement implements BBuilt {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -2502,6 +2571,7 @@ class Em extends ChildNodeElement implements EmBuilt {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -2535,6 +2605,7 @@ class Em extends ChildNodeElement implements EmBuilt {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -2571,6 +2642,7 @@ class Em extends ChildNodeElement implements EmBuilt {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -2614,6 +2686,7 @@ class I extends ChildNodeElement implements IBuilt {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -2647,6 +2720,7 @@ class I extends ChildNodeElement implements IBuilt {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -2683,6 +2757,7 @@ class I extends ChildNodeElement implements IBuilt {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -2726,6 +2801,7 @@ class Small extends ChildNodeElement implements SmallBuilt {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -2759,6 +2835,7 @@ class Small extends ChildNodeElement implements SmallBuilt {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -2795,6 +2872,7 @@ class Small extends ChildNodeElement implements SmallBuilt {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -2838,6 +2916,7 @@ class Big extends ChildNodeElement implements BigBuilt {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -2871,6 +2950,7 @@ class Big extends ChildNodeElement implements BigBuilt {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -2907,6 +2987,7 @@ class Big extends ChildNodeElement implements BigBuilt {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -2951,6 +3032,7 @@ class Time extends ChildNodeElement implements TimeBuilt {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -2985,6 +3067,7 @@ class Time extends ChildNodeElement implements TimeBuilt {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -3022,6 +3105,7 @@ class Time extends ChildNodeElement implements TimeBuilt {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -3065,6 +3149,7 @@ class Code extends ChildNodeElement implements CodeBuilt {
     this.hidden = false,
     this.id,
     this.lang,
+    this.role,
     this.spellcheck = false,
     this.styleList,
     this.tabindex,
@@ -3098,6 +3183,7 @@ class Code extends ChildNodeElement implements CodeBuilt {
   final bool hidden;
   final String id;
   final String lang;
+  final String role;
   final bool spellcheck;
   final List<StyleElement> styleList;
   final String tabindex;
@@ -3134,6 +3220,7 @@ class Code extends ChildNodeElement implements CodeBuilt {
         if (hidden) ' hidden',
         if (id != null) ' id="$id"',
         if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
           ' style="${styleList.map((e) => e.style.text).join(' ')}"',
@@ -3160,5 +3247,116 @@ class Code extends ChildNodeElement implements CodeBuilt {
         '>',
         super.html,
         '</code>'
+      ].join();
+}
+
+// Code for "abstract class HrBuilt implements BuiltNodeElement<dynamic>"
+class Hr extends NodeElement implements HrBuilt {
+  const Hr({
+    this.accesskey,
+    this.autofocus = false,
+    this.classList,
+    this.contentEditable = false,
+    this.contextmenu,
+    this.dir,
+    this.hidden = false,
+    this.id,
+    this.lang,
+    this.role,
+    this.spellcheck = false,
+    this.styleList,
+    this.tabindex,
+    this.title,
+    this.onblur,
+    this.onchange,
+    this.onclick,
+    this.ondblclick,
+    this.onfocus,
+    this.onkeydown,
+    this.onkeypress,
+    this.onkeyup,
+    this.onload,
+    this.onmousedown,
+    this.onmousemove,
+    this.onmouseout,
+    this.onmouseover,
+    this.onmouseup,
+    this.onreset,
+    this.onselect,
+    this.onsubmit,
+    this.onunload,
+  });
+
+  final String accesskey;
+  final bool autofocus;
+  final List<StyleClass> classList;
+  final bool contentEditable;
+  final String contextmenu;
+  final String dir;
+  final bool hidden;
+  final String id;
+  final String lang;
+  final String role;
+  final bool spellcheck;
+  final List<StyleElement> styleList;
+  final String tabindex;
+  final String title;
+  final String onblur;
+  final String onchange;
+  final String onclick;
+  final String ondblclick;
+  final String onfocus;
+  final String onkeydown;
+  final String onkeypress;
+  final String onkeyup;
+  final String onload;
+  final String onmousedown;
+  final String onmousemove;
+  final String onmouseout;
+  final String onmouseover;
+  final String onmouseup;
+  final String onreset;
+  final String onselect;
+  final String onsubmit;
+  final String onunload;
+
+  @override
+  String get html => [
+        '<hr',
+        if (accesskey != null) ' accesskey="$accesskey"',
+        if (autofocus) ' autofocus',
+        if (classList != null && classList.isNotEmpty)
+          ' class="${classList.map((e) => e.name).join(' ')}"',
+        if (contentEditable) ' contenteditable',
+        if (contextmenu != null) ' contextmenu="$contextmenu"',
+        if (dir != null) ' dir="$dir"',
+        if (hidden) ' hidden',
+        if (id != null) ' id="$id"',
+        if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
+        if (spellcheck) ' spellcheck',
+        if (styleList != null && styleList.isNotEmpty)
+          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+        if (tabindex != null) ' tabindex="$tabindex"',
+        if (title != null) ' title="$title"',
+        if (onblur != null) ' onblur="$onblur"',
+        if (onchange != null) ' onchange="$onchange"',
+        if (onclick != null) ' onclick="$onclick"',
+        if (ondblclick != null) ' ondblclick="$ondblclick"',
+        if (onfocus != null) ' onfocus="$onfocus"',
+        if (onkeydown != null) ' onkeydown="$onkeydown"',
+        if (onkeypress != null) ' onkeypress="$onkeypress"',
+        if (onkeyup != null) ' onkeyup="$onkeyup"',
+        if (onload != null) ' onload="$onload"',
+        if (onmousedown != null) ' onmousedown="$onmousedown"',
+        if (onmousemove != null) ' onmousemove="$onmousemove"',
+        if (onmouseout != null) ' onmouseout="$onmouseout"',
+        if (onmouseover != null) ' onmouseover="$onmouseover"',
+        if (onmouseup != null) ' onmouseup="$onmouseup"',
+        if (onreset != null) ' onreset="$onreset"',
+        if (onselect != null) ' onselect="$onselect"',
+        if (onsubmit != null) ' onsubmit="$onsubmit"',
+        if (onunload != null) ' onunload="$onunload"',
+        '>'
       ].join();
 }

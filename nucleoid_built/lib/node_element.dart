@@ -20,6 +20,7 @@ Map<String, Attribute> attributesHtml = {
   'hidden': Attribute(name: 'hidden', isBool: true),
   'id': Attribute(name: 'id'),
   'lang': Attribute(name: 'lang'),
+  'role': Attribute(name: 'role'),
   'spellcheck': Attribute(name: 'spellcheck', isBool: true),
   'style': Attribute(
     name: 'style',

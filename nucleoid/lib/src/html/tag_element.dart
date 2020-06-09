@@ -242,3 +242,5 @@ abstract class TimeBuilt implements BuiltNodeElement<ChildNodeElement> {
 }
 
 abstract class CodeBuilt implements BuiltNodeElement<ChildNodeElement> {}
+
+abstract class HrBuilt implements BuiltNodeElement {}
