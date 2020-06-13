@@ -28,5 +28,6 @@ export 'src/css/text_align.dart';
 export 'src/css/text_decoration.dart';
 export 'src/css/text_transform.dart';
 export 'src/css/transition.dart';
+export 'src/css/user_select.dart';
 export 'src/html/node_element.dart';
 export 'src/html/tag_element.dart';

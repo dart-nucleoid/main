@@ -1,3 +1,6 @@
+## 0.1.3
+- Add CSS property: opacity, user-select
+
 ## 0.1.2
 - Add CSS property: flex, flexBasis, flexShrink
 - Add HTML tag: hr

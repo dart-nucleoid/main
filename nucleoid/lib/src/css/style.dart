@@ -60,6 +60,7 @@ class StyleCSS {
   final SizeCSS minWidth;
   final ObjectFitCSS objectFit;
   final ImagePositionCSS objectPosition;
+  final double opacity;
   final BorderCSS outline;
   final OverflowCSS overflow;
   final OverflowCSS overflowX;
@@ -76,6 +77,7 @@ class StyleCSS {
   final DurationCSS transitionDelay;
   final TimingFunctionCSS transitionTimingFunction;
   final SizeCSS top;
+  final UserSelectCSS userSelect;
   final SizeCSS width;
   final int zIndex;
   final List<PropertyCSS> important;
@@ -138,6 +140,7 @@ class StyleCSS {
       this.minWidth,
       this.objectFit,
       this.objectPosition,
+      this.opacity,
       this.outline,
       this.overflow,
       this.overflowX,
@@ -154,6 +157,7 @@ class StyleCSS {
       this.transitionDelay,
       this.transitionTimingFunction,
       this.top,
+      this.userSelect,
       this.width,
       this.zIndex,
       this.important = const []});
@@ -232,6 +236,7 @@ class StyleCSS {
         if (objectFit != null) '${CSS.objectFit.text}:${mapperObjectFitCSS(objectFit)}${_isImportant(CSS.objectFit)}',
         if (objectPosition != null)
           '${CSS.objectPosition.text}:${objectPosition.text}${_isImportant(CSS.objectPosition)}',
+        if (opacity != null) '${CSS.opacity.text}:${opacity}${_isImportant(CSS.opacity)}',
         if (outline != null) '${CSS.outline.text}:${outline.text}${_isImportant(CSS.outline)}',
         if (overflow != null) '${CSS.overflow.text}:${mapperOverflowCSS(overflow)}${_isImportant(CSS.overflow)}',
         if (overflowX != null) '${CSS.overflowX.text}:${mapperOverflowCSS(overflowX)}${_isImportant(CSS.overflowX)}',
@@ -255,6 +260,8 @@ class StyleCSS {
         if (transitionTimingFunction != null)
           '${CSS.transitionTimingFunction.text}:${transitionTimingFunction.text}${_isImportant(CSS.transitionTimingFunction)}',
         if (top != null) '${CSS.top.text}:${top.text}${_isImportant(CSS.top)}',
+        if (userSelect != null)
+          '${CSS.userSelect.text}:${mapperUserSelectCSS(userSelect)}${_isImportant(CSS.userSelect)}',
         if (width != null) '${CSS.width.text}:${width.text}${_isImportant(CSS.width)}',
         if (zIndex != null) '${CSS.zIndex.text}:$zIndex${_isImportant(CSS.zIndex)}',
       ].join(';');

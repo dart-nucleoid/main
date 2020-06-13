@@ -72,6 +72,7 @@ abstract class CSS {
   static const minWidth = PropertyCSS('min-width');
   static const objectFit = PropertyCSS('object-fit');
   static const objectPosition = PropertyCSS('object-position');
+  static const opacity = PropertyCSS('opacity');
   static const outline = PropertyCSS('outline');
   static const overflow = PropertyCSS('overflow');
   static const overflowX = PropertyCSS('overflow-x');
@@ -88,6 +89,7 @@ abstract class CSS {
   static const transitionDelay = PropertyCSS('transition-delay');
   static const transitionTimingFunction = PropertyCSS('transition-timing-function');
   static const top = PropertyCSS('top');
+  static const userSelect = PropertyCSS('user-select');
   static const width = PropertyCSS('width');
   static const zIndex = PropertyCSS('z-index');
 }

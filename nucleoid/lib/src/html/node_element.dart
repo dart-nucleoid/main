@@ -170,19 +170,35 @@ String _mergeEchoStyle(List<_StyleElementWithPathName> list, [int width]) {
   var processedList = <StyleCSS>[];
   var buffer = [];
 
-  for (var e in list) {
-    if (processedList.contains(e.styleElement.style)) {
-      continue;
-    } else {
-      processedList.add(e.styleElement.style);
-      buffer.add([
-        list.where((el) => el.styleElement.style == e.styleElement.style).map((e) => e.nameStyle).join(', '),
-        ' {',
-        if (width == null) e.styleElement.style.text,
-        if (width != null) e.styleElement.width[width].text,
-        '}\n',
-      ].join());
-    }
+  if (width == null) {
+    list.forEach((e) {
+      if (!processedList.contains(e.styleElement.style)) {
+        processedList.add(e.styleElement.style);
+
+        buffer.add([
+          list.where((el) => el.styleElement.style == e.styleElement.style).map((e) => e.nameStyle).join(', '),
+          ' {',
+          e.styleElement.style.text,
+          '}\n',
+        ].join());
+      }
+    });
+  } else {
+    list.forEach((e) {
+      if (!processedList.contains(e.styleElement.width[width])) {
+        processedList.add(e.styleElement.width[width]);
+
+        buffer.add([
+          list
+              .where((el) => el.styleElement.width[width] == e.styleElement.width[width])
+              .map((e) => e.nameStyle)
+              .join(', '),
+          ' {',
+          e.styleElement.width[width].text,
+          '}\n',
+        ].join());
+      }
+    });
   }
 
   return buffer.join();
