@@ -42,7 +42,7 @@ class Html extends ChildNodeElement implements HtmlBuilt {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
 
@@ -64,7 +64,7 @@ class Html extends ChildNodeElement implements HtmlBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         '>',
@@ -105,7 +105,7 @@ class Head extends ChildNodeElement implements HeadBuilt {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
 
@@ -125,7 +125,7 @@ class Head extends ChildNodeElement implements HeadBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         '>',
@@ -184,7 +184,7 @@ class Body extends ChildNodeElement implements BodyBuilt {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
   final String onblur;
@@ -222,7 +222,7 @@ class Body extends ChildNodeElement implements BodyBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -300,7 +300,7 @@ class Link extends NodeElement implements LinkBuilt {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
 
@@ -325,7 +325,7 @@ class Link extends NodeElement implements LinkBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         '>'
@@ -440,7 +440,7 @@ class Main extends ChildNodeElement implements MainBuilt {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
 
@@ -460,7 +460,7 @@ class Main extends ChildNodeElement implements MainBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         '>',
@@ -501,7 +501,7 @@ class Aside extends ChildNodeElement implements AsideBuilt {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
 
@@ -521,7 +521,7 @@ class Aside extends ChildNodeElement implements AsideBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         '>',
@@ -580,7 +580,7 @@ class Section extends ChildNodeElement implements SectionBuilt {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
   final String onblur;
@@ -618,7 +618,7 @@ class Section extends ChildNodeElement implements SectionBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -717,7 +717,7 @@ class Div extends ChildNodeElement implements DivBuilt {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
   final String onblur;
@@ -755,7 +755,7 @@ class Div extends ChildNodeElement implements DivBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -832,7 +832,7 @@ class H1 extends ChildNodeElement implements H1Built {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
   final String onblur;
@@ -870,7 +870,7 @@ class H1 extends ChildNodeElement implements H1Built {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -947,7 +947,7 @@ class H2 extends ChildNodeElement implements H2Built {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
   final String onblur;
@@ -985,7 +985,7 @@ class H2 extends ChildNodeElement implements H2Built {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -1062,7 +1062,7 @@ class H3 extends ChildNodeElement implements H3Built {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
   final String onblur;
@@ -1100,7 +1100,7 @@ class H3 extends ChildNodeElement implements H3Built {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -1177,7 +1177,7 @@ class H4 extends ChildNodeElement implements H4Built {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
   final String onblur;
@@ -1215,7 +1215,7 @@ class H4 extends ChildNodeElement implements H4Built {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -1292,7 +1292,7 @@ class H5 extends ChildNodeElement implements H5Built {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
   final String onblur;
@@ -1330,7 +1330,7 @@ class H5 extends ChildNodeElement implements H5Built {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -1407,7 +1407,7 @@ class H6 extends ChildNodeElement implements H6Built {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
   final String onblur;
@@ -1445,7 +1445,7 @@ class H6 extends ChildNodeElement implements H6Built {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -1522,7 +1522,7 @@ class P extends ChildNodeElement implements PBuilt {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
   final String onblur;
@@ -1560,7 +1560,7 @@ class P extends ChildNodeElement implements PBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -1649,7 +1649,7 @@ class A extends ChildNodeElement implements ABuilt {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
   final String onblur;
@@ -1693,7 +1693,7 @@ class A extends ChildNodeElement implements ABuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -1780,7 +1780,7 @@ class Img extends NodeElement implements ImgBuilt {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
   final String onblur;
@@ -1824,7 +1824,7 @@ class Img extends NodeElement implements ImgBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -1899,7 +1899,7 @@ class Span extends ChildNodeElement implements SpanBuilt {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
   final String onblur;
@@ -1937,7 +1937,7 @@ class Span extends ChildNodeElement implements SpanBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -2016,7 +2016,7 @@ class Ul extends ChildNodeElement implements UlBuilt {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
   final String onblur;
@@ -2055,7 +2055,7 @@ class Ul extends ChildNodeElement implements UlBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -2138,7 +2138,7 @@ class Ol extends ChildNodeElement implements OlBuilt {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
   final String onblur;
@@ -2179,7 +2179,7 @@ class Ol extends ChildNodeElement implements OlBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -2260,7 +2260,7 @@ class Li extends ChildNodeElement implements LiBuilt {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
   final String onblur;
@@ -2300,7 +2300,7 @@ class Li extends ChildNodeElement implements LiBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -2377,7 +2377,7 @@ class Strong extends ChildNodeElement implements StrongBuilt {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
   final String onblur;
@@ -2415,7 +2415,7 @@ class Strong extends ChildNodeElement implements StrongBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -2492,7 +2492,7 @@ class B extends ChildNodeElement implements BBuilt {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
   final String onblur;
@@ -2530,7 +2530,7 @@ class B extends ChildNodeElement implements BBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -2607,7 +2607,7 @@ class Em extends ChildNodeElement implements EmBuilt {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
   final String onblur;
@@ -2645,7 +2645,7 @@ class Em extends ChildNodeElement implements EmBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -2722,7 +2722,7 @@ class I extends ChildNodeElement implements IBuilt {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
   final String onblur;
@@ -2760,7 +2760,7 @@ class I extends ChildNodeElement implements IBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -2837,7 +2837,7 @@ class Small extends ChildNodeElement implements SmallBuilt {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
   final String onblur;
@@ -2875,7 +2875,7 @@ class Small extends ChildNodeElement implements SmallBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -2952,7 +2952,7 @@ class Big extends ChildNodeElement implements BigBuilt {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
   final String onblur;
@@ -2990,7 +2990,7 @@ class Big extends ChildNodeElement implements BigBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -3069,7 +3069,7 @@ class Time extends ChildNodeElement implements TimeBuilt {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
   final String onblur;
@@ -3108,7 +3108,7 @@ class Time extends ChildNodeElement implements TimeBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -3185,7 +3185,7 @@ class Code extends ChildNodeElement implements CodeBuilt {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
   final String onblur;
@@ -3223,7 +3223,7 @@ class Code extends ChildNodeElement implements CodeBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -3298,7 +3298,7 @@ class Hr extends NodeElement implements HrBuilt {
   final String lang;
   final String role;
   final bool spellcheck;
-  final List<StyleElement> styleList;
+  final List<StyleCSS> styleList;
   final String tabindex;
   final String title;
   final String onblur;
@@ -3336,7 +3336,7 @@ class Hr extends NodeElement implements HrBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.style.text).join(' ')}"',
+          ' style="${styleList.map((e) => e.text).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',

@@ -24,9 +24,9 @@ Map<String, Attribute> attributesHtml = {
   'spellcheck': Attribute(name: 'spellcheck', isBool: true),
   'style': Attribute(
     name: 'style',
-    type: 'final List<StyleElement> styleList;',
+    type: 'final List<StyleCSS> styleList;',
     init: 'this.styleList',
-    html: 'if (styleList != null && styleList.isNotEmpty) \' style="\${styleList.map((e) => e.style.text).join(\' \')}"\'',
+    html: 'if (styleList != null && styleList.isNotEmpty) \' style="\${styleList.map((e) => e.text).join(\';\')}"\'',
   ),
   'tabindex': Attribute(name: 'tabindex'),
   'title': Attribute(name: 'title'),

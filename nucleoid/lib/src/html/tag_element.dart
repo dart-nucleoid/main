@@ -1,6 +1,7 @@
 import 'package:nucleoid_built/node_element.dart';
 
 import 'node_element.dart';
+import 'package:nucleoid/html.dart';
 
 part 'tag_element.g.dart';
 

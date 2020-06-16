@@ -5,6 +5,7 @@ export 'package:meta/meta.dart' show required;
 export 'package:shelf/shelf.dart' show Response, Request, Handler;
 
 export 'src/build_response/file_data.dart';
+export 'src/build_response/image_resize.dart';
 export 'src/build_response/javascript_data.dart';
 export 'src/build_response/proxy_data.dart';
 export 'src/build_response/style_data.dart';

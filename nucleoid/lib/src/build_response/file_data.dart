@@ -28,7 +28,7 @@ class FileData extends BuildResponse {
       }
 
       try {
-        var mime = this.mime ?? mapFileExtensions[_extension];
+        var mime = this.mime ?? mapFileExtensions[_extension] ?? 'application/octet-stream';
 
         return Response.ok(file.openRead(), headers: {
           'Content-Type': mime,
@@ -46,6 +46,7 @@ class FileData extends BuildResponse {
 }
 
 const Map<String, String> mapFileExtensions = {
+  FileExtensions.gif: MimeTypes.gif,
   FileExtensions.html: MimeTypes.html,
   FileExtensions.ico: MimeTypes.ico,
   FileExtensions.jpg: MimeTypes.jpg,
@@ -57,6 +58,7 @@ const Map<String, String> mapFileExtensions = {
 };
 
 abstract class FileExtensions {
+  static const String gif = 'gif';
   static const String html = 'html';
   static const String ico = 'ico';
   static const String jpg = 'jpg';
@@ -68,6 +70,7 @@ abstract class FileExtensions {
 }
 
 abstract class MimeTypes {
+  static const String gif = 'image/gif';
   static const String html = 'text/html';
   static const String ico = 'image/x-icon';
   static const String jpg = 'image/jpeg';

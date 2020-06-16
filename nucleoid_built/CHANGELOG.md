@@ -1,3 +1,7 @@
+## 0.1.2
+
+- Change styleList type: List<StyleCSS>
+
 ## 0.1.1
 
 - Add HTML attribute: role
