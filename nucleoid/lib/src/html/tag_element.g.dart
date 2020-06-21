@@ -43,7 +43,7 @@ class Html extends ChildNodeElement implements HtmlBuilt {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
 
   @override
@@ -106,7 +106,7 @@ class Head extends ChildNodeElement implements HeadBuilt {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
 
   @override
@@ -185,7 +185,7 @@ class Body extends ChildNodeElement implements BodyBuilt {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
   final String onblur;
   final String onchange;
@@ -301,7 +301,7 @@ class Link extends NodeElement implements LinkBuilt {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
 
   @override
@@ -441,7 +441,7 @@ class Main extends ChildNodeElement implements MainBuilt {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
 
   @override
@@ -502,7 +502,7 @@ class Aside extends ChildNodeElement implements AsideBuilt {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
 
   @override
@@ -581,7 +581,7 @@ class Section extends ChildNodeElement implements SectionBuilt {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
   final String onblur;
   final String onchange;
@@ -718,7 +718,7 @@ class Div extends ChildNodeElement implements DivBuilt {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
   final String onblur;
   final String onchange;
@@ -833,7 +833,7 @@ class H1 extends ChildNodeElement implements H1Built {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
   final String onblur;
   final String onchange;
@@ -948,7 +948,7 @@ class H2 extends ChildNodeElement implements H2Built {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
   final String onblur;
   final String onchange;
@@ -1063,7 +1063,7 @@ class H3 extends ChildNodeElement implements H3Built {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
   final String onblur;
   final String onchange;
@@ -1178,7 +1178,7 @@ class H4 extends ChildNodeElement implements H4Built {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
   final String onblur;
   final String onchange;
@@ -1293,7 +1293,7 @@ class H5 extends ChildNodeElement implements H5Built {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
   final String onblur;
   final String onchange;
@@ -1408,7 +1408,7 @@ class H6 extends ChildNodeElement implements H6Built {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
   final String onblur;
   final String onchange;
@@ -1523,7 +1523,7 @@ class P extends ChildNodeElement implements PBuilt {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
   final String onblur;
   final String onchange;
@@ -1650,7 +1650,7 @@ class A extends ChildNodeElement implements ABuilt {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
   final String onblur;
   final String onchange;
@@ -1781,7 +1781,7 @@ class Img extends NodeElement implements ImgBuilt {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
   final String onblur;
   final String onchange;
@@ -1900,7 +1900,7 @@ class Span extends ChildNodeElement implements SpanBuilt {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
   final String onblur;
   final String onchange;
@@ -2017,7 +2017,7 @@ class Ul extends ChildNodeElement implements UlBuilt {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
   final String onblur;
   final String onchange;
@@ -2139,7 +2139,7 @@ class Ol extends ChildNodeElement implements OlBuilt {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
   final String onblur;
   final String onchange;
@@ -2261,7 +2261,7 @@ class Li extends ChildNodeElement implements LiBuilt {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
   final String onblur;
   final String onchange;
@@ -2378,7 +2378,7 @@ class Strong extends ChildNodeElement implements StrongBuilt {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
   final String onblur;
   final String onchange;
@@ -2493,7 +2493,7 @@ class B extends ChildNodeElement implements BBuilt {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
   final String onblur;
   final String onchange;
@@ -2608,7 +2608,7 @@ class Em extends ChildNodeElement implements EmBuilt {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
   final String onblur;
   final String onchange;
@@ -2723,7 +2723,7 @@ class I extends ChildNodeElement implements IBuilt {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
   final String onblur;
   final String onchange;
@@ -2838,7 +2838,7 @@ class Small extends ChildNodeElement implements SmallBuilt {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
   final String onblur;
   final String onchange;
@@ -2953,7 +2953,7 @@ class Big extends ChildNodeElement implements BigBuilt {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
   final String onblur;
   final String onchange;
@@ -3070,7 +3070,7 @@ class Time extends ChildNodeElement implements TimeBuilt {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
   final String onblur;
   final String onchange;
@@ -3186,7 +3186,7 @@ class Code extends ChildNodeElement implements CodeBuilt {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
   final String onblur;
   final String onchange;
@@ -3299,7 +3299,7 @@ class Hr extends NodeElement implements HrBuilt {
   final String role;
   final bool spellcheck;
   final List<StyleCSS> styleList;
-  final String tabindex;
+  final int tabindex;
   final String title;
   final String onblur;
   final String onchange;
@@ -3358,5 +3358,1115 @@ class Hr extends NodeElement implements HrBuilt {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>'
+      ].join();
+}
+
+// Code for "abstract class FormBuilt implements BuiltNodeElement<ChildNodeElement>"
+class Form extends ChildNodeElement implements FormBuilt {
+  const Form({
+    NodeElement child,
+    List<NodeElement> children,
+    this.acceptCharset,
+    this.action,
+    this.autocomplete,
+    this.enctype,
+    this.method,
+    this.name,
+    this.formnovalidate = false,
+    this.target,
+    this.accesskey,
+    this.autofocus = false,
+    this.classList,
+    this.contentEditable = false,
+    this.contextmenu,
+    this.dir,
+    this.hidden = false,
+    this.id,
+    this.lang,
+    this.role,
+    this.spellcheck = false,
+    this.styleList,
+    this.tabindex,
+    this.title,
+    this.onblur,
+    this.onchange,
+    this.onclick,
+    this.ondblclick,
+    this.onfocus,
+    this.onkeydown,
+    this.onkeypress,
+    this.onkeyup,
+    this.onload,
+    this.onmousedown,
+    this.onmousemove,
+    this.onmouseout,
+    this.onmouseover,
+    this.onmouseup,
+    this.onreset,
+    this.onselect,
+    this.onsubmit,
+    this.onunload,
+  }) : super(child: child, children: children);
+
+  final String acceptCharset;
+  final String action;
+  final InputAutocomplete autocomplete;
+  final String enctype;
+  final FormMethod method;
+  final String name;
+  final bool formnovalidate;
+  final TargetA target;
+  final String accesskey;
+  final bool autofocus;
+  final List<StyleClass> classList;
+  final bool contentEditable;
+  final String contextmenu;
+  final String dir;
+  final bool hidden;
+  final String id;
+  final String lang;
+  final String role;
+  final bool spellcheck;
+  final List<StyleCSS> styleList;
+  final int tabindex;
+  final String title;
+  final String onblur;
+  final String onchange;
+  final String onclick;
+  final String ondblclick;
+  final String onfocus;
+  final String onkeydown;
+  final String onkeypress;
+  final String onkeyup;
+  final String onload;
+  final String onmousedown;
+  final String onmousemove;
+  final String onmouseout;
+  final String onmouseover;
+  final String onmouseup;
+  final String onreset;
+  final String onselect;
+  final String onsubmit;
+  final String onunload;
+
+  @override
+  String get html => [
+        '<form',
+        if (acceptCharset != null) ' accept-charset="$acceptCharset"',
+        if (action != null) ' action="$action"',
+        if (autocomplete != null)
+          ' autocomplete="${mapperInputAutocomplete(autocomplete)}"',
+        if (enctype != null) ' enctype="$enctype"',
+        if (method != null) ' method="${mapperFormMethod(method)}"',
+        if (name != null) ' name="$name"',
+        if (formnovalidate) ' formnovalidate',
+        if (target != null) ' target="${target.text}"',
+        if (accesskey != null) ' accesskey="$accesskey"',
+        if (autofocus) ' autofocus',
+        if (classList != null && classList.isNotEmpty)
+          ' class="${classList.map((e) => e.name).join(' ')}"',
+        if (contentEditable) ' contenteditable',
+        if (contextmenu != null) ' contextmenu="$contextmenu"',
+        if (dir != null) ' dir="$dir"',
+        if (hidden) ' hidden',
+        if (id != null) ' id="$id"',
+        if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
+        if (spellcheck) ' spellcheck',
+        if (styleList != null && styleList.isNotEmpty)
+          ' style="${styleList.map((e) => e.text).join(';')}"',
+        if (tabindex != null) ' tabindex="$tabindex"',
+        if (title != null) ' title="$title"',
+        if (onblur != null) ' onblur="$onblur"',
+        if (onchange != null) ' onchange="$onchange"',
+        if (onclick != null) ' onclick="$onclick"',
+        if (ondblclick != null) ' ondblclick="$ondblclick"',
+        if (onfocus != null) ' onfocus="$onfocus"',
+        if (onkeydown != null) ' onkeydown="$onkeydown"',
+        if (onkeypress != null) ' onkeypress="$onkeypress"',
+        if (onkeyup != null) ' onkeyup="$onkeyup"',
+        if (onload != null) ' onload="$onload"',
+        if (onmousedown != null) ' onmousedown="$onmousedown"',
+        if (onmousemove != null) ' onmousemove="$onmousemove"',
+        if (onmouseout != null) ' onmouseout="$onmouseout"',
+        if (onmouseover != null) ' onmouseover="$onmouseover"',
+        if (onmouseup != null) ' onmouseup="$onmouseup"',
+        if (onreset != null) ' onreset="$onreset"',
+        if (onselect != null) ' onselect="$onselect"',
+        if (onsubmit != null) ' onsubmit="$onsubmit"',
+        if (onunload != null) ' onunload="$onunload"',
+        '>',
+        super.html,
+        '</form>'
+      ].join();
+}
+
+// Code for "abstract class InputBuilt implements BuiltNodeElement<dynamic>"
+class Input extends NodeElement implements InputBuilt {
+  const Input({
+    this.accept,
+    this.alt,
+    this.autocomplete,
+    this.disabled = false,
+    this.form,
+    this.formaction,
+    this.formenctype,
+    this.formmethod,
+    this.formnovalidate = false,
+    this.formtarget,
+    this.list,
+    this.max,
+    this.maxlength,
+    this.min,
+    this.multiple = false,
+    this.name,
+    this.pattern,
+    this.placeholder,
+    this.readonly = false,
+    this.required = false,
+    this.size,
+    this.src,
+    this.step,
+    this.type,
+    this.value,
+    this.accesskey,
+    this.autofocus = false,
+    this.classList,
+    this.contentEditable = false,
+    this.contextmenu,
+    this.dir,
+    this.hidden = false,
+    this.id,
+    this.lang,
+    this.role,
+    this.spellcheck = false,
+    this.styleList,
+    this.tabindex,
+    this.title,
+    this.onblur,
+    this.onchange,
+    this.onclick,
+    this.ondblclick,
+    this.onfocus,
+    this.onkeydown,
+    this.onkeypress,
+    this.onkeyup,
+    this.onload,
+    this.onmousedown,
+    this.onmousemove,
+    this.onmouseout,
+    this.onmouseover,
+    this.onmouseup,
+    this.onreset,
+    this.onselect,
+    this.onsubmit,
+    this.onunload,
+  });
+
+  final String accept;
+  final String alt;
+  final InputAutocomplete autocomplete;
+  final bool disabled;
+  final String form;
+  final String formaction;
+  final String formenctype;
+  final FormMethod formmethod;
+  final bool formnovalidate;
+  final TargetA formtarget;
+  final String list;
+  final String max;
+  final int maxlength;
+  final String min;
+  final bool multiple;
+  final String name;
+  final String pattern;
+  final String placeholder;
+  final bool readonly;
+  final bool required;
+  final int size;
+  final String src;
+  final num step;
+  final InputType type;
+  final String value;
+  final String accesskey;
+  final bool autofocus;
+  final List<StyleClass> classList;
+  final bool contentEditable;
+  final String contextmenu;
+  final String dir;
+  final bool hidden;
+  final String id;
+  final String lang;
+  final String role;
+  final bool spellcheck;
+  final List<StyleCSS> styleList;
+  final int tabindex;
+  final String title;
+  final String onblur;
+  final String onchange;
+  final String onclick;
+  final String ondblclick;
+  final String onfocus;
+  final String onkeydown;
+  final String onkeypress;
+  final String onkeyup;
+  final String onload;
+  final String onmousedown;
+  final String onmousemove;
+  final String onmouseout;
+  final String onmouseover;
+  final String onmouseup;
+  final String onreset;
+  final String onselect;
+  final String onsubmit;
+  final String onunload;
+
+  @override
+  String get html => [
+        '<input',
+        if (accept != null) ' accept="$accept"',
+        if (alt != null) ' alt="$alt"',
+        if (autocomplete != null)
+          ' autocomplete="${mapperInputAutocomplete(autocomplete)}"',
+        if (disabled) ' disabled',
+        if (form != null) ' form="$form"',
+        if (formaction != null) ' formaction="$formaction"',
+        if (formenctype != null) ' formenctype="$formenctype"',
+        if (formmethod != null) ' formmethod="${mapperFormMethod(formmethod)}"',
+        if (formnovalidate) ' formnovalidate',
+        if (formtarget != null) ' formtarget="${formtarget.text}"',
+        if (list != null) ' list="$list"',
+        if (max != null) ' max="$max"',
+        if (maxlength != null) ' maxlength="$maxlength"',
+        if (min != null) ' min="$min"',
+        if (multiple) ' multiple',
+        if (name != null) ' name="$name"',
+        if (pattern != null) ' pattern="$pattern"',
+        if (placeholder != null) ' placeholder="$placeholder"',
+        if (readonly) ' readonly',
+        if (required) ' required',
+        if (size != null) ' size="$size"',
+        if (src != null) ' src="$src"',
+        if (step != null) ' step="$step"',
+        if (type != null) ' type="${mapperInputType(type)}"',
+        if (value != null) ' value="$value"',
+        if (accesskey != null) ' accesskey="$accesskey"',
+        if (autofocus) ' autofocus',
+        if (classList != null && classList.isNotEmpty)
+          ' class="${classList.map((e) => e.name).join(' ')}"',
+        if (contentEditable) ' contenteditable',
+        if (contextmenu != null) ' contextmenu="$contextmenu"',
+        if (dir != null) ' dir="$dir"',
+        if (hidden) ' hidden',
+        if (id != null) ' id="$id"',
+        if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
+        if (spellcheck) ' spellcheck',
+        if (styleList != null && styleList.isNotEmpty)
+          ' style="${styleList.map((e) => e.text).join(';')}"',
+        if (tabindex != null) ' tabindex="$tabindex"',
+        if (title != null) ' title="$title"',
+        if (onblur != null) ' onblur="$onblur"',
+        if (onchange != null) ' onchange="$onchange"',
+        if (onclick != null) ' onclick="$onclick"',
+        if (ondblclick != null) ' ondblclick="$ondblclick"',
+        if (onfocus != null) ' onfocus="$onfocus"',
+        if (onkeydown != null) ' onkeydown="$onkeydown"',
+        if (onkeypress != null) ' onkeypress="$onkeypress"',
+        if (onkeyup != null) ' onkeyup="$onkeyup"',
+        if (onload != null) ' onload="$onload"',
+        if (onmousedown != null) ' onmousedown="$onmousedown"',
+        if (onmousemove != null) ' onmousemove="$onmousemove"',
+        if (onmouseout != null) ' onmouseout="$onmouseout"',
+        if (onmouseover != null) ' onmouseover="$onmouseover"',
+        if (onmouseup != null) ' onmouseup="$onmouseup"',
+        if (onreset != null) ' onreset="$onreset"',
+        if (onselect != null) ' onselect="$onselect"',
+        if (onsubmit != null) ' onsubmit="$onsubmit"',
+        if (onunload != null) ' onunload="$onunload"',
+        '>'
+      ].join();
+}
+
+// Code for "abstract class DatalistBuilt implements BuiltNodeElement<ChildNodeElement>"
+class Datalist extends ChildNodeElement implements DatalistBuilt {
+  const Datalist({
+    NodeElement child,
+    List<NodeElement> children,
+    this.accesskey,
+    this.autofocus = false,
+    this.classList,
+    this.contentEditable = false,
+    this.contextmenu,
+    this.dir,
+    this.hidden = false,
+    this.id,
+    this.lang,
+    this.role,
+    this.spellcheck = false,
+    this.styleList,
+    this.tabindex,
+    this.title,
+    this.onblur,
+    this.onchange,
+    this.onclick,
+    this.ondblclick,
+    this.onfocus,
+    this.onkeydown,
+    this.onkeypress,
+    this.onkeyup,
+    this.onload,
+    this.onmousedown,
+    this.onmousemove,
+    this.onmouseout,
+    this.onmouseover,
+    this.onmouseup,
+    this.onreset,
+    this.onselect,
+    this.onsubmit,
+    this.onunload,
+  }) : super(child: child, children: children);
+
+  final String accesskey;
+  final bool autofocus;
+  final List<StyleClass> classList;
+  final bool contentEditable;
+  final String contextmenu;
+  final String dir;
+  final bool hidden;
+  final String id;
+  final String lang;
+  final String role;
+  final bool spellcheck;
+  final List<StyleCSS> styleList;
+  final int tabindex;
+  final String title;
+  final String onblur;
+  final String onchange;
+  final String onclick;
+  final String ondblclick;
+  final String onfocus;
+  final String onkeydown;
+  final String onkeypress;
+  final String onkeyup;
+  final String onload;
+  final String onmousedown;
+  final String onmousemove;
+  final String onmouseout;
+  final String onmouseover;
+  final String onmouseup;
+  final String onreset;
+  final String onselect;
+  final String onsubmit;
+  final String onunload;
+
+  @override
+  String get html => [
+        '<datalist',
+        if (accesskey != null) ' accesskey="$accesskey"',
+        if (autofocus) ' autofocus',
+        if (classList != null && classList.isNotEmpty)
+          ' class="${classList.map((e) => e.name).join(' ')}"',
+        if (contentEditable) ' contenteditable',
+        if (contextmenu != null) ' contextmenu="$contextmenu"',
+        if (dir != null) ' dir="$dir"',
+        if (hidden) ' hidden',
+        if (id != null) ' id="$id"',
+        if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
+        if (spellcheck) ' spellcheck',
+        if (styleList != null && styleList.isNotEmpty)
+          ' style="${styleList.map((e) => e.text).join(';')}"',
+        if (tabindex != null) ' tabindex="$tabindex"',
+        if (title != null) ' title="$title"',
+        if (onblur != null) ' onblur="$onblur"',
+        if (onchange != null) ' onchange="$onchange"',
+        if (onclick != null) ' onclick="$onclick"',
+        if (ondblclick != null) ' ondblclick="$ondblclick"',
+        if (onfocus != null) ' onfocus="$onfocus"',
+        if (onkeydown != null) ' onkeydown="$onkeydown"',
+        if (onkeypress != null) ' onkeypress="$onkeypress"',
+        if (onkeyup != null) ' onkeyup="$onkeyup"',
+        if (onload != null) ' onload="$onload"',
+        if (onmousedown != null) ' onmousedown="$onmousedown"',
+        if (onmousemove != null) ' onmousemove="$onmousemove"',
+        if (onmouseout != null) ' onmouseout="$onmouseout"',
+        if (onmouseover != null) ' onmouseover="$onmouseover"',
+        if (onmouseup != null) ' onmouseup="$onmouseup"',
+        if (onreset != null) ' onreset="$onreset"',
+        if (onselect != null) ' onselect="$onselect"',
+        if (onsubmit != null) ' onsubmit="$onsubmit"',
+        if (onunload != null) ' onunload="$onunload"',
+        '>',
+        super.html,
+        '</datalist>'
+      ].join();
+}
+
+// Code for "abstract class SelectBuilt implements BuiltNodeElement<ChildNodeElement>"
+class Select extends ChildNodeElement implements SelectBuilt {
+  const Select({
+    NodeElement child,
+    List<NodeElement> children,
+    this.disabled = false,
+    this.form,
+    this.multiple = false,
+    this.name,
+    this.required = false,
+    this.size,
+    this.accesskey,
+    this.autofocus = false,
+    this.classList,
+    this.contentEditable = false,
+    this.contextmenu,
+    this.dir,
+    this.hidden = false,
+    this.id,
+    this.lang,
+    this.role,
+    this.spellcheck = false,
+    this.styleList,
+    this.tabindex,
+    this.title,
+    this.onblur,
+    this.onchange,
+    this.onclick,
+    this.ondblclick,
+    this.onfocus,
+    this.onkeydown,
+    this.onkeypress,
+    this.onkeyup,
+    this.onload,
+    this.onmousedown,
+    this.onmousemove,
+    this.onmouseout,
+    this.onmouseover,
+    this.onmouseup,
+    this.onreset,
+    this.onselect,
+    this.onsubmit,
+    this.onunload,
+  }) : super(child: child, children: children);
+
+  final bool disabled;
+  final String form;
+  final bool multiple;
+  final String name;
+  final bool required;
+  final int size;
+  final String accesskey;
+  final bool autofocus;
+  final List<StyleClass> classList;
+  final bool contentEditable;
+  final String contextmenu;
+  final String dir;
+  final bool hidden;
+  final String id;
+  final String lang;
+  final String role;
+  final bool spellcheck;
+  final List<StyleCSS> styleList;
+  final int tabindex;
+  final String title;
+  final String onblur;
+  final String onchange;
+  final String onclick;
+  final String ondblclick;
+  final String onfocus;
+  final String onkeydown;
+  final String onkeypress;
+  final String onkeyup;
+  final String onload;
+  final String onmousedown;
+  final String onmousemove;
+  final String onmouseout;
+  final String onmouseover;
+  final String onmouseup;
+  final String onreset;
+  final String onselect;
+  final String onsubmit;
+  final String onunload;
+
+  @override
+  String get html => [
+        '<select',
+        if (disabled) ' disabled',
+        if (form != null) ' form="$form"',
+        if (multiple) ' multiple',
+        if (name != null) ' name="$name"',
+        if (required) ' required',
+        if (size != null) ' size="$size"',
+        if (accesskey != null) ' accesskey="$accesskey"',
+        if (autofocus) ' autofocus',
+        if (classList != null && classList.isNotEmpty)
+          ' class="${classList.map((e) => e.name).join(' ')}"',
+        if (contentEditable) ' contenteditable',
+        if (contextmenu != null) ' contextmenu="$contextmenu"',
+        if (dir != null) ' dir="$dir"',
+        if (hidden) ' hidden',
+        if (id != null) ' id="$id"',
+        if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
+        if (spellcheck) ' spellcheck',
+        if (styleList != null && styleList.isNotEmpty)
+          ' style="${styleList.map((e) => e.text).join(';')}"',
+        if (tabindex != null) ' tabindex="$tabindex"',
+        if (title != null) ' title="$title"',
+        if (onblur != null) ' onblur="$onblur"',
+        if (onchange != null) ' onchange="$onchange"',
+        if (onclick != null) ' onclick="$onclick"',
+        if (ondblclick != null) ' ondblclick="$ondblclick"',
+        if (onfocus != null) ' onfocus="$onfocus"',
+        if (onkeydown != null) ' onkeydown="$onkeydown"',
+        if (onkeypress != null) ' onkeypress="$onkeypress"',
+        if (onkeyup != null) ' onkeyup="$onkeyup"',
+        if (onload != null) ' onload="$onload"',
+        if (onmousedown != null) ' onmousedown="$onmousedown"',
+        if (onmousemove != null) ' onmousemove="$onmousemove"',
+        if (onmouseout != null) ' onmouseout="$onmouseout"',
+        if (onmouseover != null) ' onmouseover="$onmouseover"',
+        if (onmouseup != null) ' onmouseup="$onmouseup"',
+        if (onreset != null) ' onreset="$onreset"',
+        if (onselect != null) ' onselect="$onselect"',
+        if (onsubmit != null) ' onsubmit="$onsubmit"',
+        if (onunload != null) ' onunload="$onunload"',
+        '>',
+        super.html,
+        '</select>'
+      ].join();
+}
+
+// Code for "abstract class OptionBuilt implements BuiltNodeElement<ChildNodeElement>"
+class Option extends ChildNodeElement implements OptionBuilt {
+  const Option({
+    NodeElement child,
+    List<NodeElement> children,
+    this.disabled = false,
+    this.label,
+    this.selected = false,
+    this.value,
+    this.accesskey,
+    this.autofocus = false,
+    this.classList,
+    this.contentEditable = false,
+    this.contextmenu,
+    this.dir,
+    this.hidden = false,
+    this.id,
+    this.lang,
+    this.role,
+    this.spellcheck = false,
+    this.styleList,
+    this.tabindex,
+    this.title,
+    this.onblur,
+    this.onchange,
+    this.onclick,
+    this.ondblclick,
+    this.onfocus,
+    this.onkeydown,
+    this.onkeypress,
+    this.onkeyup,
+    this.onload,
+    this.onmousedown,
+    this.onmousemove,
+    this.onmouseout,
+    this.onmouseover,
+    this.onmouseup,
+    this.onreset,
+    this.onselect,
+    this.onsubmit,
+    this.onunload,
+  }) : super(child: child, children: children);
+
+  final bool disabled;
+  final String label;
+  final bool selected;
+  final String value;
+  final String accesskey;
+  final bool autofocus;
+  final List<StyleClass> classList;
+  final bool contentEditable;
+  final String contextmenu;
+  final String dir;
+  final bool hidden;
+  final String id;
+  final String lang;
+  final String role;
+  final bool spellcheck;
+  final List<StyleCSS> styleList;
+  final int tabindex;
+  final String title;
+  final String onblur;
+  final String onchange;
+  final String onclick;
+  final String ondblclick;
+  final String onfocus;
+  final String onkeydown;
+  final String onkeypress;
+  final String onkeyup;
+  final String onload;
+  final String onmousedown;
+  final String onmousemove;
+  final String onmouseout;
+  final String onmouseover;
+  final String onmouseup;
+  final String onreset;
+  final String onselect;
+  final String onsubmit;
+  final String onunload;
+
+  @override
+  String get html => [
+        '<option',
+        if (disabled) ' disabled',
+        if (label != null) ' label="$label"',
+        if (selected) ' selected',
+        if (value != null) ' value="$value"',
+        if (accesskey != null) ' accesskey="$accesskey"',
+        if (autofocus) ' autofocus',
+        if (classList != null && classList.isNotEmpty)
+          ' class="${classList.map((e) => e.name).join(' ')}"',
+        if (contentEditable) ' contenteditable',
+        if (contextmenu != null) ' contextmenu="$contextmenu"',
+        if (dir != null) ' dir="$dir"',
+        if (hidden) ' hidden',
+        if (id != null) ' id="$id"',
+        if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
+        if (spellcheck) ' spellcheck',
+        if (styleList != null && styleList.isNotEmpty)
+          ' style="${styleList.map((e) => e.text).join(';')}"',
+        if (tabindex != null) ' tabindex="$tabindex"',
+        if (title != null) ' title="$title"',
+        if (onblur != null) ' onblur="$onblur"',
+        if (onchange != null) ' onchange="$onchange"',
+        if (onclick != null) ' onclick="$onclick"',
+        if (ondblclick != null) ' ondblclick="$ondblclick"',
+        if (onfocus != null) ' onfocus="$onfocus"',
+        if (onkeydown != null) ' onkeydown="$onkeydown"',
+        if (onkeypress != null) ' onkeypress="$onkeypress"',
+        if (onkeyup != null) ' onkeyup="$onkeyup"',
+        if (onload != null) ' onload="$onload"',
+        if (onmousedown != null) ' onmousedown="$onmousedown"',
+        if (onmousemove != null) ' onmousemove="$onmousemove"',
+        if (onmouseout != null) ' onmouseout="$onmouseout"',
+        if (onmouseover != null) ' onmouseover="$onmouseover"',
+        if (onmouseup != null) ' onmouseup="$onmouseup"',
+        if (onreset != null) ' onreset="$onreset"',
+        if (onselect != null) ' onselect="$onselect"',
+        if (onsubmit != null) ' onsubmit="$onsubmit"',
+        if (onunload != null) ' onunload="$onunload"',
+        '>',
+        super.html,
+        '</option>'
+      ].join();
+}
+
+// Code for "abstract class LabelBuilt implements BuiltNodeElement<ChildNodeElement>"
+class Label extends ChildNodeElement implements LabelBuilt {
+  const Label({
+    NodeElement child,
+    List<NodeElement> children,
+    this.forId,
+    this.accesskey,
+    this.autofocus = false,
+    this.classList,
+    this.contentEditable = false,
+    this.contextmenu,
+    this.dir,
+    this.hidden = false,
+    this.id,
+    this.lang,
+    this.role,
+    this.spellcheck = false,
+    this.styleList,
+    this.tabindex,
+    this.title,
+    this.onblur,
+    this.onchange,
+    this.onclick,
+    this.ondblclick,
+    this.onfocus,
+    this.onkeydown,
+    this.onkeypress,
+    this.onkeyup,
+    this.onload,
+    this.onmousedown,
+    this.onmousemove,
+    this.onmouseout,
+    this.onmouseover,
+    this.onmouseup,
+    this.onreset,
+    this.onselect,
+    this.onsubmit,
+    this.onunload,
+  }) : super(child: child, children: children);
+
+  final String forId;
+  final String accesskey;
+  final bool autofocus;
+  final List<StyleClass> classList;
+  final bool contentEditable;
+  final String contextmenu;
+  final String dir;
+  final bool hidden;
+  final String id;
+  final String lang;
+  final String role;
+  final bool spellcheck;
+  final List<StyleCSS> styleList;
+  final int tabindex;
+  final String title;
+  final String onblur;
+  final String onchange;
+  final String onclick;
+  final String ondblclick;
+  final String onfocus;
+  final String onkeydown;
+  final String onkeypress;
+  final String onkeyup;
+  final String onload;
+  final String onmousedown;
+  final String onmousemove;
+  final String onmouseout;
+  final String onmouseover;
+  final String onmouseup;
+  final String onreset;
+  final String onselect;
+  final String onsubmit;
+  final String onunload;
+
+  @override
+  String get html => [
+        '<label',
+        if (forId != null) ' for="$forId"',
+        if (accesskey != null) ' accesskey="$accesskey"',
+        if (autofocus) ' autofocus',
+        if (classList != null && classList.isNotEmpty)
+          ' class="${classList.map((e) => e.name).join(' ')}"',
+        if (contentEditable) ' contenteditable',
+        if (contextmenu != null) ' contextmenu="$contextmenu"',
+        if (dir != null) ' dir="$dir"',
+        if (hidden) ' hidden',
+        if (id != null) ' id="$id"',
+        if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
+        if (spellcheck) ' spellcheck',
+        if (styleList != null && styleList.isNotEmpty)
+          ' style="${styleList.map((e) => e.text).join(';')}"',
+        if (tabindex != null) ' tabindex="$tabindex"',
+        if (title != null) ' title="$title"',
+        if (onblur != null) ' onblur="$onblur"',
+        if (onchange != null) ' onchange="$onchange"',
+        if (onclick != null) ' onclick="$onclick"',
+        if (ondblclick != null) ' ondblclick="$ondblclick"',
+        if (onfocus != null) ' onfocus="$onfocus"',
+        if (onkeydown != null) ' onkeydown="$onkeydown"',
+        if (onkeypress != null) ' onkeypress="$onkeypress"',
+        if (onkeyup != null) ' onkeyup="$onkeyup"',
+        if (onload != null) ' onload="$onload"',
+        if (onmousedown != null) ' onmousedown="$onmousedown"',
+        if (onmousemove != null) ' onmousemove="$onmousemove"',
+        if (onmouseout != null) ' onmouseout="$onmouseout"',
+        if (onmouseover != null) ' onmouseover="$onmouseover"',
+        if (onmouseup != null) ' onmouseup="$onmouseup"',
+        if (onreset != null) ' onreset="$onreset"',
+        if (onselect != null) ' onselect="$onselect"',
+        if (onsubmit != null) ' onsubmit="$onsubmit"',
+        if (onunload != null) ' onunload="$onunload"',
+        '>',
+        super.html,
+        '</label>'
+      ].join();
+}
+
+// Code for "abstract class ButtonBuilt implements BuiltNodeElement<ChildNodeElement>"
+class Button extends ChildNodeElement implements ButtonBuilt {
+  const Button({
+    NodeElement child,
+    List<NodeElement> children,
+    this.disabled = false,
+    this.form,
+    this.formaction,
+    this.formenctype,
+    this.formmethod,
+    this.formnovalidate = false,
+    this.formtarget,
+    this.name,
+    this.type,
+    this.value,
+    this.accesskey,
+    this.autofocus = false,
+    this.classList,
+    this.contentEditable = false,
+    this.contextmenu,
+    this.dir,
+    this.hidden = false,
+    this.id,
+    this.lang,
+    this.role,
+    this.spellcheck = false,
+    this.styleList,
+    this.tabindex,
+    this.title,
+    this.onblur,
+    this.onchange,
+    this.onclick,
+    this.ondblclick,
+    this.onfocus,
+    this.onkeydown,
+    this.onkeypress,
+    this.onkeyup,
+    this.onload,
+    this.onmousedown,
+    this.onmousemove,
+    this.onmouseout,
+    this.onmouseover,
+    this.onmouseup,
+    this.onreset,
+    this.onselect,
+    this.onsubmit,
+    this.onunload,
+  }) : super(child: child, children: children);
+
+  final bool disabled;
+  final String form;
+  final String formaction;
+  final String formenctype;
+  final FormMethod formmethod;
+  final bool formnovalidate;
+  final TargetA formtarget;
+  final String name;
+  final ButtonType type;
+  final String value;
+  final String accesskey;
+  final bool autofocus;
+  final List<StyleClass> classList;
+  final bool contentEditable;
+  final String contextmenu;
+  final String dir;
+  final bool hidden;
+  final String id;
+  final String lang;
+  final String role;
+  final bool spellcheck;
+  final List<StyleCSS> styleList;
+  final int tabindex;
+  final String title;
+  final String onblur;
+  final String onchange;
+  final String onclick;
+  final String ondblclick;
+  final String onfocus;
+  final String onkeydown;
+  final String onkeypress;
+  final String onkeyup;
+  final String onload;
+  final String onmousedown;
+  final String onmousemove;
+  final String onmouseout;
+  final String onmouseover;
+  final String onmouseup;
+  final String onreset;
+  final String onselect;
+  final String onsubmit;
+  final String onunload;
+
+  @override
+  String get html => [
+        '<button',
+        if (disabled) ' disabled',
+        if (form != null) ' form="$form"',
+        if (formaction != null) ' formaction="$formaction"',
+        if (formenctype != null) ' formenctype="$formenctype"',
+        if (formmethod != null) ' formmethod="${mapperFormMethod(formmethod)}"',
+        if (formnovalidate) ' formnovalidate',
+        if (formtarget != null) ' formtarget="${formtarget.text}"',
+        if (name != null) ' name="$name"',
+        if (type != null) ' type="${mapperButtonType(type)}"',
+        if (value != null) ' value="$value"',
+        if (accesskey != null) ' accesskey="$accesskey"',
+        if (autofocus) ' autofocus',
+        if (classList != null && classList.isNotEmpty)
+          ' class="${classList.map((e) => e.name).join(' ')}"',
+        if (contentEditable) ' contenteditable',
+        if (contextmenu != null) ' contextmenu="$contextmenu"',
+        if (dir != null) ' dir="$dir"',
+        if (hidden) ' hidden',
+        if (id != null) ' id="$id"',
+        if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
+        if (spellcheck) ' spellcheck',
+        if (styleList != null && styleList.isNotEmpty)
+          ' style="${styleList.map((e) => e.text).join(';')}"',
+        if (tabindex != null) ' tabindex="$tabindex"',
+        if (title != null) ' title="$title"',
+        if (onblur != null) ' onblur="$onblur"',
+        if (onchange != null) ' onchange="$onchange"',
+        if (onclick != null) ' onclick="$onclick"',
+        if (ondblclick != null) ' ondblclick="$ondblclick"',
+        if (onfocus != null) ' onfocus="$onfocus"',
+        if (onkeydown != null) ' onkeydown="$onkeydown"',
+        if (onkeypress != null) ' onkeypress="$onkeypress"',
+        if (onkeyup != null) ' onkeyup="$onkeyup"',
+        if (onload != null) ' onload="$onload"',
+        if (onmousedown != null) ' onmousedown="$onmousedown"',
+        if (onmousemove != null) ' onmousemove="$onmousemove"',
+        if (onmouseout != null) ' onmouseout="$onmouseout"',
+        if (onmouseover != null) ' onmouseover="$onmouseover"',
+        if (onmouseup != null) ' onmouseup="$onmouseup"',
+        if (onreset != null) ' onreset="$onreset"',
+        if (onselect != null) ' onselect="$onselect"',
+        if (onsubmit != null) ' onsubmit="$onsubmit"',
+        if (onunload != null) ' onunload="$onunload"',
+        '>',
+        super.html,
+        '</button>'
+      ].join();
+}
+
+// Code for "abstract class TextareaBuilt implements BuiltNodeElement<ChildNodeElement>"
+class Textarea extends ChildNodeElement implements TextareaBuilt {
+  const Textarea({
+    NodeElement child,
+    List<NodeElement> children,
+    this.cols,
+    this.disabled = false,
+    this.form,
+    this.maxlength,
+    this.name,
+    this.placeholder,
+    this.readonly = false,
+    this.required = false,
+    this.rows,
+    this.wrap,
+    this.accesskey,
+    this.autofocus = false,
+    this.classList,
+    this.contentEditable = false,
+    this.contextmenu,
+    this.dir,
+    this.hidden = false,
+    this.id,
+    this.lang,
+    this.role,
+    this.spellcheck = false,
+    this.styleList,
+    this.tabindex,
+    this.title,
+    this.onblur,
+    this.onchange,
+    this.onclick,
+    this.ondblclick,
+    this.onfocus,
+    this.onkeydown,
+    this.onkeypress,
+    this.onkeyup,
+    this.onload,
+    this.onmousedown,
+    this.onmousemove,
+    this.onmouseout,
+    this.onmouseover,
+    this.onmouseup,
+    this.onreset,
+    this.onselect,
+    this.onsubmit,
+    this.onunload,
+  }) : super(child: child, children: children);
+
+  final int cols;
+  final bool disabled;
+  final String form;
+  final int maxlength;
+  final String name;
+  final String placeholder;
+  final bool readonly;
+  final bool required;
+  final int rows;
+  final WrapTextarea wrap;
+  final String accesskey;
+  final bool autofocus;
+  final List<StyleClass> classList;
+  final bool contentEditable;
+  final String contextmenu;
+  final String dir;
+  final bool hidden;
+  final String id;
+  final String lang;
+  final String role;
+  final bool spellcheck;
+  final List<StyleCSS> styleList;
+  final int tabindex;
+  final String title;
+  final String onblur;
+  final String onchange;
+  final String onclick;
+  final String ondblclick;
+  final String onfocus;
+  final String onkeydown;
+  final String onkeypress;
+  final String onkeyup;
+  final String onload;
+  final String onmousedown;
+  final String onmousemove;
+  final String onmouseout;
+  final String onmouseover;
+  final String onmouseup;
+  final String onreset;
+  final String onselect;
+  final String onsubmit;
+  final String onunload;
+
+  @override
+  String get html => [
+        '<textarea',
+        if (cols != null) ' cols="$cols"',
+        if (disabled) ' disabled',
+        if (form != null) ' form="$form"',
+        if (maxlength != null) ' maxlength="$maxlength"',
+        if (name != null) ' name="$name"',
+        if (placeholder != null) ' placeholder="$placeholder"',
+        if (readonly) ' readonly',
+        if (required) ' required',
+        if (rows != null) ' rows="$rows"',
+        if (wrap != null) ' wrap="${mapperWrapTextarea(wrap)}"',
+        if (accesskey != null) ' accesskey="$accesskey"',
+        if (autofocus) ' autofocus',
+        if (classList != null && classList.isNotEmpty)
+          ' class="${classList.map((e) => e.name).join(' ')}"',
+        if (contentEditable) ' contenteditable',
+        if (contextmenu != null) ' contextmenu="$contextmenu"',
+        if (dir != null) ' dir="$dir"',
+        if (hidden) ' hidden',
+        if (id != null) ' id="$id"',
+        if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
+        if (spellcheck) ' spellcheck',
+        if (styleList != null && styleList.isNotEmpty)
+          ' style="${styleList.map((e) => e.text).join(';')}"',
+        if (tabindex != null) ' tabindex="$tabindex"',
+        if (title != null) ' title="$title"',
+        if (onblur != null) ' onblur="$onblur"',
+        if (onchange != null) ' onchange="$onchange"',
+        if (onclick != null) ' onclick="$onclick"',
+        if (ondblclick != null) ' ondblclick="$ondblclick"',
+        if (onfocus != null) ' onfocus="$onfocus"',
+        if (onkeydown != null) ' onkeydown="$onkeydown"',
+        if (onkeypress != null) ' onkeypress="$onkeypress"',
+        if (onkeyup != null) ' onkeyup="$onkeyup"',
+        if (onload != null) ' onload="$onload"',
+        if (onmousedown != null) ' onmousedown="$onmousedown"',
+        if (onmousemove != null) ' onmousemove="$onmousemove"',
+        if (onmouseout != null) ' onmouseout="$onmouseout"',
+        if (onmouseover != null) ' onmouseover="$onmouseover"',
+        if (onmouseup != null) ' onmouseup="$onmouseup"',
+        if (onreset != null) ' onreset="$onreset"',
+        if (onselect != null) ' onselect="$onselect"',
+        if (onsubmit != null) ' onsubmit="$onsubmit"',
+        if (onunload != null) ' onunload="$onunload"',
+        '>',
+        super.html,
+        '</textarea>'
       ].join();
 }

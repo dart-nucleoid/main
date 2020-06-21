@@ -246,3 +246,86 @@ List<_StyleElementWithPathName> _getAllStyleElementWithPathName(List<StyleElemen
 
   return resultList;
 }
+
+enum InputType { button, checkbox, file, hidden, image, password, radio, reset, submit, text }
+
+String mapperInputType(InputType inputType) {
+  switch (inputType) {
+    case InputType.button:
+      return 'button';
+    case InputType.checkbox:
+      return 'checkbox';
+    case InputType.file:
+      return 'file';
+    case InputType.hidden:
+      return 'hidden';
+    case InputType.image:
+      return 'image';
+    case InputType.password:
+      return 'password';
+    case InputType.radio:
+      return 'radio';
+    case InputType.reset:
+      return 'reset';
+    case InputType.submit:
+      return 'submit';
+    case InputType.text:
+      return 'text';
+    default:
+      throw Exception('Invalid value InputType');
+  }
+}
+
+enum InputAutocomplete { on, off }
+
+String mapperInputAutocomplete(InputAutocomplete inputAutocomplete) {
+  switch (inputAutocomplete) {
+    case InputAutocomplete.on:
+      return 'on';
+    case InputAutocomplete.off:
+      return 'off';
+    default:
+      throw Exception('Invalid value InputAutocomplete');
+  }
+}
+
+enum FormMethod { get, post }
+
+String mapperFormMethod(FormMethod formMethod) {
+  switch (formMethod) {
+    case FormMethod.get:
+      return 'get';
+    case FormMethod.post:
+      return 'post';
+    default:
+      throw Exception('Invalid value FormMethod');
+  }
+}
+
+enum ButtonType { button, reset, submit }
+
+String mapperButtonType(ButtonType buttonType) {
+  switch (buttonType) {
+    case ButtonType.button:
+      return 'button';
+    case ButtonType.reset:
+      return 'reset';
+    case ButtonType.submit:
+      return 'submit';
+    default:
+      throw Exception('Invalid value ButtonType');
+  }
+}
+
+enum WrapTextarea { soft, hard }
+
+String mapperWrapTextarea(WrapTextarea wrapTextarea) {
+  switch (wrapTextarea) {
+    case WrapTextarea.soft:
+      return 'soft';
+    case WrapTextarea.hard:
+      return 'hard';
+    default:
+      throw Exception('Invalid value WrapTextarea');
+  }
+}

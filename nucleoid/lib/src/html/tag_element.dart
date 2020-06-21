@@ -13,10 +13,7 @@ class Document extends ChildNodeElement {
 }
 
 abstract class HtmlBuilt implements BuiltNodeElement<ChildNodeElement>, NoEvents {
-  static const List<Attribute> attributesExtend = [
-    Attribute(name: 'manifest'),
-    Attribute(name: 'dataTheme', html: 'if (dataTheme != null) \' data-theme="\$dataTheme"\''),
-  ];
+  static const List<Attribute> attributesExtend = [Attributes.manifest, Attributes.dataTheme];
 }
 
 abstract class HeadBuilt implements BuiltNodeElement<ChildNodeElement>, NoEvents {}
@@ -29,29 +26,29 @@ abstract class TitleBuilt implements BuiltNodeElement<ChildNodeElement> {
 
 abstract class LinkBuilt implements BuiltNodeElement, NoEvents {
   static const List<Attribute> attributesExtend = [
-    Attribute(name: 'href'),
-    Attribute(name: 'media'),
-    Attribute(name: 'rel'),
-    Attribute(name: 'sizes'),
-    Attribute(name: 'type'),
+    Attributes.href,
+    Attributes.media,
+    Attributes.relLink,
+    Attributes.sizes,
+    Attributes.type,
   ];
 }
 
 abstract class MetaBuilt implements BuiltNodeElement {
   static const List<Attribute> attributes = [
-    Attribute(name: 'charset'),
-    Attribute(name: 'content'),
-    Attribute(name: 'httpEquiv', html: 'if (httpEquiv != null) \' http-equiv="\$httpEquiv"\''),
-    Attribute(name: 'name'),
+    Attributes.charset,
+    Attributes.content,
+    Attributes.httpEquiv,
+    Attributes.name,
   ];
 }
 
 abstract class ScriptBuilt implements BuiltNodeElement<ChildNodeElement> {
   static const List<Attribute> attributes = [
-    Attribute(name: 'async', isBool: true),
-    Attribute(name: 'defer', isBool: true),
-    Attribute(name: 'src'),
-    Attribute(name: 'type'),
+    Attributes.async,
+    Attributes.defer,
+    Attributes.src,
+    Attributes.type,
   ];
 }
 
@@ -95,20 +92,12 @@ abstract class PBuilt implements BuiltNodeElement<ChildNodeElement> {}
 
 abstract class ABuilt implements BuiltNodeElement<ChildNodeElement> {
   static const List<Attribute> attributesExtend = [
-    Attribute(name: 'download', isBool: true),
-    Attribute(name: 'href'),
-    Attribute(name: 'hreflang'),
-    Attribute(
-      name: 'rel',
-      type: 'final RelA rel;',
-      html: 'if (rel != null) \' rel="\${mapperRelA(rel)}"\'',
-    ),
-    Attribute(
-      name: 'target',
-      type: 'final TargetA target;',
-      html: 'if (target != null) \' target="\${target.text}"\'',
-    ),
-    Attribute(name: 'type'),
+    Attributes.download,
+    Attributes.href,
+    Attributes.hreflang,
+    Attributes.relA,
+    Attributes.target,
+    Attributes.type,
   ];
 }
 
@@ -194,12 +183,12 @@ String mapperRelA(RelA value) {
 
 abstract class ImgBuilt implements BuiltNodeElement {
   static const List<Attribute> attributesExtend = [
-    Attribute(name: 'alt'),
-    Attribute(name: 'height'),
-    Attribute(name: 'ismap', isBool: true),
-    Attribute(name: 'src'),
-    Attribute(name: 'width'),
-    Attribute(name: 'usemap'),
+    Attributes.alt,
+    Attributes.height,
+    Attributes.isMap,
+    Attributes.src,
+    Attributes.width,
+    Attributes.useMap,
   ];
 }
 
@@ -211,17 +200,14 @@ abstract class UlBuilt implements BuiltNodeElement<ChildNodeElement> {
 
 abstract class OlBuilt implements BuiltNodeElement<ChildNodeElement> {
   static const List<Attribute> attributesExtend = [
-    Attribute(name: 'type'),
-    Attribute(name: 'reversed', isBool: true),
-    Attribute(name: 'start', type: 'final int start;')
+    Attributes.type,
+    Attributes.reversed,
+    Attributes.start,
   ];
 }
 
 abstract class LiBuilt implements BuiltNodeElement<ChildNodeElement> {
-  static const List<Attribute> attributesExtend = [
-    Attribute(name: 'type'),
-    Attribute(name: 'value', type: 'final int value;')
-  ];
+  static const List<Attribute> attributesExtend = [Attributes.type, Attributes.valueLi];
 }
 
 abstract class StrongBuilt implements BuiltNodeElement<ChildNodeElement> {}
@@ -237,11 +223,108 @@ abstract class SmallBuilt implements BuiltNodeElement<ChildNodeElement> {}
 abstract class BigBuilt implements BuiltNodeElement<ChildNodeElement> {}
 
 abstract class TimeBuilt implements BuiltNodeElement<ChildNodeElement> {
-  static const List<Attribute> attributesExtend = [
-    Attribute(name: 'datetime'),
-  ];
+  static const List<Attribute> attributesExtend = [Attributes.datetime];
 }
 
 abstract class CodeBuilt implements BuiltNodeElement<ChildNodeElement> {}
 
 abstract class HrBuilt implements BuiltNodeElement {}
+
+abstract class FormBuilt implements BuiltNodeElement<ChildNodeElement> {
+  static const List<Attribute> attributesExtend = [
+    Attributes.acceptCharset,
+    Attributes.action,
+    Attributes.autocomplete,
+    Attributes.enctype,
+    Attributes.method,
+    Attributes.name,
+    Attributes.formNovalidate,
+    Attributes.target,
+  ];
+}
+
+abstract class InputBuilt implements BuiltNodeElement {
+  static const List<Attribute> attributesExtend = [
+    Attributes.accept,
+    Attributes.alt,
+    Attributes.autocomplete,
+    Attributes.disabled,
+    Attributes.form,
+    Attributes.formAction,
+    Attributes.formEnctype,
+    Attributes.formMethod,
+    Attributes.formNovalidate,
+    Attributes.formTarget,
+    Attributes.list,
+    Attributes.max,
+    Attributes.maxlength,
+    Attributes.min,
+    Attributes.multiple,
+    Attributes.name,
+    Attributes.pattern,
+    Attributes.placeholder,
+    Attributes.readonly,
+    Attributes.required,
+    Attributes.size,
+    Attributes.src,
+    Attributes.step,
+    Attributes.typeInput,
+    Attributes.value,
+  ];
+}
+
+abstract class DatalistBuilt implements BuiltNodeElement<ChildNodeElement> {}
+
+abstract class SelectBuilt implements BuiltNodeElement<ChildNodeElement> {
+  static const List<Attribute> attributesExtend = [
+    Attributes.disabled,
+    Attributes.form,
+    Attributes.multiple,
+    Attributes.name,
+    Attributes.required,
+    Attributes.size,
+  ];
+}
+
+abstract class OptionBuilt implements BuiltNodeElement<ChildNodeElement> {
+  static const List<Attribute> attributesExtend = [
+    Attributes.disabled,
+    Attributes.label,
+    Attributes.selected,
+    Attributes.value,
+  ];
+}
+
+abstract class LabelBuilt implements BuiltNodeElement<ChildNodeElement> {
+  static const List<Attribute> attributesExtend = [Attributes.forId];
+}
+
+abstract class ButtonBuilt implements BuiltNodeElement<ChildNodeElement> {
+  static const List<Attribute> attributesExtend = [
+    Attributes.disabled,
+    Attributes.form,
+    Attributes.formAction,
+    Attributes.formEnctype,
+    Attributes.formMethod,
+    Attributes.formNovalidate,
+    Attributes.formTarget,
+    Attributes.name,
+    Attributes.typeButton,
+    Attributes.value,
+  ];
+}
+
+abstract class TextareaBuilt implements BuiltNodeElement<ChildNodeElement> {
+  static const List<Attribute> attributesExtend = [
+    Attributes.cols,
+    Attributes.disabled,
+    Attributes.form,
+    Attributes.maxlength,
+    Attributes.name,
+    Attributes.placeholder,
+    Attributes.readonly,
+    Attributes.required,
+    Attributes.rows,
+    Attributes.wrap,
+  ];
+}

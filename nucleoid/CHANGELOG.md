@@ -1,3 +1,7 @@
+## 0.1.5
+- Refactoring BuiltNodeElement
+- Add HTML elements: Form, Input, Datalist, Select, Option, Label, Button, Textarea
+
 ## 0.1.4
 - FileData new mime-type: gif
 - FileData default mime-type: application/octet-stream
