@@ -30,7 +30,7 @@ class Server with Loggable {
       return;
     }
 
-    var handler = const Pipeline().addMiddleware(logRequests()).addHandler(router.builder);
+    var handler = const Pipeline().addMiddleware(logRequests()).addHandler(router.build);
 
     var server = await io.serve(handler, address, port);
     log.fine('Start at http://${server.address.host}:${server.port}');

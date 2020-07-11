@@ -143,13 +143,13 @@ abstract class Attributes {
     name: 'style',
     type: 'final List<StyleCSS> styleList;',
     init: 'this.styleList',
-    html: 'if (styleList != null && styleList.isNotEmpty) \' style="\${styleList.map((e) => e.text).join(\';\')}"\'',
+    html: 'if (styleList != null && styleList.isNotEmpty) \' style="\${styleList.map((e) => e.build()).join(\';\')}"\'',
   );
   static const tabindex = Attribute(name: 'tabindex', type: 'final int tabindex;');
   static const target = Attribute(
     name: 'target',
     type: 'final TargetA target;',
-    html: 'if (target != null) \' target="\${target.text}"\'',
+    html: 'if (target != null) \' target="\${target.build()}"\'',
   );
   static const type = Attribute(name: 'type');
   static const typeButton = Attribute(
@@ -181,7 +181,7 @@ abstract class Attributes {
   static const formTarget = Attribute(
     name: 'formtarget',
     type: 'final TargetA formtarget;',
-    html: 'if (formtarget != null) \' formtarget="\${formtarget.text}"\'',
+    html: 'if (formtarget != null) \' formtarget="\${formtarget.build()}"\'',
   );
   static const useMap = Attribute(name: 'usemap');
   static const value = Attribute(name: 'value');

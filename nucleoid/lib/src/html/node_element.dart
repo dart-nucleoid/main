@@ -5,7 +5,7 @@ import '../../html.dart';
 abstract class NodeElement {
   const NodeElement();
 
-  String get html;
+  String build();
 }
 
 abstract class ChildNodeElement extends NodeElement {
@@ -15,11 +15,11 @@ abstract class ChildNodeElement extends NodeElement {
   const ChildNodeElement({this.child, this.children});
 
   @override
-  String get html {
+  String build() {
     if (child != null) {
-      return child.html;
+      return child.build();
     } else if (children != null) {
-      return children.map((child) => child.html).toList().join('\n');
+      return children.map((child) => child.build()).toList().join('\n');
     } else {
       return '';
     }
@@ -34,12 +34,12 @@ class Text extends NodeElement {
   Text(this.text);
 
   @override
-  String get html => text;
+  String build() => text;
 }
 
 class Br extends NodeElement {
   @override
-  String get html => '<br>';
+  String build() => '<br>';
 }
 
 class StyleElement {
@@ -178,7 +178,7 @@ String _mergeEchoStyle(List<_StyleElementWithPathName> list, [int width]) {
         buffer.add([
           list.where((el) => el.styleElement.style == e.styleElement.style).map((e) => e.nameStyle).join(', '),
           ' {',
-          e.styleElement.style.text,
+          e.styleElement.style.build(),
           '}\n',
         ].join());
       }
@@ -194,7 +194,7 @@ String _mergeEchoStyle(List<_StyleElementWithPathName> list, [int width]) {
               .map((e) => e.nameStyle)
               .join(', '),
           ' {',
-          e.styleElement.width[width].text,
+          e.styleElement.width[width].build(),
           '}\n',
         ].join());
       }

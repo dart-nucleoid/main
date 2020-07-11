@@ -23,7 +23,7 @@ class Style extends BuildResponse with Loggable {
   Style(Request request) : super(request: request);
 
   @override
-  Response builder() {
+  Response build() {
     return Response.ok(echoAllStyleClass(_styleClassList), headers: {'Content-Type': 'text/css'});
   }
 }

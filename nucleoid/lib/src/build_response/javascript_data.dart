@@ -14,14 +14,14 @@ class JavascriptData extends BuildResponse {
       JavascriptData(file: File(path), request: request);
 
   @override
-  Future<Response> builder() async {
+  Future<Response> build() async {
     var fileCache = _outputCache(file);
 
     if (! await fileCache.exists() || (await fileCache.lastModified()).isBefore(dateTimeStart)) {
       await dart2js(file);
     }
 
-    return FileData(file: fileCache, request: request).builder();
+    return FileData(file: fileCache, request: request).build();
   }
 
   static File _outputCache(File file) =>

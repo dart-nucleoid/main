@@ -8,21 +8,21 @@ import 'style/style.dart';
 
 class ServerTemplateRouter extends Router {
   @override
-  Future<Response> builder(Request request) async {
+  Future<Response> build(Request request) async {
     var route = Route.formRequest(request);
 
     if (route == Routes.home) {
-      return HomePage(request).builder();
+      return HomePage(request).build();
     } else if (route == Routes.style) {
-      return Style(request).builder();
+      return Style(request).build();
     } else if (route == Routes.script) {
-      return JavascriptData.path('lib/script/main.dart', request: request).builder();
+      return JavascriptData.path('lib/script/main.dart', request: request).build();
     } else if (route == Routes.favicon) {
-      return FileData.path('assets/icons/favicon.ico', request: request).builder();
+      return FileData.path('assets/icons/favicon.ico', request: request).build();
     } else if (route.name.startsWith(Routes.imagesPath.name)) {
-      return FileData.path('assets${route.url}', request: request).builder();
+      return FileData.path('assets${route.url}', request: request).build();
     } else {
-      return NotFoundPage(request).builder();
+      return NotFoundPage(request).build();
     }
   }
 }
