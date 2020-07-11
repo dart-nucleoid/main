@@ -31,7 +31,7 @@ class ColorCSS {
   }
 
   /// [text] getter String color for CSS HTML
-  String get text {
+  String build() {
     var a = alpha.toRadixString(16).padLeft(2, '0');
     if (a == 'ff') a = '';
     var hex = value.toRadixString(16).substring(2).padLeft(6, '0');

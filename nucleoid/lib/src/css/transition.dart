@@ -12,11 +12,11 @@ class TransitionCSS {
 
   const TransitionCSS({@required this.duration, this.delay, this.property, this.timingFunction});
 
-  String get text => [
-        if (property != null) property.text,
+  String build() => [
+        if (property != null) property.name,
         duration.secondsText,
         if (delay != null) delay.secondsText,
-        if (timingFunction != null) timingFunction.text,
+        if (timingFunction != null) timingFunction.build(),
       ].join(' ');
 
   TransitionCSS copyWith(
@@ -35,5 +35,5 @@ class TransitionCSSList extends TransitionCSS {
   const TransitionCSSList(this.list);
 
   @override
-  String get text => list.map((e) => e.text).join(',');
+  String build() => list.map((e) => e.build()).join(',');
 }

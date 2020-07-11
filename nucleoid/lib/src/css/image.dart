@@ -7,9 +7,9 @@ class ImagePositionCSS {
 
   const ImagePositionCSS(this.left, this.top, [this.type = _TypePositionImageCSS.value]);
 
-  String get text {
+  String build() {
     if (type == _TypePositionImageCSS.value) {
-      return '${left.text} ${top.text}';
+      return '${left.build()} ${top.build()}';
     } else {
       return _mapperTypePositionImageCSS(type);
     }
@@ -70,7 +70,7 @@ class ImageRepeatCSS {
 
   const ImageRepeatCSS(this.typeRepeatX, this.typeRepeatY);
 
-  String get text {
+  String build() {
     if (typeRepeatX == typeRepeatY) {
       return '${mapperRepeatImageCSS(typeRepeatX)}';
     } else if (typeRepeatX == TypeRepeatCSS.repeat && typeRepeatY == TypeRepeatCSS.noRepeat) {
@@ -114,9 +114,9 @@ class ImageSizeCSS {
 
   const ImageSizeCSS(this.width, this.height, [this.type = _TypeSizeImageCSS.value]);
 
-  String get text {
+  String build() {
     if (type == _TypeSizeImageCSS.value) {
-      return '${width.text} ${height.text}';
+      return '${width.build()} ${height.build()}';
     } else {
       return _mapperTypeSizeImageCSS(type);
     }

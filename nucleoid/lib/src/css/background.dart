@@ -10,12 +10,12 @@ class BackgroundCSS {
 
   BackgroundCSS({this.attachment, this.color, this.image, this.position, this.repeat});
 
-  String get text => [
+  String build() => [
         if (attachment != null) mapperAttachmentBackgroundCSS(attachment),
-        if (color != null) color.text,
+        if (color != null) color.build(),
         if (image != null) 'url($image)',
-        if (position != null) position.text,
-        if (repeat != null) repeat.text,
+        if (position != null) position.build(),
+        if (repeat != null) repeat.build(),
       ].join(' ');
 }
 
@@ -25,7 +25,7 @@ class BackgroundCSSList extends BackgroundCSS {
   BackgroundCSSList(this.list);
 
   @override
-  String get text => list.map((e) => e.text).join(',');
+  String build() => list.map((e) => e.build()).join(',');
 }
 
 abstract class ColorsCSS {

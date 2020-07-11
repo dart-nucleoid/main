@@ -5,7 +5,7 @@ class _TimingFunctionCSSBase {
 
   const _TimingFunctionCSSBase(this.value);
 
-  String get text => value;
+  String build() => value;
 }
 
 class TimingFunctionCSS extends _TimingFunctionCSSBase {
@@ -42,5 +42,5 @@ class TimingFunctionCSSList extends TimingFunctionCSS {
   const TimingFunctionCSSList(this.list);
 
   @override
-  String get text => list.map((e) => e.text).join(',');
+  String build() => list.map((e) => e.build()).join(',');
 }
