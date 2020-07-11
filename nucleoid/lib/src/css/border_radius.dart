@@ -10,26 +10,33 @@ class _BorderRadiusCSSBase {
 }
 
 class BorderRadiusCSS extends _BorderRadiusCSSBase {
-  const BorderRadiusCSS.only({SizeCSS topLeft, SizeCSS topRight, SizeCSS bottomLeft, SizeCSS bottomRight})
+  const BorderRadiusCSS.only(
+      {SizeCSS topLeft = SizeCSS.zero,
+      SizeCSS topRight = SizeCSS.zero,
+      SizeCSS bottomLeft = SizeCSS.zero,
+      SizeCSS bottomRight = SizeCSS.zero})
       : super(topLeft, topRight, bottomLeft, bottomRight);
 
   const BorderRadiusCSS.all(SizeCSS size) : super(size, size, size, size);
 
-  const BorderRadiusCSS.symmetric({SizeCSS topLeftBottomRight, SizeCSS bottomLeftTopRight})
+  const BorderRadiusCSS.symmetric(
+      {SizeCSS topLeftBottomRight = SizeCSS.zero, SizeCSS bottomLeftTopRight = SizeCSS.zero})
       : super(topLeftBottomRight, bottomLeftTopRight, bottomLeftTopRight, topLeftBottomRight);
 
-  const BorderRadiusCSS.horizontal({SizeCSS left, SizeCSS right}) : super(left, right, left, right);
+  const BorderRadiusCSS.horizontal({SizeCSS left = SizeCSS.zero, SizeCSS right = SizeCSS.zero})
+      : super(left, right, left, right);
 
-  const BorderRadiusCSS.vertical({SizeCSS top, SizeCSS bottom}) : super(top, top, bottom, bottom);
+  const BorderRadiusCSS.vertical({SizeCSS top = SizeCSS.zero, SizeCSS bottom = SizeCSS.zero})
+      : super(top, top, bottom, bottom);
 
-  String get text {
-    if (<String>{topLeft.text, topRight.text, bottomLeft.text, bottomRight.text}.length == 1) {
-      return topLeft.text ?? 0;
-    } else if (topLeft.text == bottomRight.text && topRight.text == bottomLeft.text) {
-      return [topLeft.text ?? 0, topRight.text ?? 0].join(' ');
-    } else if (bottomRight.text == bottomLeft.text && topLeft.text != topRight.text) {
-      return [topLeft.text ?? 0, topRight.text ?? 0, bottomRight.text ?? 0].join(' ');
+  String build() {
+    if (<String>{topLeft.build(), topRight.build(), bottomLeft.build(), bottomRight.build()}.length == 1) {
+      return topLeft.build() ?? 0;
+    } else if (topLeft.build() == bottomRight.build() && topRight.build() == bottomLeft.build()) {
+      return [topLeft.build() ?? 0, topRight.build() ?? 0].join(' ');
+    } else if (bottomRight.build() == bottomLeft.build() && topLeft.build() != topRight.build()) {
+      return [topLeft.build() ?? 0, topRight.build() ?? 0, bottomRight.build() ?? 0].join(' ');
     }
-    return [topLeft.text ?? 0, topRight.text ?? 0, bottomRight.text ?? 0, bottomLeft.text ?? 0].join(' ');
+    return [topLeft.build() ?? 0, topRight.build() ?? 0, bottomRight.build() ?? 0, bottomLeft.build() ?? 0].join(' ');
   }
 }

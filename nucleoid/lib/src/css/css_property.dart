@@ -3,7 +3,7 @@ class PropertyCSS {
 
   const PropertyCSS([this.name]);
 
-  String get text => name;
+  String build() => name;
 }
 
 class PropertyCSSList extends PropertyCSS {
@@ -12,7 +12,7 @@ class PropertyCSSList extends PropertyCSS {
   const PropertyCSSList(this.list);
 
   @override
-  String get text => list.map((e) => e.text).join(',');
+  String build() => list.map((e) => e.name).join(',');
 }
 
 abstract class CSS {

@@ -1,3 +1,8 @@
+## 0.2.1
+
+- Refactoring rename all CSS style builder function on "build"
+- Fix build BorderRadiusCSS
+
 ## 0.2.0
 
 - Refactoring rename all builder function on "build"

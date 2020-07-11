@@ -11,12 +11,12 @@ class BorderCSS {
   const BorderCSS({this.color, this.style, this.width}): this.type = _TypeBorderCSS.value;
   const BorderCSS._withType(this.type) : this.color = null, this.style = null, this.width = null;
 
-  String get text {
+  String build() {
     if (type == _TypeBorderCSS.value) {
       return [
-          if (color != null) color.text,
+          if (color != null) color.build(),
           if (style != null) _mapperBorderStyleCSS(style),
-          if (width != null) width.text,
+          if (width != null) width.build(),
         ].join(' ');
     } else {
       return _mapperTypeBorderCSS(type);

@@ -29,13 +29,13 @@ class FilterCSS {
     this.type = _TypeFilterCSS.value,
   });
 
-  String get text {
+  String build() {
     if (type == _TypeFilterCSS.value) {
       return [
-        if (blur != null) 'blur(${blur.text})',
+        if (blur != null) 'blur(${blur.build()})',
         if (brightness != null) 'brightness($brightness)',
         if (contrast != null) 'contrast($contrast)',
-        if (dropShadow != null) 'drop-shadow(${dropShadow.text})',
+        if (dropShadow != null) 'drop-shadow(${dropShadow.build()})',
         if (grayscale != null) 'grayscale($grayscale)',
         if (hueRotate != null) 'hue-rotate(${hueRotate.degText})',
         if (invert != null) 'invert($invert)',
@@ -69,5 +69,5 @@ class FilterCSSList extends FilterCSS {
   FilterCSSList(this.list);
 
   @override
-  String get text => list.map((e) => e.text).join(' ');
+  String build() => list.map((e) => e.build()).join(' ');
 }

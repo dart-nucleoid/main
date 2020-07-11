@@ -22,4 +22,6 @@ class ContentCSS {
   factory ContentCSS.normal() => ContentCSS('normal');
 
   factory ContentCSS.none() => ContentCSS('none');
+
+  String build() => text;
 }

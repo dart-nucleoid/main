@@ -17,13 +17,13 @@ class BoxShadowCSS {
     this.inset = false,
   });
 
-  String get text => [
+  String build() => [
         if (inset) 'inset',
-        offsetX.text,
-        offsetY.text,
-        blurRadius.text,
-        if (spreadRadius != null) spreadRadius.text,
-        color.text,
+        offsetX.build(),
+        offsetY.build(),
+        blurRadius.build(),
+        if (spreadRadius != null) spreadRadius.build(),
+        color.build(),
       ].join(' ');
 
   BoxShadowCSS copyWith(
@@ -44,7 +44,7 @@ class BoxShadowCSSList extends BoxShadowCSS {
   BoxShadowCSSList(this.list);
 
   @override
-  String get text => list.map((e) => e.text).join(',');
+  String build() => list.map((e) => e.build()).join(',');
 }
 
 class DropShadowCSS {
@@ -60,11 +60,11 @@ class DropShadowCSS {
     this.blurRadius = SizeCSS.zero,
   });
 
-  String get text => [
-        offsetX.text,
-        offsetY.text,
-        blurRadius.text,
-        color.text,
+  String build() => [
+        offsetX.build(),
+        offsetY.build(),
+        blurRadius.build(),
+        color.build(),
       ].join(' ');
 
   DropShadowCSS copyWith({ColorCSS color, SizeCSS offsetX, SizeCSS offsetY, SizeCSS blurRadius}) => DropShadowCSS(
@@ -81,5 +81,5 @@ class DropShadowCSSList extends DropShadowCSS {
   const DropShadowCSSList(this.list);
 
   @override
-  String get text => list.map((e) => e.text).join(',');
+  String build() => list.map((e) => e.build()).join(',');
 }

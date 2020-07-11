@@ -4,7 +4,7 @@ class CursorCSS {
 
   const CursorCSS({this.url, this.type});
 
-  String get text {
+  String build() {
     if (url != null) {
       return ['url($url)', if (type != null) _mapperTypeCursorCSS(type)].join(',');
     } else {

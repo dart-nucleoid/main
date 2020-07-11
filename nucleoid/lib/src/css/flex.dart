@@ -125,9 +125,9 @@ class FlexCSS {
 
   static const auto = FlexCSS(grow: 1, shrink: 1, basis: SizeCSS.auto);
 
-  String get text => [
+  String build() => [
         if (grow != null) '$grow',
         if (shrink != null) '$shrink',
-        if (basis != null) '${basis.text}',
+        if (basis != null) '${basis.build()}',
       ].join(' ');
 }

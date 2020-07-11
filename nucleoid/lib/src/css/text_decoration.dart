@@ -7,12 +7,12 @@ class TextDecorationCSS {
 
   const TextDecorationCSS({this.color, this.type, this.style});
 
-  String get text {
+  String build() {
     if (type == TextDecorationTypeCSS.none) {
       return 'none';
     } else {
       return [
-        if (color != null) color.text,
+        if (color != null) color.build(),
         if (type != null) _mapperTextDecorationCSS(type),
         if (style != null) _mapperTextDecorationStyleCSS(style),
       ].join(' ');

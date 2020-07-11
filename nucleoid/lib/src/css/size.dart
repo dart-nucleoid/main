@@ -34,11 +34,11 @@ class SizeCSS extends _SizeCSSBase {
 
   bool get _isCeil => size % 1 == 0;
 
-  String get calc => _calc != null ? '($_calc)' : text;
+  String get calc => _calc != null ? '($_calc)' : build();
 
-  String get calcText => _calc ?? text;
+  String get calcText => _calc ?? build();
 
-  String get text {
+  String build() {
     if (type == _TypeSizeCSS.value) {
       return '${size == null ? 0 : (_isCeil ? size.toInt() : size)}${_mapper(units)}';
     } else if (type == _TypeSizeCSS.calc) {
@@ -163,16 +163,16 @@ class EdgeInsetsCSS extends _EdgeInsetsCSSBase {
   const EdgeInsetsCSS.symmetric({SizeCSS vertical, SizeCSS horizontal})
       : super(left: horizontal, top: vertical, right: horizontal, bottom: vertical);
 
-  String get text {
+  String build() {
     if (type == _TypeSizeCSS.value) {
-      if (<String>{left.text, top.text, right.text, bottom.text}.length == 1) {
-        return left.text ?? 0;
-      } else if (left.text == right.text && top.text == bottom.text) {
-        return [top.text ?? 0, left.text ?? 0].join(' ');
-      } else if (left.text == right.text && top.text != bottom.text) {
-        return [top.text ?? 0, left.text ?? 0, bottom.text ?? 0].join(' ');
+      if (<String>{left.build(), top.build(), right.build(), bottom.build()}.length == 1) {
+        return left.build() ?? 0;
+      } else if (left.build() == right.build() && top.build() == bottom.build()) {
+        return [top.build() ?? 0, left.build() ?? 0].join(' ');
+      } else if (left.build() == right.build() && top.build() != bottom.build()) {
+        return [top.build() ?? 0, left.build() ?? 0, bottom.build() ?? 0].join(' ');
       }
-      return [top.text ?? 0, right.text ?? 0, bottom.text ?? 0, left.text ?? 0].join(' ');
+      return [top.build() ?? 0, right.build() ?? 0, bottom.build() ?? 0, left.build() ?? 0].join(' ');
     } else {
       return _mapperTypeSizeCSS(type);
     }

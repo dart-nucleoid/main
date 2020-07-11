@@ -7,9 +7,9 @@ class MaskCSS {
 
   MaskCSS({this.image, this.position, this.repeat});
 
-  String get text => [
+  String build() => [
         if (image != null) 'url($image)',
-        if (position != null) position.text,
-        if (repeat != null) repeat.text,
+        if (position != null) position.build(),
+        if (repeat != null) repeat.build(),
       ].join(' ');
 }
