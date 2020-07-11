@@ -28,7 +28,7 @@ abstract class TemplatePage extends BuildResponse with Loggable {
   int get statusCode => 200;
 
   @override
-  Future<Response> builder() async {
+  Future<Response> build() async {
     return Response(
       statusCode,
       headers: {'content-type': MimeTypes.html, 'cache-control': 'no-store, no-cache, must-revalidate'},
@@ -60,7 +60,7 @@ abstract class TemplatePage extends BuildResponse with Loggable {
             ]),
           ]),
         ],
-      ).html,
+      ).build(),
     );
   }
 }

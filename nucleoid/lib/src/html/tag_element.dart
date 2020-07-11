@@ -1,7 +1,7 @@
+import 'package:nucleoid/html.dart';
 import 'package:nucleoid_built/node_element.dart';
 
 import 'node_element.dart';
-import 'package:nucleoid/html.dart';
 
 part 'tag_element.g.dart';
 
@@ -9,7 +9,7 @@ class Document extends ChildNodeElement {
   Document({NodeElement child, List<NodeElement> children}) : super(child: child, children: children);
 
   @override
-  String get html => '<!DOCTYPE html>\n${super.html}';
+  String build() => '<!DOCTYPE html>\n${super.build()}';
 }
 
 abstract class HtmlBuilt implements BuiltNodeElement<ChildNodeElement>, NoEvents {
@@ -114,7 +114,7 @@ class TargetA {
 
   static const top = TargetA('_top');
 
-  String get text => name;
+  String build() => name;
 }
 
 enum RelA {

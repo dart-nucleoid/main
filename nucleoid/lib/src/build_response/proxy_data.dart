@@ -21,7 +21,7 @@ class ProxyData extends BuildResponse {
         super(request: request);
 
   @override
-  FutureOr<Response> builder() async {
+  FutureOr<Response> build() async {
     var request = super.request;
 
     if (relativePathFrom != null && relativePathFrom.isNotEmpty) {

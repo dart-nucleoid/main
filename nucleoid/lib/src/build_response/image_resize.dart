@@ -57,7 +57,7 @@ class ImageResize extends FileData {
   static String get _cacheDirPath => '$nucleoid${Platform.pathSeparator}cache';
 
   @override
-  Future<Response> builder() async {
+  Future<Response> build() async {
     if (!await file.exists()) {
       var cacheDir = Directory(_cacheDirPath);
 
@@ -72,7 +72,7 @@ class ImageResize extends FileData {
       await file.writeAsBytes(_encodeImage(thumbnail));
     }
 
-    return super.builder();
+    return super.build();
   }
 
   List<int> _encodeImage(Image image) {

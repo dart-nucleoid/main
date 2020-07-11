@@ -47,7 +47,7 @@ class Html extends ChildNodeElement implements HtmlBuilt {
   final String title;
 
   @override
-  String get html => [
+  String build() => [
         '<html',
         if (manifest != null) ' manifest="$manifest"',
         if (dataTheme != null) ' data-theme="$dataTheme"',
@@ -64,11 +64,11 @@ class Html extends ChildNodeElement implements HtmlBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         '>',
-        super.html,
+        super.build(),
         '</html>'
       ].join();
 }
@@ -110,7 +110,7 @@ class Head extends ChildNodeElement implements HeadBuilt {
   final String title;
 
   @override
-  String get html => [
+  String build() => [
         '<head',
         if (accesskey != null) ' accesskey="$accesskey"',
         if (autofocus) ' autofocus',
@@ -125,11 +125,11 @@ class Head extends ChildNodeElement implements HeadBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         '>',
-        super.html,
+        super.build(),
         '</head>'
       ].join();
 }
@@ -207,7 +207,7 @@ class Body extends ChildNodeElement implements BodyBuilt {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<body',
         if (accesskey != null) ' accesskey="$accesskey"',
         if (autofocus) ' autofocus',
@@ -222,7 +222,7 @@ class Body extends ChildNodeElement implements BodyBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -244,7 +244,7 @@ class Body extends ChildNodeElement implements BodyBuilt {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</body>'
       ].join();
 }
@@ -257,7 +257,7 @@ class Title extends ChildNodeElement implements TitleBuilt {
   }) : super(child: child, children: children);
 
   @override
-  String get html => ['<title', '>', super.html, '</title>'].join();
+  String build() => ['<title', '>', super.build(), '</title>'].join();
 }
 
 // Code for "abstract class LinkBuilt implements BuiltNodeElement<dynamic>, NoEvents"
@@ -305,7 +305,7 @@ class Link extends NodeElement implements LinkBuilt {
   final String title;
 
   @override
-  String get html => [
+  String build() => [
         '<link',
         if (href != null) ' href="$href"',
         if (media != null) ' media="$media"',
@@ -325,7 +325,7 @@ class Link extends NodeElement implements LinkBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         '>'
@@ -347,7 +347,7 @@ class Meta extends NodeElement implements MetaBuilt {
   final String name;
 
   @override
-  String get html => [
+  String build() => [
         '<meta',
         if (charset != null) ' charset="$charset"',
         if (content != null) ' content="$content"',
@@ -374,14 +374,14 @@ class Script extends ChildNodeElement implements ScriptBuilt {
   final String type;
 
   @override
-  String get html => [
+  String build() => [
         '<script',
         if (async) ' async',
         if (defer) ' defer',
         if (src != null) ' src="$src"',
         if (type != null) ' type="$type"',
         '>',
-        super.html,
+        super.build(),
         '</script>'
       ].join();
 }
@@ -394,7 +394,7 @@ class Header extends ChildNodeElement implements HeaderBuilt {
   }) : super(child: child, children: children);
 
   @override
-  String get html => ['<header', '>', super.html, '</header>'].join();
+  String build() => ['<header', '>', super.build(), '</header>'].join();
 }
 
 // Code for "abstract class NavBuilt implements BuiltNodeElement<ChildNodeElement>"
@@ -405,7 +405,7 @@ class Nav extends ChildNodeElement implements NavBuilt {
   }) : super(child: child, children: children);
 
   @override
-  String get html => ['<nav', '>', super.html, '</nav>'].join();
+  String build() => ['<nav', '>', super.build(), '</nav>'].join();
 }
 
 // Code for "abstract class MainBuilt implements BuiltNodeElement<ChildNodeElement>, NoEvents"
@@ -445,7 +445,7 @@ class Main extends ChildNodeElement implements MainBuilt {
   final String title;
 
   @override
-  String get html => [
+  String build() => [
         '<main',
         if (accesskey != null) ' accesskey="$accesskey"',
         if (autofocus) ' autofocus',
@@ -460,11 +460,11 @@ class Main extends ChildNodeElement implements MainBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         '>',
-        super.html,
+        super.build(),
         '</main>'
       ].join();
 }
@@ -506,7 +506,7 @@ class Aside extends ChildNodeElement implements AsideBuilt {
   final String title;
 
   @override
-  String get html => [
+  String build() => [
         '<aside',
         if (accesskey != null) ' accesskey="$accesskey"',
         if (autofocus) ' autofocus',
@@ -521,11 +521,11 @@ class Aside extends ChildNodeElement implements AsideBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         '>',
-        super.html,
+        super.build(),
         '</aside>'
       ].join();
 }
@@ -603,7 +603,7 @@ class Section extends ChildNodeElement implements SectionBuilt {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<section',
         if (accesskey != null) ' accesskey="$accesskey"',
         if (autofocus) ' autofocus',
@@ -618,7 +618,7 @@ class Section extends ChildNodeElement implements SectionBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -640,7 +640,7 @@ class Section extends ChildNodeElement implements SectionBuilt {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</section>'
       ].join();
 }
@@ -653,7 +653,7 @@ class Article extends ChildNodeElement implements ArticleBuilt {
   }) : super(child: child, children: children);
 
   @override
-  String get html => ['<article', '>', super.html, '</article>'].join();
+  String build() => ['<article', '>', super.build(), '</article>'].join();
 }
 
 // Code for "abstract class FooterBuilt implements BuiltNodeElement<ChildNodeElement>"
@@ -664,7 +664,7 @@ class Footer extends ChildNodeElement implements FooterBuilt {
   }) : super(child: child, children: children);
 
   @override
-  String get html => ['<footer', '>', super.html, '</footer>'].join();
+  String build() => ['<footer', '>', super.build(), '</footer>'].join();
 }
 
 // Code for "abstract class DivBuilt implements BuiltNodeElement<ChildNodeElement>"
@@ -740,7 +740,7 @@ class Div extends ChildNodeElement implements DivBuilt {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<div',
         if (accesskey != null) ' accesskey="$accesskey"',
         if (autofocus) ' autofocus',
@@ -755,7 +755,7 @@ class Div extends ChildNodeElement implements DivBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -777,7 +777,7 @@ class Div extends ChildNodeElement implements DivBuilt {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</div>'
       ].join();
 }
@@ -855,7 +855,7 @@ class H1 extends ChildNodeElement implements H1Built {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<h1',
         if (accesskey != null) ' accesskey="$accesskey"',
         if (autofocus) ' autofocus',
@@ -870,7 +870,7 @@ class H1 extends ChildNodeElement implements H1Built {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -892,7 +892,7 @@ class H1 extends ChildNodeElement implements H1Built {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</h1>'
       ].join();
 }
@@ -970,7 +970,7 @@ class H2 extends ChildNodeElement implements H2Built {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<h2',
         if (accesskey != null) ' accesskey="$accesskey"',
         if (autofocus) ' autofocus',
@@ -985,7 +985,7 @@ class H2 extends ChildNodeElement implements H2Built {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -1007,7 +1007,7 @@ class H2 extends ChildNodeElement implements H2Built {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</h2>'
       ].join();
 }
@@ -1085,7 +1085,7 @@ class H3 extends ChildNodeElement implements H3Built {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<h3',
         if (accesskey != null) ' accesskey="$accesskey"',
         if (autofocus) ' autofocus',
@@ -1100,7 +1100,7 @@ class H3 extends ChildNodeElement implements H3Built {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -1122,7 +1122,7 @@ class H3 extends ChildNodeElement implements H3Built {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</h3>'
       ].join();
 }
@@ -1200,7 +1200,7 @@ class H4 extends ChildNodeElement implements H4Built {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<h4',
         if (accesskey != null) ' accesskey="$accesskey"',
         if (autofocus) ' autofocus',
@@ -1215,7 +1215,7 @@ class H4 extends ChildNodeElement implements H4Built {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -1237,7 +1237,7 @@ class H4 extends ChildNodeElement implements H4Built {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</h4>'
       ].join();
 }
@@ -1315,7 +1315,7 @@ class H5 extends ChildNodeElement implements H5Built {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<h5',
         if (accesskey != null) ' accesskey="$accesskey"',
         if (autofocus) ' autofocus',
@@ -1330,7 +1330,7 @@ class H5 extends ChildNodeElement implements H5Built {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -1352,7 +1352,7 @@ class H5 extends ChildNodeElement implements H5Built {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</h5>'
       ].join();
 }
@@ -1430,7 +1430,7 @@ class H6 extends ChildNodeElement implements H6Built {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<h6',
         if (accesskey != null) ' accesskey="$accesskey"',
         if (autofocus) ' autofocus',
@@ -1445,7 +1445,7 @@ class H6 extends ChildNodeElement implements H6Built {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -1467,7 +1467,7 @@ class H6 extends ChildNodeElement implements H6Built {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</h6>'
       ].join();
 }
@@ -1545,7 +1545,7 @@ class P extends ChildNodeElement implements PBuilt {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<p',
         if (accesskey != null) ' accesskey="$accesskey"',
         if (autofocus) ' autofocus',
@@ -1560,7 +1560,7 @@ class P extends ChildNodeElement implements PBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -1582,7 +1582,7 @@ class P extends ChildNodeElement implements PBuilt {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</p>'
       ].join();
 }
@@ -1672,13 +1672,13 @@ class A extends ChildNodeElement implements ABuilt {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<a',
         if (download) ' download',
         if (href != null) ' href="$href"',
         if (hreflang != null) ' hreflang="$hreflang"',
         if (rel != null) ' rel="${mapperRelA(rel)}"',
-        if (target != null) ' target="${target.text}"',
+        if (target != null) ' target="${target.build()}"',
         if (type != null) ' type="$type"',
         if (accesskey != null) ' accesskey="$accesskey"',
         if (autofocus) ' autofocus',
@@ -1693,7 +1693,7 @@ class A extends ChildNodeElement implements ABuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -1715,7 +1715,7 @@ class A extends ChildNodeElement implements ABuilt {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</a>'
       ].join();
 }
@@ -1803,7 +1803,7 @@ class Img extends NodeElement implements ImgBuilt {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<img',
         if (alt != null) ' alt="$alt"',
         if (height != null) ' height="$height"',
@@ -1824,7 +1824,7 @@ class Img extends NodeElement implements ImgBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -1922,7 +1922,7 @@ class Span extends ChildNodeElement implements SpanBuilt {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<span',
         if (accesskey != null) ' accesskey="$accesskey"',
         if (autofocus) ' autofocus',
@@ -1937,7 +1937,7 @@ class Span extends ChildNodeElement implements SpanBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -1959,7 +1959,7 @@ class Span extends ChildNodeElement implements SpanBuilt {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</span>'
       ].join();
 }
@@ -2039,7 +2039,7 @@ class Ul extends ChildNodeElement implements UlBuilt {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<ul',
         if (type != null) ' type="$type"',
         if (accesskey != null) ' accesskey="$accesskey"',
@@ -2055,7 +2055,7 @@ class Ul extends ChildNodeElement implements UlBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -2077,7 +2077,7 @@ class Ul extends ChildNodeElement implements UlBuilt {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</ul>'
       ].join();
 }
@@ -2161,7 +2161,7 @@ class Ol extends ChildNodeElement implements OlBuilt {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<ol',
         if (type != null) ' type="$type"',
         if (reversed) ' reversed',
@@ -2179,7 +2179,7 @@ class Ol extends ChildNodeElement implements OlBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -2201,7 +2201,7 @@ class Ol extends ChildNodeElement implements OlBuilt {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</ol>'
       ].join();
 }
@@ -2283,7 +2283,7 @@ class Li extends ChildNodeElement implements LiBuilt {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<li',
         if (type != null) ' type="$type"',
         if (value != null) ' value="$value"',
@@ -2300,7 +2300,7 @@ class Li extends ChildNodeElement implements LiBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -2322,7 +2322,7 @@ class Li extends ChildNodeElement implements LiBuilt {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</li>'
       ].join();
 }
@@ -2400,7 +2400,7 @@ class Strong extends ChildNodeElement implements StrongBuilt {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<strong',
         if (accesskey != null) ' accesskey="$accesskey"',
         if (autofocus) ' autofocus',
@@ -2415,7 +2415,7 @@ class Strong extends ChildNodeElement implements StrongBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -2437,7 +2437,7 @@ class Strong extends ChildNodeElement implements StrongBuilt {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</strong>'
       ].join();
 }
@@ -2515,7 +2515,7 @@ class B extends ChildNodeElement implements BBuilt {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<b',
         if (accesskey != null) ' accesskey="$accesskey"',
         if (autofocus) ' autofocus',
@@ -2530,7 +2530,7 @@ class B extends ChildNodeElement implements BBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -2552,7 +2552,7 @@ class B extends ChildNodeElement implements BBuilt {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</b>'
       ].join();
 }
@@ -2630,7 +2630,7 @@ class Em extends ChildNodeElement implements EmBuilt {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<em',
         if (accesskey != null) ' accesskey="$accesskey"',
         if (autofocus) ' autofocus',
@@ -2645,7 +2645,7 @@ class Em extends ChildNodeElement implements EmBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -2667,7 +2667,7 @@ class Em extends ChildNodeElement implements EmBuilt {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</em>'
       ].join();
 }
@@ -2745,7 +2745,7 @@ class I extends ChildNodeElement implements IBuilt {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<i',
         if (accesskey != null) ' accesskey="$accesskey"',
         if (autofocus) ' autofocus',
@@ -2760,7 +2760,7 @@ class I extends ChildNodeElement implements IBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -2782,7 +2782,7 @@ class I extends ChildNodeElement implements IBuilt {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</i>'
       ].join();
 }
@@ -2860,7 +2860,7 @@ class Small extends ChildNodeElement implements SmallBuilt {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<small',
         if (accesskey != null) ' accesskey="$accesskey"',
         if (autofocus) ' autofocus',
@@ -2875,7 +2875,7 @@ class Small extends ChildNodeElement implements SmallBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -2897,7 +2897,7 @@ class Small extends ChildNodeElement implements SmallBuilt {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</small>'
       ].join();
 }
@@ -2975,7 +2975,7 @@ class Big extends ChildNodeElement implements BigBuilt {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<big',
         if (accesskey != null) ' accesskey="$accesskey"',
         if (autofocus) ' autofocus',
@@ -2990,7 +2990,7 @@ class Big extends ChildNodeElement implements BigBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -3012,7 +3012,7 @@ class Big extends ChildNodeElement implements BigBuilt {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</big>'
       ].join();
 }
@@ -3092,7 +3092,7 @@ class Time extends ChildNodeElement implements TimeBuilt {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<time',
         if (datetime != null) ' datetime="$datetime"',
         if (accesskey != null) ' accesskey="$accesskey"',
@@ -3108,7 +3108,7 @@ class Time extends ChildNodeElement implements TimeBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -3130,7 +3130,7 @@ class Time extends ChildNodeElement implements TimeBuilt {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</time>'
       ].join();
 }
@@ -3208,7 +3208,7 @@ class Code extends ChildNodeElement implements CodeBuilt {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<code',
         if (accesskey != null) ' accesskey="$accesskey"',
         if (autofocus) ' autofocus',
@@ -3223,7 +3223,7 @@ class Code extends ChildNodeElement implements CodeBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -3245,7 +3245,7 @@ class Code extends ChildNodeElement implements CodeBuilt {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</code>'
       ].join();
 }
@@ -3321,7 +3321,7 @@ class Hr extends NodeElement implements HrBuilt {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<hr',
         if (accesskey != null) ' accesskey="$accesskey"',
         if (autofocus) ' autofocus',
@@ -3336,7 +3336,7 @@ class Hr extends NodeElement implements HrBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -3450,7 +3450,7 @@ class Form extends ChildNodeElement implements FormBuilt {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<form',
         if (acceptCharset != null) ' accept-charset="$acceptCharset"',
         if (action != null) ' action="$action"',
@@ -3460,7 +3460,7 @@ class Form extends ChildNodeElement implements FormBuilt {
         if (method != null) ' method="${mapperFormMethod(method)}"',
         if (name != null) ' name="$name"',
         if (formnovalidate) ' formnovalidate',
-        if (target != null) ' target="${target.text}"',
+        if (target != null) ' target="${target.build()}"',
         if (accesskey != null) ' accesskey="$accesskey"',
         if (autofocus) ' autofocus',
         if (classList != null && classList.isNotEmpty)
@@ -3474,7 +3474,7 @@ class Form extends ChildNodeElement implements FormBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -3496,7 +3496,7 @@ class Form extends ChildNodeElement implements FormBuilt {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</form>'
       ].join();
 }
@@ -3622,7 +3622,7 @@ class Input extends NodeElement implements InputBuilt {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<input',
         if (accept != null) ' accept="$accept"',
         if (alt != null) ' alt="$alt"',
@@ -3634,7 +3634,7 @@ class Input extends NodeElement implements InputBuilt {
         if (formenctype != null) ' formenctype="$formenctype"',
         if (formmethod != null) ' formmethod="${mapperFormMethod(formmethod)}"',
         if (formnovalidate) ' formnovalidate',
-        if (formtarget != null) ' formtarget="${formtarget.text}"',
+        if (formtarget != null) ' formtarget="${formtarget.build()}"',
         if (list != null) ' list="$list"',
         if (max != null) ' max="$max"',
         if (maxlength != null) ' maxlength="$maxlength"',
@@ -3663,7 +3663,7 @@ class Input extends NodeElement implements InputBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -3761,7 +3761,7 @@ class Datalist extends ChildNodeElement implements DatalistBuilt {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<datalist',
         if (accesskey != null) ' accesskey="$accesskey"',
         if (autofocus) ' autofocus',
@@ -3776,7 +3776,7 @@ class Datalist extends ChildNodeElement implements DatalistBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -3798,7 +3798,7 @@ class Datalist extends ChildNodeElement implements DatalistBuilt {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</datalist>'
       ].join();
 }
@@ -3888,7 +3888,7 @@ class Select extends ChildNodeElement implements SelectBuilt {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<select',
         if (disabled) ' disabled',
         if (form != null) ' form="$form"',
@@ -3909,7 +3909,7 @@ class Select extends ChildNodeElement implements SelectBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -3931,7 +3931,7 @@ class Select extends ChildNodeElement implements SelectBuilt {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</select>'
       ].join();
 }
@@ -4017,7 +4017,7 @@ class Option extends ChildNodeElement implements OptionBuilt {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<option',
         if (disabled) ' disabled',
         if (label != null) ' label="$label"',
@@ -4036,7 +4036,7 @@ class Option extends ChildNodeElement implements OptionBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -4058,7 +4058,7 @@ class Option extends ChildNodeElement implements OptionBuilt {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</option>'
       ].join();
 }
@@ -4138,7 +4138,7 @@ class Label extends ChildNodeElement implements LabelBuilt {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<label',
         if (forId != null) ' for="$forId"',
         if (accesskey != null) ' accesskey="$accesskey"',
@@ -4154,7 +4154,7 @@ class Label extends ChildNodeElement implements LabelBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -4176,7 +4176,7 @@ class Label extends ChildNodeElement implements LabelBuilt {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</label>'
       ].join();
 }
@@ -4274,7 +4274,7 @@ class Button extends ChildNodeElement implements ButtonBuilt {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<button',
         if (disabled) ' disabled',
         if (form != null) ' form="$form"',
@@ -4282,7 +4282,7 @@ class Button extends ChildNodeElement implements ButtonBuilt {
         if (formenctype != null) ' formenctype="$formenctype"',
         if (formmethod != null) ' formmethod="${mapperFormMethod(formmethod)}"',
         if (formnovalidate) ' formnovalidate',
-        if (formtarget != null) ' formtarget="${formtarget.text}"',
+        if (formtarget != null) ' formtarget="${formtarget.build()}"',
         if (name != null) ' name="$name"',
         if (type != null) ' type="${mapperButtonType(type)}"',
         if (value != null) ' value="$value"',
@@ -4299,7 +4299,7 @@ class Button extends ChildNodeElement implements ButtonBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -4321,7 +4321,7 @@ class Button extends ChildNodeElement implements ButtonBuilt {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</button>'
       ].join();
 }
@@ -4419,7 +4419,7 @@ class Textarea extends ChildNodeElement implements TextareaBuilt {
   final String onunload;
 
   @override
-  String get html => [
+  String build() => [
         '<textarea',
         if (cols != null) ' cols="$cols"',
         if (disabled) ' disabled',
@@ -4444,7 +4444,7 @@ class Textarea extends ChildNodeElement implements TextareaBuilt {
         if (role != null) ' role="$role"',
         if (spellcheck) ' spellcheck',
         if (styleList != null && styleList.isNotEmpty)
-          ' style="${styleList.map((e) => e.text).join(';')}"',
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
         if (tabindex != null) ' tabindex="$tabindex"',
         if (title != null) ' title="$title"',
         if (onblur != null) ' onblur="$onblur"',
@@ -4466,7 +4466,7 @@ class Textarea extends ChildNodeElement implements TextareaBuilt {
         if (onsubmit != null) ' onsubmit="$onsubmit"',
         if (onunload != null) ' onunload="$onunload"',
         '>',
-        super.html,
+        super.build(),
         '</textarea>'
       ].join();
 }

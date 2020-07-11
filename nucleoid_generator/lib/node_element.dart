@@ -76,12 +76,12 @@ class NodeElementGenerator extends Generator {
         ]);
         result.writeAll([
           '\n@override\n',
-          'String get html => [',
+          'String build() => [',
           '\'<$tagName\',',
           ...attributes.map((e) => ' ${e.html},').toList(),
           '\'>\'',
           if (type == _TypeNodeElement.child) ...[
-            ', super.html',
+            ', super.build()',
             ', \'</$tagName>\'',
           ],
           '].join();',

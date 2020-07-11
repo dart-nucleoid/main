@@ -18,7 +18,7 @@ class FileData extends BuildResponse {
       FileData(file: File(path), request: request, mime: mime, headers: headers, maxAge: maxAge);
 
   @override
-  Future<Response> builder() async {
+  Future<Response> build() async {
     _extension = file.path.split('.')?.last?.toLowerCase();
 
     if (file != null && await file.exists()) {

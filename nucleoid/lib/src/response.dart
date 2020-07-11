@@ -7,5 +7,5 @@ abstract class BuildResponse {
 
   const BuildResponse({this.request});
 
-  FutureOr<Response> builder();
+  FutureOr<Response> build();
 }

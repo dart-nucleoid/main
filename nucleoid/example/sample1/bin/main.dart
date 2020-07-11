@@ -8,7 +8,7 @@ void main(List<String> args) async {
 
 class MyRouter extends Router {
   @override
-  Future<Response> builder(Request request) async {
+  Future<Response> build(Request request) async {
     return Response.ok(
       Document(
         child: Html(
@@ -18,7 +18,7 @@ class MyRouter extends Router {
             Body(child: H1(child: Text('url: ${request.url.path}'))),
           ],
         ),
-      ).html,
+      ).build(),
       headers: {'Content-Type': MimeTypes.html},
     );
   }

@@ -164,7 +164,7 @@ class StyleCSS {
 
   factory StyleCSS.fromText(String textData) => StyleCSS(textData: textData);
 
-  String get text =>
+  String build() =>
       textData ??
       [
         if (alignContent != null)
@@ -275,5 +275,5 @@ class StyleCSS {
   }
 
   @override
-  bool operator ==(other) => identical(this, other) || (other is StyleCSS && text == other.text);
+  bool operator ==(other) => identical(this, other) || (other is StyleCSS && build() == other.build());
 }

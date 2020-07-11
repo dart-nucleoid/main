@@ -19,7 +19,7 @@ abstract class StyleData extends BuildResponse {
   StyleData({Request request, this.headers, this.maxAge}) : super(request: request);
 
   @override
-  Response builder() {
+  Response build() {
     /// You must override StyleData() constructor with request
     assert(request != null);
 
