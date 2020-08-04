@@ -18,6 +18,7 @@ class ModelMysqlGenerator extends Generator {
         var elementNameModel = element.name.substring(0, element.name.length - 5);
         var elementNameQuery = [element.name.substring(0, element.name.length - 5), 'Query'].join();
         var elementNameField = [element.name.substring(0, element.name.length - 5), 'Field'].join();
+        var elementNameTest = [element.name.substring(0, element.name.length - 5), 'Test'].join();
 
         var generic = element.allSupertypes
             .firstWhere((element) => element.element.name == 'BuiltModelMySQL', orElse: () => null)
@@ -60,7 +61,7 @@ class ModelMysqlGenerator extends Generator {
               ].join()).join()}(${primaryKeyList.map((e) => [e.type.type.name, e.aliasName].join(' ')).join(',')}) async {');
 
           result.writeln(
-              'var results = await ${element.name}.factory.query(\'SELECT * FROM `\$\{${element.name}.table\}\` WHERE ${primaryKeyList.map((e) => [
+              'var results = await ${element.name}.db.query(\'SELECT * FROM `\$\{${element.name}.table\}\` WHERE ${primaryKeyList.map((e) => [
                     '`${e.name}`',
                     '=',
                     '?'
@@ -78,20 +79,27 @@ class ModelMysqlGenerator extends Generator {
         }
 
         result.writeln(
-            'static Future<List<$elementNameModel>> search({@required $elementNameQuery query, int offset, int count, OrderMySQL<$elementNameField> order, List<$elementNameField> select,}) => searchJoin<$elementNameModel>(query: query, builder: (json) => $elementNameModel.fromJSON(json), offset: offset, count: count, order: order, select: select,);');
+            'static Future<List<$elementNameModel>> select({@required $elementNameQuery where, int offset, int count, OrderMySQL<$elementNameField> order, List<$elementNameField> select,})'
+            ' => selectJoin<$elementNameModel>(where: where, builder: (json) => $elementNameModel.fromJSON(json), offset: offset, count: count, order: order, select: select,);');
 
         result.writeln();
         result.writeln(
-            'static Future<List<T>> searchJoin<T>({@required $elementNameQuery query, @required FunctionBuilderFromJson<T> builder, int offset, int count, OrderMySQL<FieldMySQL> order, List<FieldMySQL> select, List<ModelQueryMySQL> joinList, JoinTypeMySQL joinType, String alias,}) async {');
-
+            'static Future<List<T>> selectJoin<T>({@required $elementNameQuery where, @required FunctionBuilderFromJson<T> builder, int offset, int count, OrderMySQL<FieldMySQL> order, List<FieldMySQL> select, List<ModelQueryMySQL> joinList, JoinTypeMySQL joinType, String alias,}) async {'
+            'final modelQueryMySQL = ModelQueryMySQL(table: ${element.name}.table, queryWhere: where, offset: offset, count: count, order: order, select: select, joinList: joinList, joinType: joinType, alias: alias);'
+            'var results = await ${element.name}.db.query(modelQueryMySQL.selectSql, modelQueryMySQL.selectValues);'
+            'return [for (var row in results) builder(row.fields)];'
+            '}');
+        result.writeln();
         result.writeln(
-            'final modelQueryMySQL = ModelQueryMySQL(table: ${element.name}.table, query: query, offset: offset, count: count, order: order, select: select, joinList: joinList, joinType: joinType, alias: alias);');
-
-        result.writeln(
-            'var results = await ${element.name}.factory.query(modelQueryMySQL.selectSql, modelQueryMySQL.selectValues);');
-
-        result.writeln('return [for (var row in results) builder(row.fields)];');
-        result.writeln('}');
+            'static Future<void> updateQuery({@required $elementNameQuery set, $elementNameQuery where, int offset, int count, OrderMySQL<FieldMySQL> order,}) async {'
+            'final modelQueryMySQL = ModelQueryMySQL(table: ${element.name}.table, queryWhere: where, querySet: set, offset: offset, count: count, order: order);'
+            'await ${element.name}.db.query(modelQueryMySQL.updateSql, modelQueryMySQL.updateValues);'
+            '}');
+        result.writeln();
+        result.writeln('static Future<void> insertSql({@required $elementNameQuery insert,}) async {'
+            'final modelQueryMySQL = ModelQueryMySQL(table: ${element.name}.table,querySet: insert);'
+            'final result = await ${element.name}.db.query(modelQueryMySQL.insertSql, modelQueryMySQL.insertValues);'
+            '}');
         result.writeln();
         result.writeln(
             'factory $elementNameModel.fromJSON(Map<String, dynamic> json, [String aliasTable]) {final prefix = aliasTable != null ? \'\${aliasTable}__\' : \'\'; return $elementNameModel(${_inputFieldsBuildConstructorFromMySQL(fields)});}');
@@ -107,7 +115,10 @@ class ModelMysqlGenerator extends Generator {
         result.writeln();
 
         result.writeln(
-            'factory $elementNameQuery(String connector, String operator, \{${_inputFieldsBuildConstructor(fields)}\}) => $elementNameQuery.alias(connector, operator, null, ${fields.map((el) => '${el.aliasName}: ${el.aliasName}').join(',')});');
+            'factory $elementNameQuery(String connector, String operator, \{${_inputFieldsBuildConstructor(fields)}\}) => $elementNameQuery.alias(connector, operator, null, ${[
+          ...fields.map((el) => '${el.aliasName}: ${el.aliasName}'),
+          ...fields.where((el) => el.nullable).map((el) => '${el.aliasName}ISNULL: ${el.aliasName}ISNULL')
+        ].join(',')});');
         result.writeln();
 
         result.writeln(
@@ -116,6 +127,11 @@ class ModelMysqlGenerator extends Generator {
 
         result.writeln(
             '$elementNameQuery.fields(String connector, String operator, String alias, \{${_inputFieldsBuildConstructor(fields, true)}\}) : ${_queryBuildSuperConstructor(fields, '\$connector', true)};');
+
+        result.writeln();
+
+        result.writeln(
+            '$elementNameQuery.set(\{${_inputFieldsBuildConstructor(fields, false, true)}\}) : ${_queryBuildSuperConstructor(fields, '=', false, true)};');
 
         result.writeln('}');
 
@@ -128,24 +144,88 @@ class ModelMysqlGenerator extends Generator {
           result.writeln('static const ${el.aliasName} = $elementNameField(\'${el.name}\');');
         });
         result.writeln('}');
+
+        // Test Table
+        result.writeln('class $elementNameTest extends FieldMySQL {');
+        result.writeln(
+            'static Future<void> testTable({@required bool autoCorrect}) => MySQLDataBase.testTable(${element.name}.db, ${element.name}.table, fields, autoCorrect: autoCorrect);');
+        result.writeln();
+        result.writeln(
+            'static const List<FieldMySQL> fields = [${fields.map((e) => _mapperStringFieldMySQL(e)).join(',')}];');
+        result.writeln('}');
       }
     }
     return result.toString();
   }
 
-  String _queryBuildSuperConstructor(List<FieldMySQL> fields, String connector, [bool fieldType = false]) {
-    if (fieldType) {
-      return 'super([${fields.map((el) => 'if (${el.aliasName} != null) \'`${el.name}` \$operator \${alias != null ? \'\$alias.\' : \'\'}\${${el.aliasName}.name}\'').join(',')}].join(\' $connector \'))';
+  String _queryBuildSuperConstructor(List<FieldMySQL> fields, String connector,
+      [bool fieldType = false, bool isSet = false]) {
+    if (isSet) {
+      return [
+        'super([',
+        fields
+            .map((el) => [
+                  'if (${el.aliasName} != null',
+                  if (el.nullable) '|| ${el.aliasName}SETNULL',
+                  ')',
+                  '\'\`${el.name}` = ?\'',
+                ].join(' '))
+            .join(','),
+        '].join(\' $connector \'), [',
+        fields
+            .map((el) => [
+                  'if (${el.aliasName} != null',
+                  if (el.nullable) '|| ${el.aliasName}SETNULL',
+                  ')',
+                  el.aliasName,
+                ].join(' '))
+            .join(','),
+        '])',
+      ].join();
+    } else if (fieldType) {
+      return [
+        'super([',
+        fields
+            .map((el) => [
+                  'if (${el.aliasName} != null) \'`${el.name}` \$operator \${alias != null ? \'\$alias.\' : \'\'}\${${el.aliasName}.name}\'',
+                  if (el.nullable)
+                    ', if (${el.aliasName} == null && ${el.aliasName}ISNULL != null) \'`${el.name}` \${${el.aliasName}ISNULL ? \'IS NULL\' : \'IS NOT NULL\'}\'',
+                ].join(' '))
+            .join(','),
+        '].join(\' $connector \'))',
+      ].join();
     } else {
-      return 'super([${fields.map((el) => 'if (${el.aliasName} != null) \'\${alias != null ? \'\$alias.\' : \'\'}`${el.name}` \$operator ?\'').join(',')}].join(\' $connector \'), [${fields.map((el) => 'if (${el.aliasName} != null) ${el.aliasName}').join(',')}])';
+      return [
+        'super([',
+        fields
+            .map((el) => [
+                  'if (${el.aliasName} != null) \'\${alias != null ? \'\$alias.\' : \'\'}`${el.name}` \$operator ?\'',
+                  if (el.nullable) ', if (${el.aliasName} == null && ${el.aliasName}ISNULL != null) \'`${el.name}` \${${el.aliasName}ISNULL ? \'IS NULL\' : \'IS NOT NULL\'}\'',
+                ].join(' '))
+            .join(','),
+        '].join(\' $connector \'), [',
+        fields.map((el) => 'if (${el.aliasName} != null) ${el.aliasName}').join(','),
+        '])',
+      ].join();
     }
   }
 
-  String _inputFieldsBuildConstructor(List<FieldMySQL> fields, [bool fieldType = false]) {
-    if (fieldType) {
-      return fields.map((el) => 'FieldMySQL ${el.aliasName}').join(',');
+  String _inputFieldsBuildConstructor(List<FieldMySQL> fields, [bool fieldType = false, bool isSet = false]) {
+    if (isSet) {
+      return [
+        ...fields.map((el) => '${el.type.type.name} ${el.aliasName}'),
+        ...fields.where((el) => el.nullable).map((el) => 'bool ${el.aliasName}SETNULL = false')
+      ].join(',');
+    } else if (fieldType) {
+      return [
+        ...fields.map((el) => 'FieldMySQL ${el.aliasName}'),
+        ...fields.where((el) => el.nullable).map((el) => 'bool ${el.aliasName}ISNULL')
+      ].join(',');
     } else {
-      return fields.map((el) => '${el.type.type.name} ${el.aliasName}').join(',');
+      return [
+        ...fields.map((el) => '${el.type.type.name} ${el.aliasName}'),
+        ...fields.where((el) => el.nullable).map((el) => 'bool ${el.aliasName}ISNULL')
+      ].join(',');
     }
   }
 
@@ -165,11 +245,12 @@ class ModelMysqlGenerator extends Generator {
 
   List<FieldMySQL> _listFieldsFromElement(ClassElementImpl element) {
     return element
-        .getField('fields')
-        ?.computeConstantValue()
-        ?.toListValue()
-        ?.map(_mapperFieldMySQLDartObject)
-        ?.toList() ?? [];
+            .getField('fields')
+            ?.computeConstantValue()
+            ?.toListValue()
+            ?.map(_mapperFieldMySQLDartObject)
+            ?.toList() ??
+        [];
   }
 
   FieldMySQL _mapperFieldMySQLDartObject(DartObject dartObject) {
@@ -179,9 +260,13 @@ class ModelMysqlGenerator extends Generator {
         alias: dartObject.getField('alias').toStringValue(),
         type: _mapperFieldTypeDartObject(dartObject.getField('type')),
         index: dartObject.getField('index').toBoolValue(),
-        defaultValue: dartObject.getField('defaultValue').toStringValue(),
+        defaultValue: dartObject.getField('defaultValue').toStringValue() ??
+            dartObject.getField('defaultValue').toBoolValue() ??
+            dartObject.getField('defaultValue').toDoubleValue() ??
+            dartObject.getField('defaultValue').toIntValue(),
         autoIncrement: dartObject.getField('autoIncrement').toBoolValue(),
         primaryKey: dartObject.getField('primaryKey').toBoolValue(),
+        nullable: dartObject.getField('nullable').toBoolValue(),
       );
     } catch (_) {
       return null;
@@ -196,5 +281,26 @@ class ModelMysqlGenerator extends Generator {
       FieldTypeDart(obj['type'].fields.values.first.fields['name'].toStringValue()),
       obj['size'].toIntValue(),
     );
+  }
+
+  String _mapperStringFieldMySQL(FieldMySQL fieldMySQL) {
+    return [
+      'FieldMySQL(',
+      [
+        if (fieldMySQL.name != null) 'name: \'${fieldMySQL.name}\'',
+        if (fieldMySQL.type != null) 'type: ${_mapperStringField(fieldMySQL.type)}',
+        if (fieldMySQL.index != null) 'index: ${fieldMySQL.index}',
+        if (fieldMySQL.defaultValue != null)
+          'defaultValue: ${fieldMySQL.defaultValue is String ? '\'${fieldMySQL.defaultValue}\'' : fieldMySQL.defaultValue}',
+        if (fieldMySQL.autoIncrement != null) 'autoIncrement: ${fieldMySQL.autoIncrement}',
+        if (fieldMySQL.primaryKey != null) 'primaryKey: ${fieldMySQL.primaryKey}',
+        if (fieldMySQL.nullable != null) 'nullable: ${fieldMySQL.nullable}',
+      ].join(','),
+      ')',
+    ].join();
+  }
+
+  String _mapperStringField(FieldType fieldType) {
+    return 'FieldType(\'${fieldType.name}\', ${fieldType.type.toString()}${fieldType.size != null ? ', ${fieldType.size}' : ''})';
   }
 }

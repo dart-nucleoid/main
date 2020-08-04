@@ -52,6 +52,7 @@ const Map<String, String> mapFileExtensions = {
   FileExtensions.jpg: MimeTypes.jpg,
   FileExtensions.js: MimeTypes.js,
   FileExtensions.json: MimeTypes.json,
+  FileExtensions.pdf: MimeTypes.pdf,
   FileExtensions.png: MimeTypes.png,
   FileExtensions.svg: MimeTypes.svg,
   FileExtensions.txt: MimeTypes.txt,
@@ -64,6 +65,7 @@ abstract class FileExtensions {
   static const String jpg = 'jpg';
   static const String js = 'js';
   static const String json = 'json';
+  static const String pdf = 'pdf';
   static const String png = 'png';
   static const String svg = 'svg';
   static const String txt = 'txt';
@@ -76,6 +78,7 @@ abstract class MimeTypes {
   static const String jpg = 'image/jpeg';
   static const String js = 'application/javascript';
   static const String json = 'application/json';
+  static const String pdf = 'application/pdf';
   static const String png = 'image/png';
   static const String svg = 'image/svg+xml';
   static const String txt = 'text/plain';

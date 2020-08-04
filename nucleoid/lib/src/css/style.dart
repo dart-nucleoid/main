@@ -78,6 +78,7 @@ class StyleCSS {
   final TimingFunctionCSS transitionTimingFunction;
   final SizeCSS top;
   final UserSelectCSS userSelect;
+  final WhiteSpaceCSS whiteSpace;
   final SizeCSS width;
   final int zIndex;
   final List<PropertyCSS> important;
@@ -158,6 +159,7 @@ class StyleCSS {
       this.transitionTimingFunction,
       this.top,
       this.userSelect,
+      this.whiteSpace,
       this.width,
       this.zIndex,
       this.important = const []});
@@ -262,6 +264,8 @@ class StyleCSS {
         if (top != null) '${CSS.top.name}:${top.build()}${_isImportant(CSS.top)}',
         if (userSelect != null)
           '${CSS.userSelect.name}:${mapperUserSelectCSS(userSelect)}${_isImportant(CSS.userSelect)}',
+        if (whiteSpace != null)
+          '${CSS.whiteSpace.name}:${mapperWhiteSpaceCSS(whiteSpace)}${_isImportant(CSS.whiteSpace)}',
         if (width != null) '${CSS.width.name}:${width.build()}${_isImportant(CSS.width)}',
         if (zIndex != null) '${CSS.zIndex.name}:$zIndex${_isImportant(CSS.zIndex)}',
       ].join(';');

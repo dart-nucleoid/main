@@ -78,6 +78,7 @@ abstract class Attributes {
   static const charset = Attribute(name: 'charset');
   static const content = Attribute(name: 'content');
   static const cols = Attribute(name: 'cols', type: 'final int cols;');
+  static const colspan = Attribute(name: 'colspan', type: 'final int colspan;');
   static const classList = Attribute(
     name: 'class',
     type: 'final List<StyleClass> classList;',
@@ -97,6 +98,7 @@ abstract class Attributes {
   static const disabled = Attribute(name: 'disabled', isBool: true);
   static const download = Attribute(name: 'download', isBool: true);
   static const enctype = Attribute(name: 'enctype');
+  static const headers = Attribute(name: 'headers');
   static const height = Attribute(name: 'height');
   static const hidden = Attribute(name: 'hidden', isBool: true);
   static const href = Attribute(name: 'href');
@@ -132,6 +134,12 @@ abstract class Attributes {
   static const reversed = Attribute(name: 'reversed', isBool: true);
   static const role = Attribute(name: 'role');
   static const rows = Attribute(name: 'rows', type: 'final int rows;');
+  static const rowspan = Attribute(name: 'rowspan', type: 'final int rowspan;');
+  static const scope = Attribute(
+    name: 'scope',
+    type: 'final ScopeTable scope;',
+    html: 'if (scope != null) \' scope="\${mapperScopeTable(scope)}"\'',
+  );
   static const selected = Attribute(name: 'selected', isBool: true);
   static const size = Attribute(name: 'size', type: 'final int size;');
   static const sizes = Attribute(name: 'sizes');
@@ -187,7 +195,7 @@ abstract class Attributes {
   static const value = Attribute(name: 'value');
   static const valueLi = Attribute(name: 'value', type: 'final int value;');
   static const width = Attribute(name: 'width');
-  static const wrap =  Attribute(
+  static const wrap = Attribute(
     name: 'wrap',
     type: 'final WrapTextarea wrap;',
     html: 'if (wrap != null) \' wrap="\${mapperWrapTextarea(wrap)}"\'',

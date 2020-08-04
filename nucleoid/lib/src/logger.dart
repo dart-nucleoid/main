@@ -12,9 +12,10 @@ void logger({bool disableMySQL = true}) {
           'QueryStreamHandler',
           'PrepareHandler',
           'BinaryDataPacket',
-          'ExecuteQueryHandler'
+          'ExecuteQueryHandler',
+          'StandardDataPacket',
         ].contains(rec.loggerName)) return;
 
-    print('[${rec.level.name.padRight(7)}] [${rec.loggerName.padRight(25)}] ${rec.message}');
+    print('[${DateTime.now().toString().padRight(26)}] [${rec.level.name.padRight(7)}] [${rec.loggerName.padRight(25)}] ${rec.message}');
   });
 }

@@ -18,7 +18,7 @@ class FieldTypeDart extends _FieldTypeDartBase {
   const FieldTypeDart(String name) : super(name);
 
   @override
-  String toString() => 'FieldTypeDart.$name';
+  String toString() => 'FieldTypeDart.${name.toLowerCase()}';
 
   static const int = FieldTypeDart('int');
   static const bool = FieldTypeDart('bool');
@@ -35,10 +35,15 @@ abstract class _FieldTypeBase {
 
   @override
   bool operator ==(other) => identical(this, other) || other is _FieldTypeBase && name == other.name;
+
+  @override
+  String toString() => '_FieldTypeBase(name: $name, size: $size, type: $type)';
 }
 
 class FieldType extends _FieldTypeBase {
   const FieldType(String name, FieldTypeDart type, [int size]) : super(name, type, size);
+
+  const FieldType.tinyint([int size]) : super('tinyint(${size ?? ''})', FieldTypeDart.int, size);
 
   const FieldType.int([int size]) : super('int(${size ?? ''})', FieldTypeDart.int, size);
 
@@ -73,6 +78,36 @@ class FieldType extends _FieldTypeBase {
       return null;
     }
   }
+
+  factory FieldType.fromString(dynamic input) {
+    final string = input.toString();
+
+    final tinyintRegExp = RegExp(r"^tinyint\(\d+\)$", caseSensitive: false, multiLine: false);
+    final intRegExp = RegExp(r"^int\(\d+\)$", caseSensitive: false, multiLine: false);
+    final varcharRegExp = RegExp(r"^varchar\(\d+\)$", caseSensitive: false, multiLine: false);
+
+    final expInt = RegExp(r"[^0-9]+");
+
+    if (string == text.name) {
+      return FieldType.text;
+    } else if (string == bool.name) {
+      return FieldType.bool;
+    } else if (string == mediumtext.name) {
+      return FieldType.mediumtext;
+    } else if (string == longtext.name) {
+      return FieldType.longtext;
+    } else if (string == datetime.name) {
+      return FieldType.datetime;
+    } else if (tinyintRegExp.hasMatch(string)) {
+      return FieldType.tinyint(int.parse(string.replaceAll(expInt, '')));
+    } else if (intRegExp.hasMatch(string)) {
+      return FieldType.int(int.parse(string.replaceAll(expInt, '')));
+    } else if (varcharRegExp.hasMatch(string)) {
+      return FieldType.varchar(int.parse(string.replaceAll(expInt, '')));
+    }
+
+    throw Exception('FieldType not implemented: $string');
+  }
 }
 
 class FieldMySQL {
@@ -80,20 +115,22 @@ class FieldMySQL {
   final String alias;
   final String aliasTable;
   final FieldType type;
+  final dynamic defaultValue;
   final bool index;
-  final String defaultValue;
   final bool autoIncrement;
   final bool primaryKey;
+  final bool nullable;
 
   const FieldMySQL({
     this.name,
     String alias,
     this.aliasTable,
     this.type,
-    this.index = false,
     this.defaultValue,
-    this.autoIncrement,
-    this.primaryKey,
+    this.index = false,
+    this.autoIncrement = false,
+    this.primaryKey = false,
+    this.nullable = false,
   }) : alias = alias ?? name;
 
   FieldMySQL table(String aliasTable) => FieldMySQL(
@@ -101,10 +138,11 @@ class FieldMySQL {
         alias: alias,
         aliasTable: aliasTable,
         type: type,
-        index: index,
         defaultValue: defaultValue,
+        index: index,
         autoIncrement: autoIncrement,
         primaryKey: primaryKey,
+        nullable: nullable,
       );
 
   String get aliasName {
@@ -118,6 +156,47 @@ class FieldMySQL {
         return [e.substring(0, 1).toUpperCase(), e.substring(1)].join();
       }
     }).join();
+  }
+
+  @override
+  bool operator ==(other) =>
+      identical(this, other) ||
+      other is FieldMySQL &&
+          name == other.name &&
+          alias == other.alias &&
+          aliasTable == other.aliasTable &&
+          type == other.type &&
+          defaultValue == other.defaultValue &&
+          index == other.index &&
+          autoIncrement != other.autoIncrement &&
+          primaryKey != other.primaryKey &&
+          nullable != other.nullable;
+
+  @override
+  String toString() =>
+      'FieldMySQL(name: $name, alias: $alias, aliasTable: $aliasTable, type: $type, defaultValue: $defaultValue, index: $index, autoIncrement: $autoIncrement, primaryKey: $primaryKey, nullable: $nullable)';
+
+  factory FieldMySQL.fromDescribeTable(Map<String, dynamic> object) => FieldMySQL(
+        name: object['Field'],
+        type: FieldType.fromString(object['Type']),
+        nullable: object['Null'] == 'YES',
+        defaultValue: object['Default'] == null ? null : object['Default'].toString(),
+        autoIncrement: object['Extra'] == 'auto_increment',
+        primaryKey: object['Key'] == 'PRI',
+      );
+
+  String get defaultValueString {
+    if (defaultValue == null) {
+      return null;
+    } else if (defaultValue is String) {
+      return defaultValue;
+    } else if (defaultValue is bool) {
+      return defaultValue == true ? '1' : '0';
+    } else if (defaultValue is num) {
+      return defaultValue.toString();
+    } else {
+      throw Exception('defaultValue type not implemented: $defaultValue');
+    }
   }
 }
 
@@ -135,21 +214,12 @@ abstract class BuiltModelMySQL<T> {
   }
 }
 
-abstract class CrmBaseFields {
-  static const List<FieldMySQL> fields = [
-    FieldMySQL(name: 'id', type: FieldType.int(12), index: true, primaryKey: true, autoIncrement: true),
-    FieldMySQL(name: 'edit', type: FieldType.datetime, index: true),
-    FieldMySQL(name: 'disabled', type: FieldType.bool, index: true, defaultValue: '0'),
-    FieldMySQL(name: 'protected', type: FieldType.bool, defaultValue: '1'),
-  ];
-}
-
 enum JoinTypeMySQL { inner, left, right }
 
-// TODO: MySQL join
 class ModelQueryMySQL {
   final String table;
-  final QueryMySQL query;
+  final QueryMySQL queryWhere;
+  final QueryMySQL querySet;
   final int offset;
   final int count;
   final OrderMySQL<FieldMySQL> order;
@@ -160,7 +230,8 @@ class ModelQueryMySQL {
 
   const ModelQueryMySQL({
     @required this.table,
-    @required this.query,
+    this.queryWhere,
+    this.querySet,
     this.offset,
     this.count,
     this.order,
@@ -171,7 +242,7 @@ class ModelQueryMySQL {
   });
 
   String get selectSql {
-    var selectSql = [
+    final selectSql = [
       'SELECT',
       if (select == null) alias == null ? '*' : '$alias.*',
       if (select != null)
@@ -185,9 +256,10 @@ class ModelQueryMySQL {
       'FROM',
       '`$table`',
       if (alias != null) 'AS $alias',
-      if (joinList != null) for (var join in joinList) _selectJoin(join),
+      if (joinList != null)
+        for (var join in joinList) _selectJoin(join),
       'WHERE',
-      query.sql(alias),
+      queryWhere.sql(alias),
       if (order != null) 'ORDER BY',
       if (order != null) order.sql(alias),
       BuiltModelMySQL.limitSQL(offset, count),
@@ -198,14 +270,63 @@ class ModelQueryMySQL {
     return selectSql;
   }
 
+  String get updateSql {
+    final updateSql = [
+      'UPDATE',
+      '`$table`',
+      'SET',
+      querySet.sql(),
+      if (queryWhere != null) ...[
+        'WHERE',
+        queryWhere.sql(),
+      ],
+      if (order != null) 'ORDER BY',
+      if (order != null) order.sql(),
+      BuiltModelMySQL.limitSQL(offset, count),
+    ].join(' ');
+
+    print('updateSql: $updateSql');
+
+    return updateSql;
+  }
+
+  String get insertSql {
+    final insertSql = [
+      'INSERT INTO',
+      '`$table`',
+      'SET',
+      querySet.sql(),
+    ].join(' ');
+
+    print('insertSql: $insertSql');
+
+    return insertSql;
+  }
+
   List<Object> get selectValues {
-    var selectValues = joinList?.isNotEmpty == true
-        ? [...joinList.map((e) => e.selectValues).where((el) => el != null).toList(), ...query.values]
-        : query.values;
+    final selectValues = joinList?.isNotEmpty == true
+        ? [...joinList.map((e) => e.selectValues).where((el) => el != null).toList(), ...queryWhere.values]
+        : queryWhere.values;
 
     print('selectValues: $selectValues');
 
     return selectValues;
+  }
+
+  List<Object> get updateValues {
+    final updateValues = [...querySet.values, ...?queryWhere?.values];
+
+    print('updateValues: $updateValues');
+
+    return updateValues;
+  }
+
+  List<Object> get insertValues {
+    final insertValues = querySet.values;
+
+    print('insertValues: $insertValues');
+
+    return insertValues;
   }
 
   String _selectJoin(ModelQueryMySQL join) {
@@ -214,7 +335,7 @@ class ModelQueryMySQL {
       'JOIN',
       '`${join.table}` AS ${join.alias ?? join.table}',
       'ON',
-      join.query.sql(join.alias ?? join.table)
+      join.queryWhere.sql(join.alias ?? join.table)
     ].join(' ');
   }
 
@@ -295,4 +416,13 @@ class OrderMySQL<T> {
       return children.map((e) => e.sql(aliasTable)).join(',');
     }
   }
+}
+
+class ExceptionTableMySQL implements Exception {
+  String table;
+  String msg;
+
+  ExceptionTableMySQL(this.table, this.msg);
+
+  String toString() => 'ExceptionTableMySQL "$table": $msg';
 }

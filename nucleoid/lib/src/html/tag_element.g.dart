@@ -4470,3 +4470,1174 @@ class Textarea extends ChildNodeElement implements TextareaBuilt {
         '</textarea>'
       ].join();
 }
+
+// Code for "abstract class TableBuilt implements BuiltNodeElement<ChildNodeElement>"
+class Table extends ChildNodeElement implements TableBuilt {
+  const Table({
+    NodeElement child,
+    List<NodeElement> children,
+    this.accesskey,
+    this.autofocus = false,
+    this.classList,
+    this.contentEditable = false,
+    this.contextmenu,
+    this.dir,
+    this.hidden = false,
+    this.id,
+    this.lang,
+    this.role,
+    this.spellcheck = false,
+    this.styleList,
+    this.tabindex,
+    this.title,
+    this.onblur,
+    this.onchange,
+    this.onclick,
+    this.ondblclick,
+    this.onfocus,
+    this.onkeydown,
+    this.onkeypress,
+    this.onkeyup,
+    this.onload,
+    this.onmousedown,
+    this.onmousemove,
+    this.onmouseout,
+    this.onmouseover,
+    this.onmouseup,
+    this.onreset,
+    this.onselect,
+    this.onsubmit,
+    this.onunload,
+  }) : super(child: child, children: children);
+
+  final String accesskey;
+  final bool autofocus;
+  final List<StyleClass> classList;
+  final bool contentEditable;
+  final String contextmenu;
+  final String dir;
+  final bool hidden;
+  final String id;
+  final String lang;
+  final String role;
+  final bool spellcheck;
+  final List<StyleCSS> styleList;
+  final int tabindex;
+  final String title;
+  final String onblur;
+  final String onchange;
+  final String onclick;
+  final String ondblclick;
+  final String onfocus;
+  final String onkeydown;
+  final String onkeypress;
+  final String onkeyup;
+  final String onload;
+  final String onmousedown;
+  final String onmousemove;
+  final String onmouseout;
+  final String onmouseover;
+  final String onmouseup;
+  final String onreset;
+  final String onselect;
+  final String onsubmit;
+  final String onunload;
+
+  @override
+  String build() => [
+        '<table',
+        if (accesskey != null) ' accesskey="$accesskey"',
+        if (autofocus) ' autofocus',
+        if (classList != null && classList.isNotEmpty)
+          ' class="${classList.map((e) => e.name).join(' ')}"',
+        if (contentEditable) ' contenteditable',
+        if (contextmenu != null) ' contextmenu="$contextmenu"',
+        if (dir != null) ' dir="$dir"',
+        if (hidden) ' hidden',
+        if (id != null) ' id="$id"',
+        if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
+        if (spellcheck) ' spellcheck',
+        if (styleList != null && styleList.isNotEmpty)
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
+        if (tabindex != null) ' tabindex="$tabindex"',
+        if (title != null) ' title="$title"',
+        if (onblur != null) ' onblur="$onblur"',
+        if (onchange != null) ' onchange="$onchange"',
+        if (onclick != null) ' onclick="$onclick"',
+        if (ondblclick != null) ' ondblclick="$ondblclick"',
+        if (onfocus != null) ' onfocus="$onfocus"',
+        if (onkeydown != null) ' onkeydown="$onkeydown"',
+        if (onkeypress != null) ' onkeypress="$onkeypress"',
+        if (onkeyup != null) ' onkeyup="$onkeyup"',
+        if (onload != null) ' onload="$onload"',
+        if (onmousedown != null) ' onmousedown="$onmousedown"',
+        if (onmousemove != null) ' onmousemove="$onmousemove"',
+        if (onmouseout != null) ' onmouseout="$onmouseout"',
+        if (onmouseover != null) ' onmouseover="$onmouseover"',
+        if (onmouseup != null) ' onmouseup="$onmouseup"',
+        if (onreset != null) ' onreset="$onreset"',
+        if (onselect != null) ' onselect="$onselect"',
+        if (onsubmit != null) ' onsubmit="$onsubmit"',
+        if (onunload != null) ' onunload="$onunload"',
+        '>',
+        super.build(),
+        '</table>'
+      ].join();
+}
+
+// Code for "abstract class TrBuilt implements BuiltNodeElement<ChildNodeElement>"
+class Tr extends ChildNodeElement implements TrBuilt {
+  const Tr({
+    NodeElement child,
+    List<NodeElement> children,
+    this.accesskey,
+    this.autofocus = false,
+    this.classList,
+    this.contentEditable = false,
+    this.contextmenu,
+    this.dir,
+    this.hidden = false,
+    this.id,
+    this.lang,
+    this.role,
+    this.spellcheck = false,
+    this.styleList,
+    this.tabindex,
+    this.title,
+    this.onblur,
+    this.onchange,
+    this.onclick,
+    this.ondblclick,
+    this.onfocus,
+    this.onkeydown,
+    this.onkeypress,
+    this.onkeyup,
+    this.onload,
+    this.onmousedown,
+    this.onmousemove,
+    this.onmouseout,
+    this.onmouseover,
+    this.onmouseup,
+    this.onreset,
+    this.onselect,
+    this.onsubmit,
+    this.onunload,
+  }) : super(child: child, children: children);
+
+  final String accesskey;
+  final bool autofocus;
+  final List<StyleClass> classList;
+  final bool contentEditable;
+  final String contextmenu;
+  final String dir;
+  final bool hidden;
+  final String id;
+  final String lang;
+  final String role;
+  final bool spellcheck;
+  final List<StyleCSS> styleList;
+  final int tabindex;
+  final String title;
+  final String onblur;
+  final String onchange;
+  final String onclick;
+  final String ondblclick;
+  final String onfocus;
+  final String onkeydown;
+  final String onkeypress;
+  final String onkeyup;
+  final String onload;
+  final String onmousedown;
+  final String onmousemove;
+  final String onmouseout;
+  final String onmouseover;
+  final String onmouseup;
+  final String onreset;
+  final String onselect;
+  final String onsubmit;
+  final String onunload;
+
+  @override
+  String build() => [
+        '<tr',
+        if (accesskey != null) ' accesskey="$accesskey"',
+        if (autofocus) ' autofocus',
+        if (classList != null && classList.isNotEmpty)
+          ' class="${classList.map((e) => e.name).join(' ')}"',
+        if (contentEditable) ' contenteditable',
+        if (contextmenu != null) ' contextmenu="$contextmenu"',
+        if (dir != null) ' dir="$dir"',
+        if (hidden) ' hidden',
+        if (id != null) ' id="$id"',
+        if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
+        if (spellcheck) ' spellcheck',
+        if (styleList != null && styleList.isNotEmpty)
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
+        if (tabindex != null) ' tabindex="$tabindex"',
+        if (title != null) ' title="$title"',
+        if (onblur != null) ' onblur="$onblur"',
+        if (onchange != null) ' onchange="$onchange"',
+        if (onclick != null) ' onclick="$onclick"',
+        if (ondblclick != null) ' ondblclick="$ondblclick"',
+        if (onfocus != null) ' onfocus="$onfocus"',
+        if (onkeydown != null) ' onkeydown="$onkeydown"',
+        if (onkeypress != null) ' onkeypress="$onkeypress"',
+        if (onkeyup != null) ' onkeyup="$onkeyup"',
+        if (onload != null) ' onload="$onload"',
+        if (onmousedown != null) ' onmousedown="$onmousedown"',
+        if (onmousemove != null) ' onmousemove="$onmousemove"',
+        if (onmouseout != null) ' onmouseout="$onmouseout"',
+        if (onmouseover != null) ' onmouseover="$onmouseover"',
+        if (onmouseup != null) ' onmouseup="$onmouseup"',
+        if (onreset != null) ' onreset="$onreset"',
+        if (onselect != null) ' onselect="$onselect"',
+        if (onsubmit != null) ' onsubmit="$onsubmit"',
+        if (onunload != null) ' onunload="$onunload"',
+        '>',
+        super.build(),
+        '</tr>'
+      ].join();
+}
+
+// Code for "abstract class TdBuilt implements BuiltNodeElement<ChildNodeElement>"
+class Td extends ChildNodeElement implements TdBuilt {
+  const Td({
+    NodeElement child,
+    List<NodeElement> children,
+    this.colspan,
+    this.headers,
+    this.scope,
+    this.rowspan,
+    this.accesskey,
+    this.autofocus = false,
+    this.classList,
+    this.contentEditable = false,
+    this.contextmenu,
+    this.dir,
+    this.hidden = false,
+    this.id,
+    this.lang,
+    this.role,
+    this.spellcheck = false,
+    this.styleList,
+    this.tabindex,
+    this.title,
+    this.onblur,
+    this.onchange,
+    this.onclick,
+    this.ondblclick,
+    this.onfocus,
+    this.onkeydown,
+    this.onkeypress,
+    this.onkeyup,
+    this.onload,
+    this.onmousedown,
+    this.onmousemove,
+    this.onmouseout,
+    this.onmouseover,
+    this.onmouseup,
+    this.onreset,
+    this.onselect,
+    this.onsubmit,
+    this.onunload,
+  }) : super(child: child, children: children);
+
+  final int colspan;
+  final String headers;
+  final ScopeTable scope;
+  final int rowspan;
+  final String accesskey;
+  final bool autofocus;
+  final List<StyleClass> classList;
+  final bool contentEditable;
+  final String contextmenu;
+  final String dir;
+  final bool hidden;
+  final String id;
+  final String lang;
+  final String role;
+  final bool spellcheck;
+  final List<StyleCSS> styleList;
+  final int tabindex;
+  final String title;
+  final String onblur;
+  final String onchange;
+  final String onclick;
+  final String ondblclick;
+  final String onfocus;
+  final String onkeydown;
+  final String onkeypress;
+  final String onkeyup;
+  final String onload;
+  final String onmousedown;
+  final String onmousemove;
+  final String onmouseout;
+  final String onmouseover;
+  final String onmouseup;
+  final String onreset;
+  final String onselect;
+  final String onsubmit;
+  final String onunload;
+
+  @override
+  String build() => [
+        '<td',
+        if (colspan != null) ' colspan="$colspan"',
+        if (headers != null) ' headers="$headers"',
+        if (scope != null) ' scope="${mapperScopeTable(scope)}"',
+        if (rowspan != null) ' rowspan="$rowspan"',
+        if (accesskey != null) ' accesskey="$accesskey"',
+        if (autofocus) ' autofocus',
+        if (classList != null && classList.isNotEmpty)
+          ' class="${classList.map((e) => e.name).join(' ')}"',
+        if (contentEditable) ' contenteditable',
+        if (contextmenu != null) ' contextmenu="$contextmenu"',
+        if (dir != null) ' dir="$dir"',
+        if (hidden) ' hidden',
+        if (id != null) ' id="$id"',
+        if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
+        if (spellcheck) ' spellcheck',
+        if (styleList != null && styleList.isNotEmpty)
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
+        if (tabindex != null) ' tabindex="$tabindex"',
+        if (title != null) ' title="$title"',
+        if (onblur != null) ' onblur="$onblur"',
+        if (onchange != null) ' onchange="$onchange"',
+        if (onclick != null) ' onclick="$onclick"',
+        if (ondblclick != null) ' ondblclick="$ondblclick"',
+        if (onfocus != null) ' onfocus="$onfocus"',
+        if (onkeydown != null) ' onkeydown="$onkeydown"',
+        if (onkeypress != null) ' onkeypress="$onkeypress"',
+        if (onkeyup != null) ' onkeyup="$onkeyup"',
+        if (onload != null) ' onload="$onload"',
+        if (onmousedown != null) ' onmousedown="$onmousedown"',
+        if (onmousemove != null) ' onmousemove="$onmousemove"',
+        if (onmouseout != null) ' onmouseout="$onmouseout"',
+        if (onmouseover != null) ' onmouseover="$onmouseover"',
+        if (onmouseup != null) ' onmouseup="$onmouseup"',
+        if (onreset != null) ' onreset="$onreset"',
+        if (onselect != null) ' onselect="$onselect"',
+        if (onsubmit != null) ' onsubmit="$onsubmit"',
+        if (onunload != null) ' onunload="$onunload"',
+        '>',
+        super.build(),
+        '</td>'
+      ].join();
+}
+
+// Code for "abstract class ThBuilt implements BuiltNodeElement<ChildNodeElement>"
+class Th extends ChildNodeElement implements ThBuilt {
+  const Th({
+    NodeElement child,
+    List<NodeElement> children,
+    this.colspan,
+    this.scope,
+    this.rowspan,
+    this.accesskey,
+    this.autofocus = false,
+    this.classList,
+    this.contentEditable = false,
+    this.contextmenu,
+    this.dir,
+    this.hidden = false,
+    this.id,
+    this.lang,
+    this.role,
+    this.spellcheck = false,
+    this.styleList,
+    this.tabindex,
+    this.title,
+    this.onblur,
+    this.onchange,
+    this.onclick,
+    this.ondblclick,
+    this.onfocus,
+    this.onkeydown,
+    this.onkeypress,
+    this.onkeyup,
+    this.onload,
+    this.onmousedown,
+    this.onmousemove,
+    this.onmouseout,
+    this.onmouseover,
+    this.onmouseup,
+    this.onreset,
+    this.onselect,
+    this.onsubmit,
+    this.onunload,
+  }) : super(child: child, children: children);
+
+  final int colspan;
+  final ScopeTable scope;
+  final int rowspan;
+  final String accesskey;
+  final bool autofocus;
+  final List<StyleClass> classList;
+  final bool contentEditable;
+  final String contextmenu;
+  final String dir;
+  final bool hidden;
+  final String id;
+  final String lang;
+  final String role;
+  final bool spellcheck;
+  final List<StyleCSS> styleList;
+  final int tabindex;
+  final String title;
+  final String onblur;
+  final String onchange;
+  final String onclick;
+  final String ondblclick;
+  final String onfocus;
+  final String onkeydown;
+  final String onkeypress;
+  final String onkeyup;
+  final String onload;
+  final String onmousedown;
+  final String onmousemove;
+  final String onmouseout;
+  final String onmouseover;
+  final String onmouseup;
+  final String onreset;
+  final String onselect;
+  final String onsubmit;
+  final String onunload;
+
+  @override
+  String build() => [
+        '<th',
+        if (colspan != null) ' colspan="$colspan"',
+        if (scope != null) ' scope="${mapperScopeTable(scope)}"',
+        if (rowspan != null) ' rowspan="$rowspan"',
+        if (accesskey != null) ' accesskey="$accesskey"',
+        if (autofocus) ' autofocus',
+        if (classList != null && classList.isNotEmpty)
+          ' class="${classList.map((e) => e.name).join(' ')}"',
+        if (contentEditable) ' contenteditable',
+        if (contextmenu != null) ' contextmenu="$contextmenu"',
+        if (dir != null) ' dir="$dir"',
+        if (hidden) ' hidden',
+        if (id != null) ' id="$id"',
+        if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
+        if (spellcheck) ' spellcheck',
+        if (styleList != null && styleList.isNotEmpty)
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
+        if (tabindex != null) ' tabindex="$tabindex"',
+        if (title != null) ' title="$title"',
+        if (onblur != null) ' onblur="$onblur"',
+        if (onchange != null) ' onchange="$onchange"',
+        if (onclick != null) ' onclick="$onclick"',
+        if (ondblclick != null) ' ondblclick="$ondblclick"',
+        if (onfocus != null) ' onfocus="$onfocus"',
+        if (onkeydown != null) ' onkeydown="$onkeydown"',
+        if (onkeypress != null) ' onkeypress="$onkeypress"',
+        if (onkeyup != null) ' onkeyup="$onkeyup"',
+        if (onload != null) ' onload="$onload"',
+        if (onmousedown != null) ' onmousedown="$onmousedown"',
+        if (onmousemove != null) ' onmousemove="$onmousemove"',
+        if (onmouseout != null) ' onmouseout="$onmouseout"',
+        if (onmouseover != null) ' onmouseover="$onmouseover"',
+        if (onmouseup != null) ' onmouseup="$onmouseup"',
+        if (onreset != null) ' onreset="$onreset"',
+        if (onselect != null) ' onselect="$onselect"',
+        if (onsubmit != null) ' onsubmit="$onsubmit"',
+        if (onunload != null) ' onunload="$onunload"',
+        '>',
+        super.build(),
+        '</th>'
+      ].join();
+}
+
+// Code for "abstract class CaptionBuilt implements BuiltNodeElement<ChildNodeElement>"
+class Caption extends ChildNodeElement implements CaptionBuilt {
+  const Caption({
+    NodeElement child,
+    List<NodeElement> children,
+    this.accesskey,
+    this.autofocus = false,
+    this.classList,
+    this.contentEditable = false,
+    this.contextmenu,
+    this.dir,
+    this.hidden = false,
+    this.id,
+    this.lang,
+    this.role,
+    this.spellcheck = false,
+    this.styleList,
+    this.tabindex,
+    this.title,
+    this.onblur,
+    this.onchange,
+    this.onclick,
+    this.ondblclick,
+    this.onfocus,
+    this.onkeydown,
+    this.onkeypress,
+    this.onkeyup,
+    this.onload,
+    this.onmousedown,
+    this.onmousemove,
+    this.onmouseout,
+    this.onmouseover,
+    this.onmouseup,
+    this.onreset,
+    this.onselect,
+    this.onsubmit,
+    this.onunload,
+  }) : super(child: child, children: children);
+
+  final String accesskey;
+  final bool autofocus;
+  final List<StyleClass> classList;
+  final bool contentEditable;
+  final String contextmenu;
+  final String dir;
+  final bool hidden;
+  final String id;
+  final String lang;
+  final String role;
+  final bool spellcheck;
+  final List<StyleCSS> styleList;
+  final int tabindex;
+  final String title;
+  final String onblur;
+  final String onchange;
+  final String onclick;
+  final String ondblclick;
+  final String onfocus;
+  final String onkeydown;
+  final String onkeypress;
+  final String onkeyup;
+  final String onload;
+  final String onmousedown;
+  final String onmousemove;
+  final String onmouseout;
+  final String onmouseover;
+  final String onmouseup;
+  final String onreset;
+  final String onselect;
+  final String onsubmit;
+  final String onunload;
+
+  @override
+  String build() => [
+        '<caption',
+        if (accesskey != null) ' accesskey="$accesskey"',
+        if (autofocus) ' autofocus',
+        if (classList != null && classList.isNotEmpty)
+          ' class="${classList.map((e) => e.name).join(' ')}"',
+        if (contentEditable) ' contenteditable',
+        if (contextmenu != null) ' contextmenu="$contextmenu"',
+        if (dir != null) ' dir="$dir"',
+        if (hidden) ' hidden',
+        if (id != null) ' id="$id"',
+        if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
+        if (spellcheck) ' spellcheck',
+        if (styleList != null && styleList.isNotEmpty)
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
+        if (tabindex != null) ' tabindex="$tabindex"',
+        if (title != null) ' title="$title"',
+        if (onblur != null) ' onblur="$onblur"',
+        if (onchange != null) ' onchange="$onchange"',
+        if (onclick != null) ' onclick="$onclick"',
+        if (ondblclick != null) ' ondblclick="$ondblclick"',
+        if (onfocus != null) ' onfocus="$onfocus"',
+        if (onkeydown != null) ' onkeydown="$onkeydown"',
+        if (onkeypress != null) ' onkeypress="$onkeypress"',
+        if (onkeyup != null) ' onkeyup="$onkeyup"',
+        if (onload != null) ' onload="$onload"',
+        if (onmousedown != null) ' onmousedown="$onmousedown"',
+        if (onmousemove != null) ' onmousemove="$onmousemove"',
+        if (onmouseout != null) ' onmouseout="$onmouseout"',
+        if (onmouseover != null) ' onmouseover="$onmouseover"',
+        if (onmouseup != null) ' onmouseup="$onmouseup"',
+        if (onreset != null) ' onreset="$onreset"',
+        if (onselect != null) ' onselect="$onselect"',
+        if (onsubmit != null) ' onsubmit="$onsubmit"',
+        if (onunload != null) ' onunload="$onunload"',
+        '>',
+        super.build(),
+        '</caption>'
+      ].join();
+}
+
+// Code for "abstract class ColBuilt implements BuiltNodeElement<ChildNodeElement>"
+class Col extends ChildNodeElement implements ColBuilt {
+  const Col({
+    NodeElement child,
+    List<NodeElement> children,
+    this.accesskey,
+    this.autofocus = false,
+    this.classList,
+    this.contentEditable = false,
+    this.contextmenu,
+    this.dir,
+    this.hidden = false,
+    this.id,
+    this.lang,
+    this.role,
+    this.spellcheck = false,
+    this.styleList,
+    this.tabindex,
+    this.title,
+    this.onblur,
+    this.onchange,
+    this.onclick,
+    this.ondblclick,
+    this.onfocus,
+    this.onkeydown,
+    this.onkeypress,
+    this.onkeyup,
+    this.onload,
+    this.onmousedown,
+    this.onmousemove,
+    this.onmouseout,
+    this.onmouseover,
+    this.onmouseup,
+    this.onreset,
+    this.onselect,
+    this.onsubmit,
+    this.onunload,
+  }) : super(child: child, children: children);
+
+  final String accesskey;
+  final bool autofocus;
+  final List<StyleClass> classList;
+  final bool contentEditable;
+  final String contextmenu;
+  final String dir;
+  final bool hidden;
+  final String id;
+  final String lang;
+  final String role;
+  final bool spellcheck;
+  final List<StyleCSS> styleList;
+  final int tabindex;
+  final String title;
+  final String onblur;
+  final String onchange;
+  final String onclick;
+  final String ondblclick;
+  final String onfocus;
+  final String onkeydown;
+  final String onkeypress;
+  final String onkeyup;
+  final String onload;
+  final String onmousedown;
+  final String onmousemove;
+  final String onmouseout;
+  final String onmouseover;
+  final String onmouseup;
+  final String onreset;
+  final String onselect;
+  final String onsubmit;
+  final String onunload;
+
+  @override
+  String build() => [
+        '<col',
+        if (accesskey != null) ' accesskey="$accesskey"',
+        if (autofocus) ' autofocus',
+        if (classList != null && classList.isNotEmpty)
+          ' class="${classList.map((e) => e.name).join(' ')}"',
+        if (contentEditable) ' contenteditable',
+        if (contextmenu != null) ' contextmenu="$contextmenu"',
+        if (dir != null) ' dir="$dir"',
+        if (hidden) ' hidden',
+        if (id != null) ' id="$id"',
+        if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
+        if (spellcheck) ' spellcheck',
+        if (styleList != null && styleList.isNotEmpty)
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
+        if (tabindex != null) ' tabindex="$tabindex"',
+        if (title != null) ' title="$title"',
+        if (onblur != null) ' onblur="$onblur"',
+        if (onchange != null) ' onchange="$onchange"',
+        if (onclick != null) ' onclick="$onclick"',
+        if (ondblclick != null) ' ondblclick="$ondblclick"',
+        if (onfocus != null) ' onfocus="$onfocus"',
+        if (onkeydown != null) ' onkeydown="$onkeydown"',
+        if (onkeypress != null) ' onkeypress="$onkeypress"',
+        if (onkeyup != null) ' onkeyup="$onkeyup"',
+        if (onload != null) ' onload="$onload"',
+        if (onmousedown != null) ' onmousedown="$onmousedown"',
+        if (onmousemove != null) ' onmousemove="$onmousemove"',
+        if (onmouseout != null) ' onmouseout="$onmouseout"',
+        if (onmouseover != null) ' onmouseover="$onmouseover"',
+        if (onmouseup != null) ' onmouseup="$onmouseup"',
+        if (onreset != null) ' onreset="$onreset"',
+        if (onselect != null) ' onselect="$onselect"',
+        if (onsubmit != null) ' onsubmit="$onsubmit"',
+        if (onunload != null) ' onunload="$onunload"',
+        '>',
+        super.build(),
+        '</col>'
+      ].join();
+}
+
+// Code for "abstract class ColgroupBuilt implements BuiltNodeElement<ChildNodeElement>"
+class Colgroup extends ChildNodeElement implements ColgroupBuilt {
+  const Colgroup({
+    NodeElement child,
+    List<NodeElement> children,
+    this.accesskey,
+    this.autofocus = false,
+    this.classList,
+    this.contentEditable = false,
+    this.contextmenu,
+    this.dir,
+    this.hidden = false,
+    this.id,
+    this.lang,
+    this.role,
+    this.spellcheck = false,
+    this.styleList,
+    this.tabindex,
+    this.title,
+    this.onblur,
+    this.onchange,
+    this.onclick,
+    this.ondblclick,
+    this.onfocus,
+    this.onkeydown,
+    this.onkeypress,
+    this.onkeyup,
+    this.onload,
+    this.onmousedown,
+    this.onmousemove,
+    this.onmouseout,
+    this.onmouseover,
+    this.onmouseup,
+    this.onreset,
+    this.onselect,
+    this.onsubmit,
+    this.onunload,
+  }) : super(child: child, children: children);
+
+  final String accesskey;
+  final bool autofocus;
+  final List<StyleClass> classList;
+  final bool contentEditable;
+  final String contextmenu;
+  final String dir;
+  final bool hidden;
+  final String id;
+  final String lang;
+  final String role;
+  final bool spellcheck;
+  final List<StyleCSS> styleList;
+  final int tabindex;
+  final String title;
+  final String onblur;
+  final String onchange;
+  final String onclick;
+  final String ondblclick;
+  final String onfocus;
+  final String onkeydown;
+  final String onkeypress;
+  final String onkeyup;
+  final String onload;
+  final String onmousedown;
+  final String onmousemove;
+  final String onmouseout;
+  final String onmouseover;
+  final String onmouseup;
+  final String onreset;
+  final String onselect;
+  final String onsubmit;
+  final String onunload;
+
+  @override
+  String build() => [
+        '<colgroup',
+        if (accesskey != null) ' accesskey="$accesskey"',
+        if (autofocus) ' autofocus',
+        if (classList != null && classList.isNotEmpty)
+          ' class="${classList.map((e) => e.name).join(' ')}"',
+        if (contentEditable) ' contenteditable',
+        if (contextmenu != null) ' contextmenu="$contextmenu"',
+        if (dir != null) ' dir="$dir"',
+        if (hidden) ' hidden',
+        if (id != null) ' id="$id"',
+        if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
+        if (spellcheck) ' spellcheck',
+        if (styleList != null && styleList.isNotEmpty)
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
+        if (tabindex != null) ' tabindex="$tabindex"',
+        if (title != null) ' title="$title"',
+        if (onblur != null) ' onblur="$onblur"',
+        if (onchange != null) ' onchange="$onchange"',
+        if (onclick != null) ' onclick="$onclick"',
+        if (ondblclick != null) ' ondblclick="$ondblclick"',
+        if (onfocus != null) ' onfocus="$onfocus"',
+        if (onkeydown != null) ' onkeydown="$onkeydown"',
+        if (onkeypress != null) ' onkeypress="$onkeypress"',
+        if (onkeyup != null) ' onkeyup="$onkeyup"',
+        if (onload != null) ' onload="$onload"',
+        if (onmousedown != null) ' onmousedown="$onmousedown"',
+        if (onmousemove != null) ' onmousemove="$onmousemove"',
+        if (onmouseout != null) ' onmouseout="$onmouseout"',
+        if (onmouseover != null) ' onmouseover="$onmouseover"',
+        if (onmouseup != null) ' onmouseup="$onmouseup"',
+        if (onreset != null) ' onreset="$onreset"',
+        if (onselect != null) ' onselect="$onselect"',
+        if (onsubmit != null) ' onsubmit="$onsubmit"',
+        if (onunload != null) ' onunload="$onunload"',
+        '>',
+        super.build(),
+        '</colgroup>'
+      ].join();
+}
+
+// Code for "abstract class TbodyBuilt implements BuiltNodeElement<ChildNodeElement>"
+class Tbody extends ChildNodeElement implements TbodyBuilt {
+  const Tbody({
+    NodeElement child,
+    List<NodeElement> children,
+    this.accesskey,
+    this.autofocus = false,
+    this.classList,
+    this.contentEditable = false,
+    this.contextmenu,
+    this.dir,
+    this.hidden = false,
+    this.id,
+    this.lang,
+    this.role,
+    this.spellcheck = false,
+    this.styleList,
+    this.tabindex,
+    this.title,
+    this.onblur,
+    this.onchange,
+    this.onclick,
+    this.ondblclick,
+    this.onfocus,
+    this.onkeydown,
+    this.onkeypress,
+    this.onkeyup,
+    this.onload,
+    this.onmousedown,
+    this.onmousemove,
+    this.onmouseout,
+    this.onmouseover,
+    this.onmouseup,
+    this.onreset,
+    this.onselect,
+    this.onsubmit,
+    this.onunload,
+  }) : super(child: child, children: children);
+
+  final String accesskey;
+  final bool autofocus;
+  final List<StyleClass> classList;
+  final bool contentEditable;
+  final String contextmenu;
+  final String dir;
+  final bool hidden;
+  final String id;
+  final String lang;
+  final String role;
+  final bool spellcheck;
+  final List<StyleCSS> styleList;
+  final int tabindex;
+  final String title;
+  final String onblur;
+  final String onchange;
+  final String onclick;
+  final String ondblclick;
+  final String onfocus;
+  final String onkeydown;
+  final String onkeypress;
+  final String onkeyup;
+  final String onload;
+  final String onmousedown;
+  final String onmousemove;
+  final String onmouseout;
+  final String onmouseover;
+  final String onmouseup;
+  final String onreset;
+  final String onselect;
+  final String onsubmit;
+  final String onunload;
+
+  @override
+  String build() => [
+        '<tbody',
+        if (accesskey != null) ' accesskey="$accesskey"',
+        if (autofocus) ' autofocus',
+        if (classList != null && classList.isNotEmpty)
+          ' class="${classList.map((e) => e.name).join(' ')}"',
+        if (contentEditable) ' contenteditable',
+        if (contextmenu != null) ' contextmenu="$contextmenu"',
+        if (dir != null) ' dir="$dir"',
+        if (hidden) ' hidden',
+        if (id != null) ' id="$id"',
+        if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
+        if (spellcheck) ' spellcheck',
+        if (styleList != null && styleList.isNotEmpty)
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
+        if (tabindex != null) ' tabindex="$tabindex"',
+        if (title != null) ' title="$title"',
+        if (onblur != null) ' onblur="$onblur"',
+        if (onchange != null) ' onchange="$onchange"',
+        if (onclick != null) ' onclick="$onclick"',
+        if (ondblclick != null) ' ondblclick="$ondblclick"',
+        if (onfocus != null) ' onfocus="$onfocus"',
+        if (onkeydown != null) ' onkeydown="$onkeydown"',
+        if (onkeypress != null) ' onkeypress="$onkeypress"',
+        if (onkeyup != null) ' onkeyup="$onkeyup"',
+        if (onload != null) ' onload="$onload"',
+        if (onmousedown != null) ' onmousedown="$onmousedown"',
+        if (onmousemove != null) ' onmousemove="$onmousemove"',
+        if (onmouseout != null) ' onmouseout="$onmouseout"',
+        if (onmouseover != null) ' onmouseover="$onmouseover"',
+        if (onmouseup != null) ' onmouseup="$onmouseup"',
+        if (onreset != null) ' onreset="$onreset"',
+        if (onselect != null) ' onselect="$onselect"',
+        if (onsubmit != null) ' onsubmit="$onsubmit"',
+        if (onunload != null) ' onunload="$onunload"',
+        '>',
+        super.build(),
+        '</tbody>'
+      ].join();
+}
+
+// Code for "abstract class TheadBuilt implements BuiltNodeElement<ChildNodeElement>"
+class Thead extends ChildNodeElement implements TheadBuilt {
+  const Thead({
+    NodeElement child,
+    List<NodeElement> children,
+    this.accesskey,
+    this.autofocus = false,
+    this.classList,
+    this.contentEditable = false,
+    this.contextmenu,
+    this.dir,
+    this.hidden = false,
+    this.id,
+    this.lang,
+    this.role,
+    this.spellcheck = false,
+    this.styleList,
+    this.tabindex,
+    this.title,
+    this.onblur,
+    this.onchange,
+    this.onclick,
+    this.ondblclick,
+    this.onfocus,
+    this.onkeydown,
+    this.onkeypress,
+    this.onkeyup,
+    this.onload,
+    this.onmousedown,
+    this.onmousemove,
+    this.onmouseout,
+    this.onmouseover,
+    this.onmouseup,
+    this.onreset,
+    this.onselect,
+    this.onsubmit,
+    this.onunload,
+  }) : super(child: child, children: children);
+
+  final String accesskey;
+  final bool autofocus;
+  final List<StyleClass> classList;
+  final bool contentEditable;
+  final String contextmenu;
+  final String dir;
+  final bool hidden;
+  final String id;
+  final String lang;
+  final String role;
+  final bool spellcheck;
+  final List<StyleCSS> styleList;
+  final int tabindex;
+  final String title;
+  final String onblur;
+  final String onchange;
+  final String onclick;
+  final String ondblclick;
+  final String onfocus;
+  final String onkeydown;
+  final String onkeypress;
+  final String onkeyup;
+  final String onload;
+  final String onmousedown;
+  final String onmousemove;
+  final String onmouseout;
+  final String onmouseover;
+  final String onmouseup;
+  final String onreset;
+  final String onselect;
+  final String onsubmit;
+  final String onunload;
+
+  @override
+  String build() => [
+        '<thead',
+        if (accesskey != null) ' accesskey="$accesskey"',
+        if (autofocus) ' autofocus',
+        if (classList != null && classList.isNotEmpty)
+          ' class="${classList.map((e) => e.name).join(' ')}"',
+        if (contentEditable) ' contenteditable',
+        if (contextmenu != null) ' contextmenu="$contextmenu"',
+        if (dir != null) ' dir="$dir"',
+        if (hidden) ' hidden',
+        if (id != null) ' id="$id"',
+        if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
+        if (spellcheck) ' spellcheck',
+        if (styleList != null && styleList.isNotEmpty)
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
+        if (tabindex != null) ' tabindex="$tabindex"',
+        if (title != null) ' title="$title"',
+        if (onblur != null) ' onblur="$onblur"',
+        if (onchange != null) ' onchange="$onchange"',
+        if (onclick != null) ' onclick="$onclick"',
+        if (ondblclick != null) ' ondblclick="$ondblclick"',
+        if (onfocus != null) ' onfocus="$onfocus"',
+        if (onkeydown != null) ' onkeydown="$onkeydown"',
+        if (onkeypress != null) ' onkeypress="$onkeypress"',
+        if (onkeyup != null) ' onkeyup="$onkeyup"',
+        if (onload != null) ' onload="$onload"',
+        if (onmousedown != null) ' onmousedown="$onmousedown"',
+        if (onmousemove != null) ' onmousemove="$onmousemove"',
+        if (onmouseout != null) ' onmouseout="$onmouseout"',
+        if (onmouseover != null) ' onmouseover="$onmouseover"',
+        if (onmouseup != null) ' onmouseup="$onmouseup"',
+        if (onreset != null) ' onreset="$onreset"',
+        if (onselect != null) ' onselect="$onselect"',
+        if (onsubmit != null) ' onsubmit="$onsubmit"',
+        if (onunload != null) ' onunload="$onunload"',
+        '>',
+        super.build(),
+        '</thead>'
+      ].join();
+}
+
+// Code for "abstract class TfootBuilt implements BuiltNodeElement<ChildNodeElement>"
+class Tfoot extends ChildNodeElement implements TfootBuilt {
+  const Tfoot({
+    NodeElement child,
+    List<NodeElement> children,
+    this.accesskey,
+    this.autofocus = false,
+    this.classList,
+    this.contentEditable = false,
+    this.contextmenu,
+    this.dir,
+    this.hidden = false,
+    this.id,
+    this.lang,
+    this.role,
+    this.spellcheck = false,
+    this.styleList,
+    this.tabindex,
+    this.title,
+    this.onblur,
+    this.onchange,
+    this.onclick,
+    this.ondblclick,
+    this.onfocus,
+    this.onkeydown,
+    this.onkeypress,
+    this.onkeyup,
+    this.onload,
+    this.onmousedown,
+    this.onmousemove,
+    this.onmouseout,
+    this.onmouseover,
+    this.onmouseup,
+    this.onreset,
+    this.onselect,
+    this.onsubmit,
+    this.onunload,
+  }) : super(child: child, children: children);
+
+  final String accesskey;
+  final bool autofocus;
+  final List<StyleClass> classList;
+  final bool contentEditable;
+  final String contextmenu;
+  final String dir;
+  final bool hidden;
+  final String id;
+  final String lang;
+  final String role;
+  final bool spellcheck;
+  final List<StyleCSS> styleList;
+  final int tabindex;
+  final String title;
+  final String onblur;
+  final String onchange;
+  final String onclick;
+  final String ondblclick;
+  final String onfocus;
+  final String onkeydown;
+  final String onkeypress;
+  final String onkeyup;
+  final String onload;
+  final String onmousedown;
+  final String onmousemove;
+  final String onmouseout;
+  final String onmouseover;
+  final String onmouseup;
+  final String onreset;
+  final String onselect;
+  final String onsubmit;
+  final String onunload;
+
+  @override
+  String build() => [
+        '<tfoot',
+        if (accesskey != null) ' accesskey="$accesskey"',
+        if (autofocus) ' autofocus',
+        if (classList != null && classList.isNotEmpty)
+          ' class="${classList.map((e) => e.name).join(' ')}"',
+        if (contentEditable) ' contenteditable',
+        if (contextmenu != null) ' contextmenu="$contextmenu"',
+        if (dir != null) ' dir="$dir"',
+        if (hidden) ' hidden',
+        if (id != null) ' id="$id"',
+        if (lang != null) ' lang="$lang"',
+        if (role != null) ' role="$role"',
+        if (spellcheck) ' spellcheck',
+        if (styleList != null && styleList.isNotEmpty)
+          ' style="${styleList.map((e) => e.build()).join(';')}"',
+        if (tabindex != null) ' tabindex="$tabindex"',
+        if (title != null) ' title="$title"',
+        if (onblur != null) ' onblur="$onblur"',
+        if (onchange != null) ' onchange="$onchange"',
+        if (onclick != null) ' onclick="$onclick"',
+        if (ondblclick != null) ' ondblclick="$ondblclick"',
+        if (onfocus != null) ' onfocus="$onfocus"',
+        if (onkeydown != null) ' onkeydown="$onkeydown"',
+        if (onkeypress != null) ' onkeypress="$onkeypress"',
+        if (onkeyup != null) ' onkeyup="$onkeyup"',
+        if (onload != null) ' onload="$onload"',
+        if (onmousedown != null) ' onmousedown="$onmousedown"',
+        if (onmousemove != null) ' onmousemove="$onmousemove"',
+        if (onmouseout != null) ' onmouseout="$onmouseout"',
+        if (onmouseover != null) ' onmouseover="$onmouseover"',
+        if (onmouseup != null) ' onmouseup="$onmouseup"',
+        if (onreset != null) ' onreset="$onreset"',
+        if (onselect != null) ' onselect="$onselect"',
+        if (onsubmit != null) ' onsubmit="$onsubmit"',
+        if (onunload != null) ' onunload="$onunload"',
+        '>',
+        super.build(),
+        '</tfoot>'
+      ].join();
+}

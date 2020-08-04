@@ -90,6 +90,7 @@ abstract class CSS {
   static const transitionTimingFunction = PropertyCSS('transition-timing-function');
   static const top = PropertyCSS('top');
   static const userSelect = PropertyCSS('user-select');
+  static const whiteSpace = PropertyCSS('white-space');
   static const width = PropertyCSS('width');
   static const zIndex = PropertyCSS('z-index');
 }
