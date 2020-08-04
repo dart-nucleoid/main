@@ -1,3 +1,11 @@
+## 0.2.2
+
+- MySQL model generator features: test table; auto correct table; set and insert operation.
+- Rename MySQLObjectFactory to MySQLDataBase
+- Add CSS property: whiteSpace
+- FileData new mime-type: pdf
+- Add HTML elements: Table, Tr. Td, Th, Caption, Col, Colgroup, Tbody, Thead, Tfoot
+
 ## 0.2.1
 
 - Refactoring rename all CSS style builder function on "build"

@@ -6,7 +6,7 @@ part of 'url.dart';
 // ModelMysqlGenerator
 // **************************************************************************
 
-// Code for "abstract class UrlModelMySQL extends BuiltModelMySQL<CrmBaseFields>"
+// Code for "abstract class UrlModelMySQL extends BuiltModelMySQL<CrmFieldsDataBase>"
 class UrlModel implements UrlModelMySQL {
   const UrlModel(
       {this.id,
@@ -21,7 +21,8 @@ class UrlModel implements UrlModelMySQL {
       this.h1,
       this.keywords,
       this.description,
-      this.image});
+      this.image,
+      this.noindex});
 
   final int id;
   final DateTime edit;
@@ -36,9 +37,10 @@ class UrlModel implements UrlModelMySQL {
   final String keywords;
   final String description;
   final String image;
+  final bool noindex;
 
   static Future<UrlModel> byId(int id) async {
-    var results = await UrlModelMySQL.factory.query(
+    var results = await UrlModelMySQL.db.query(
         'SELECT * FROM `${UrlModelMySQL.table}` WHERE `id` = ? LIMIT 1', [id]);
     if (results.isNotEmpty) {
       var json = results.first;
@@ -49,15 +51,15 @@ class UrlModel implements UrlModelMySQL {
     }
   }
 
-  static Future<List<UrlModel>> search({
-    @required UrlModelQuery query,
+  static Future<List<UrlModel>> select({
+    @required UrlModelQuery where,
     int offset,
     int count,
     OrderMySQL<UrlModelField> order,
     List<UrlModelField> select,
   }) =>
-      searchJoin<UrlModel>(
-        query: query,
+      selectJoin<UrlModel>(
+        where: where,
         builder: (json) => UrlModel.fromJSON(json),
         offset: offset,
         count: count,
@@ -65,8 +67,8 @@ class UrlModel implements UrlModelMySQL {
         select: select,
       );
 
-  static Future<List<T>> searchJoin<T>({
-    @required UrlModelQuery query,
+  static Future<List<T>> selectJoin<T>({
+    @required UrlModelQuery where,
     @required FunctionBuilderFromJson<T> builder,
     int offset,
     int count,
@@ -78,7 +80,7 @@ class UrlModel implements UrlModelMySQL {
   }) async {
     final modelQueryMySQL = ModelQueryMySQL(
         table: UrlModelMySQL.table,
-        query: query,
+        queryWhere: where,
         offset: offset,
         count: count,
         order: order,
@@ -86,9 +88,36 @@ class UrlModel implements UrlModelMySQL {
         joinList: joinList,
         joinType: joinType,
         alias: alias);
-    var results = await UrlModelMySQL.factory
+    var results = await UrlModelMySQL.db
         .query(modelQueryMySQL.selectSql, modelQueryMySQL.selectValues);
     return [for (var row in results) builder(row.fields)];
+  }
+
+  static Future<void> updateQuery({
+    @required UrlModelQuery set,
+    UrlModelQuery where,
+    int offset,
+    int count,
+    OrderMySQL<FieldMySQL> order,
+  }) async {
+    final modelQueryMySQL = ModelQueryMySQL(
+        table: UrlModelMySQL.table,
+        queryWhere: where,
+        querySet: set,
+        offset: offset,
+        count: count,
+        order: order);
+    await UrlModelMySQL.db
+        .query(modelQueryMySQL.updateSql, modelQueryMySQL.updateValues);
+  }
+
+  static Future<void> insertSql({
+    @required UrlModelQuery insert,
+  }) async {
+    final modelQueryMySQL =
+        ModelQueryMySQL(table: UrlModelMySQL.table, querySet: insert);
+    final result = await UrlModelMySQL.db
+        .query(modelQueryMySQL.insertSql, modelQueryMySQL.insertValues);
   }
 
   factory UrlModel.fromJSON(Map<String, dynamic> json, [String aliasTable]) {
@@ -106,7 +135,8 @@ class UrlModel implements UrlModelMySQL {
         h1: json['${prefix}h1'],
         keywords: json['${prefix}keywords'],
         description: json['${prefix}description'],
-        image: json['${prefix}image']);
+        image: json['${prefix}image'],
+        noindex: FieldType.bool.fromMySQL(json['${prefix}noindex']));
   }
 }
 
@@ -127,7 +157,9 @@ class UrlModelQuery extends QueryMySQL {
           String h1,
           String keywords,
           String description,
-          String image}) =>
+          String image,
+          bool noindex,
+          bool editISNULL}) =>
       UrlModelQuery.alias(connector, operator, null,
           id: id,
           edit: edit,
@@ -141,7 +173,9 @@ class UrlModelQuery extends QueryMySQL {
           h1: h1,
           keywords: keywords,
           description: description,
-          image: image);
+          image: image,
+          noindex: noindex,
+          editISNULL: editISNULL);
 
   UrlModelQuery.alias(String connector, String operator, String alias,
       {int id,
@@ -156,13 +190,17 @@ class UrlModelQuery extends QueryMySQL {
       String h1,
       String keywords,
       String description,
-      String image})
+      String image,
+      bool noindex,
+      bool editISNULL})
       : super(
             [
               if (id != null)
                 '${alias != null ? '$alias.' : ''}`id` $operator ?',
               if (edit != null)
                 '${alias != null ? '$alias.' : ''}`edit` $operator ?',
+              if (edit == null && editISNULL != null)
+                '`edit` ${editISNULL ? 'IS NULL' : 'IS NOT NULL'}',
               if (disabled != null)
                 '${alias != null ? '$alias.' : ''}`disabled` $operator ?',
               if (protected != null)
@@ -184,7 +222,9 @@ class UrlModelQuery extends QueryMySQL {
               if (description != null)
                 '${alias != null ? '$alias.' : ''}`description` $operator ?',
               if (image != null)
-                '${alias != null ? '$alias.' : ''}`image` $operator ?'
+                '${alias != null ? '$alias.' : ''}`image` $operator ?',
+              if (noindex != null)
+                '${alias != null ? '$alias.' : ''}`noindex` $operator ?'
             ].join(' $connector '),
             [
               if (id != null) id,
@@ -199,7 +239,8 @@ class UrlModelQuery extends QueryMySQL {
               if (h1 != null) h1,
               if (keywords != null) keywords,
               if (description != null) description,
-              if (image != null) image
+              if (image != null) image,
+              if (noindex != null) noindex
             ]);
 
   UrlModelQuery.fields(String connector, String operator, String alias,
@@ -215,12 +256,16 @@ class UrlModelQuery extends QueryMySQL {
       FieldMySQL h1,
       FieldMySQL keywords,
       FieldMySQL description,
-      FieldMySQL image})
+      FieldMySQL image,
+      FieldMySQL noindex,
+      bool editISNULL})
       : super([
           if (id != null)
             '`id` $operator ${alias != null ? '$alias.' : ''}${id.name}',
           if (edit != null)
             '`edit` $operator ${alias != null ? '$alias.' : ''}${edit.name}',
+          if (edit == null && editISNULL != null)
+            '`edit` ${editISNULL ? 'IS NULL' : 'IS NOT NULL'}',
           if (disabled != null)
             '`disabled` $operator ${alias != null ? '$alias.' : ''}${disabled.name}',
           if (protected != null)
@@ -242,8 +287,60 @@ class UrlModelQuery extends QueryMySQL {
           if (description != null)
             '`description` $operator ${alias != null ? '$alias.' : ''}${description.name}',
           if (image != null)
-            '`image` $operator ${alias != null ? '$alias.' : ''}${image.name}'
+            '`image` $operator ${alias != null ? '$alias.' : ''}${image.name}',
+          if (noindex != null)
+            '`noindex` $operator ${alias != null ? '$alias.' : ''}${noindex.name}'
         ].join(' $connector '));
+
+  UrlModelQuery.set(
+      {int id,
+      DateTime edit,
+      bool disabled,
+      bool protected,
+      int domain,
+      String url,
+      int categoryId,
+      int pageId,
+      String title,
+      String h1,
+      String keywords,
+      String description,
+      String image,
+      bool noindex,
+      bool editSETNULL = false})
+      : super(
+            [
+              if (id != null) '`id` = ?',
+              if (edit != null || editSETNULL) '`edit` = ?',
+              if (disabled != null) '`disabled` = ?',
+              if (protected != null) '`protected` = ?',
+              if (domain != null) '`domain` = ?',
+              if (url != null) '`url` = ?',
+              if (categoryId != null) '`category_id` = ?',
+              if (pageId != null) '`page_id` = ?',
+              if (title != null) '`title` = ?',
+              if (h1 != null) '`h1` = ?',
+              if (keywords != null) '`keywords` = ?',
+              if (description != null) '`description` = ?',
+              if (image != null) '`image` = ?',
+              if (noindex != null) '`noindex` = ?'
+            ].join(' = '),
+            [
+              if (id != null) id,
+              if (edit != null || editSETNULL) edit,
+              if (disabled != null) disabled,
+              if (protected != null) protected,
+              if (domain != null) domain,
+              if (url != null) url,
+              if (categoryId != null) categoryId,
+              if (pageId != null) pageId,
+              if (title != null) title,
+              if (h1 != null) h1,
+              if (keywords != null) keywords,
+              if (description != null) description,
+              if (image != null) image,
+              if (noindex != null) noindex
+            ]);
 }
 
 class UrlModelField extends FieldMySQL {
@@ -261,7 +358,8 @@ class UrlModelField extends FieldMySQL {
     h1,
     keywords,
     description,
-    image
+    image,
+    noindex
   ];
   static const id = UrlModelField('id');
   static const edit = UrlModelField('edit');
@@ -276,4 +374,123 @@ class UrlModelField extends FieldMySQL {
   static const keywords = UrlModelField('keywords');
   static const description = UrlModelField('description');
   static const image = UrlModelField('image');
+  static const noindex = UrlModelField('noindex');
+}
+
+class UrlModelTest extends FieldMySQL {
+  static Future<void> testTable({@required bool autoCorrect}) =>
+      MySQLDataBase.testTable(UrlModelMySQL.db, UrlModelMySQL.table, fields,
+          autoCorrect: autoCorrect);
+
+  static const List<FieldMySQL> fields = [
+    FieldMySQL(
+        name: 'id',
+        type: FieldType('int(12)', FieldTypeDart.int, 12),
+        index: false,
+        autoIncrement: true,
+        primaryKey: true,
+        nullable: false),
+    FieldMySQL(
+        name: 'edit',
+        type: FieldType('datetime', FieldTypeDart.datetime),
+        index: true,
+        autoIncrement: false,
+        primaryKey: false,
+        nullable: true),
+    FieldMySQL(
+        name: 'disabled',
+        type: FieldType('tinyint(1)', FieldTypeDart.bool, 1),
+        index: true,
+        defaultValue: false,
+        autoIncrement: false,
+        primaryKey: false,
+        nullable: false),
+    FieldMySQL(
+        name: 'protected',
+        type: FieldType('tinyint(1)', FieldTypeDart.bool, 1),
+        index: false,
+        defaultValue: false,
+        autoIncrement: false,
+        primaryKey: false,
+        nullable: false),
+    FieldMySQL(
+        name: 'domain',
+        type: FieldType('int(2)', FieldTypeDart.int, 2),
+        index: true,
+        defaultValue: 0,
+        autoIncrement: false,
+        primaryKey: false,
+        nullable: false),
+    FieldMySQL(
+        name: 'url',
+        type: FieldType('varchar(128)', FieldTypeDart.string, 128),
+        index: true,
+        autoIncrement: false,
+        primaryKey: false,
+        nullable: false),
+    FieldMySQL(
+        name: 'category_id',
+        type: FieldType('int(12)', FieldTypeDart.int, 12),
+        index: true,
+        defaultValue: 0,
+        autoIncrement: false,
+        primaryKey: false,
+        nullable: false),
+    FieldMySQL(
+        name: 'page_id',
+        type: FieldType('int(12)', FieldTypeDart.int, 12),
+        index: true,
+        defaultValue: 1,
+        autoIncrement: false,
+        primaryKey: false,
+        nullable: false),
+    FieldMySQL(
+        name: 'title',
+        type: FieldType('varchar(256)', FieldTypeDart.string, 256),
+        index: false,
+        defaultValue: '',
+        autoIncrement: false,
+        primaryKey: false,
+        nullable: false),
+    FieldMySQL(
+        name: 'h1',
+        type: FieldType('varchar(256)', FieldTypeDart.string, 256),
+        index: false,
+        defaultValue: '',
+        autoIncrement: false,
+        primaryKey: false,
+        nullable: false),
+    FieldMySQL(
+        name: 'keywords',
+        type: FieldType('varchar(256)', FieldTypeDart.string, 256),
+        index: false,
+        defaultValue: '',
+        autoIncrement: false,
+        primaryKey: false,
+        nullable: false),
+    FieldMySQL(
+        name: 'description',
+        type: FieldType('varchar(256)', FieldTypeDart.string, 256),
+        index: false,
+        defaultValue: '',
+        autoIncrement: false,
+        primaryKey: false,
+        nullable: false),
+    FieldMySQL(
+        name: 'image',
+        type: FieldType('varchar(256)', FieldTypeDart.string, 256),
+        index: false,
+        defaultValue: '',
+        autoIncrement: false,
+        primaryKey: false,
+        nullable: false),
+    FieldMySQL(
+        name: 'noindex',
+        type: FieldType('tinyint(1)', FieldTypeDart.bool, 1),
+        index: false,
+        defaultValue: false,
+        autoIncrement: false,
+        primaryKey: false,
+        nullable: false)
+  ];
 }

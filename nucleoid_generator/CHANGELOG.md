@@ -1,3 +1,7 @@
+## 0.2.2
+
+- MySQL model generator features: test table; auto correct table; set and insert operation. 
+
 ## 0.2.0
 
 - Refactoring rename all builder function on "build"

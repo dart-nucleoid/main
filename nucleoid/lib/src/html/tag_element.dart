@@ -328,3 +328,53 @@ abstract class TextareaBuilt implements BuiltNodeElement<ChildNodeElement> {
     Attributes.wrap,
   ];
 }
+
+abstract class TableBuilt implements BuiltNodeElement<ChildNodeElement> {}
+
+abstract class TrBuilt implements BuiltNodeElement<ChildNodeElement> {}
+
+abstract class TdBuilt implements BuiltNodeElement<ChildNodeElement> {
+  static const List<Attribute> attributesExtend = [
+    Attributes.colspan,
+    Attributes.headers,
+    Attributes.scope,
+    Attributes.rowspan,
+  ];
+}
+
+abstract class ThBuilt implements BuiltNodeElement<ChildNodeElement> {
+  static const List<Attribute> attributesExtend = [
+    Attributes.colspan,
+    Attributes.scope,
+    Attributes.rowspan,
+  ];
+}
+
+enum ScopeTable { col, colgroup, row, rowgroup }
+
+String mapperScopeTable(ScopeTable value) {
+  switch (value) {
+    case ScopeTable.col:
+      return 'col';
+    case ScopeTable.colgroup:
+      return 'colgroup';
+    case ScopeTable.row:
+      return 'row';
+    case ScopeTable.rowgroup:
+      return 'rowgroup';
+    default:
+      throw Exception('Invalid value ScopeTable');
+  }
+}
+
+abstract class CaptionBuilt implements BuiltNodeElement<ChildNodeElement> {}
+
+abstract class ColBuilt implements BuiltNodeElement<ChildNodeElement> {}
+
+abstract class ColgroupBuilt implements BuiltNodeElement<ChildNodeElement> {}
+
+abstract class TbodyBuilt implements BuiltNodeElement<ChildNodeElement> {}
+
+abstract class TheadBuilt implements BuiltNodeElement<ChildNodeElement> {}
+
+abstract class TfootBuilt implements BuiltNodeElement<ChildNodeElement> {}
