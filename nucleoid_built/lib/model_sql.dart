@@ -147,7 +147,7 @@ class FieldSQL {
   FieldSQL $table(String aliasTable) => FieldSQL(
         $name,
         alias: $alias,
-        aliasTable: $aliasTable,
+        aliasTable: aliasTable,
         type: $type,
         defaultValue: $defaultValue,
         index: $index,
