@@ -22,6 +22,7 @@ class FieldTypeDart extends _FieldTypeDartBase {
 
   static const int = FieldTypeDart('int');
   static const bool = FieldTypeDart('bool');
+  static const date = FieldTypeDart('Date');
   static const datetime = FieldTypeDart('DateTime');
   static const string = FieldTypeDart('String');
 }
@@ -43,19 +44,20 @@ abstract class _FieldTypeBase {
 class FieldType extends _FieldTypeBase {
   const FieldType(String name, FieldTypeDart type, [int size]) : super(name, type, size);
 
-  const FieldType.tinyint([int size]) : super('tinyint(${size ?? ''})', FieldTypeDart.int, size);
+  const FieldType.tinyint([int size = 4]) : super(size > 0 ? 'tinyint($size)' : 'tinyint', FieldTypeDart.int, size);
 
-  const FieldType.int([int size]) : super('int(${size ?? ''})', FieldTypeDart.int, size);
+  const FieldType.int([int size = 11]) : super(size > 0 ? 'int($size)' : 'int', FieldTypeDart.int, size);
 
-  const FieldType.varchar([int size]) : super('varchar(${size ?? ''})', FieldTypeDart.string, size);
+  const FieldType.varchar(int size) : super('varchar($size)', FieldTypeDart.string, size);
 
   static const bool = FieldType('tinyint(1)', FieldTypeDart.bool, 1);
   static const text = FieldType('text', FieldTypeDart.string);
   static const mediumtext = FieldType('mediumtext', FieldTypeDart.string);
   static const longtext = FieldType('longtext', FieldTypeDart.string);
+  static const date = FieldType('date', FieldTypeDart.datetime);
   static const datetime = FieldType('datetime', FieldTypeDart.datetime);
 
-  dynamic fromMySQL(dynamic value) {
+  dynamic fromSQL(dynamic value) {
     if (type == FieldTypeDart.bool) {
       if (value == 1) {
         return true;
@@ -69,7 +71,7 @@ class FieldType extends _FieldTypeBase {
     }
   }
 
-  dynamic toMySQL(core.bool value) {
+  dynamic toSQL(core.bool value) {
     if (value == true) {
       return 1;
     } else if (value == false) {
@@ -96,6 +98,8 @@ class FieldType extends _FieldTypeBase {
       return FieldType.mediumtext;
     } else if (string == longtext.name) {
       return FieldType.longtext;
+    } else if (string == date.name) {
+      return FieldType.date;
     } else if (string == datetime.name) {
       return FieldType.datetime;
     } else if (tinyintRegExp.hasMatch(string)) {
@@ -110,45 +114,52 @@ class FieldType extends _FieldTypeBase {
   }
 }
 
-class FieldMySQL {
-  final String name;
-  final String alias;
-  final String aliasTable;
-  final FieldType type;
-  final dynamic defaultValue;
-  final bool index;
-  final bool autoIncrement;
-  final bool primaryKey;
-  final bool nullable;
+class FieldSQL {
+  final String $name;
+  final String $alias;
+  final String $aliasTable;
+  final FieldType $type;
+  final dynamic $defaultValue;
+  final bool $index;
+  final bool $autoIncrement;
+  final bool $primaryKey;
+  final bool $nullable;
 
-  const FieldMySQL({
-    this.name,
+  const FieldSQL(
+    this.$name, {
     String alias,
-    this.aliasTable,
-    this.type,
-    this.defaultValue,
-    this.index = false,
-    this.autoIncrement = false,
-    this.primaryKey = false,
-    this.nullable = false,
-  }) : alias = alias ?? name;
+    String aliasTable,
+    FieldType type,
+    dynamic defaultValue,
+    bool index = false,
+    bool autoIncrement = false,
+    bool primaryKey = false,
+    bool nullable = false,
+  })  : $alias = alias ?? $name,
+        $aliasTable = aliasTable,
+        $type = type,
+        $defaultValue = defaultValue,
+        $index = index,
+        $autoIncrement = autoIncrement,
+        $primaryKey = primaryKey,
+        $nullable = nullable;
 
-  FieldMySQL table(String aliasTable) => FieldMySQL(
-        name: name,
-        alias: alias,
-        aliasTable: aliasTable,
-        type: type,
-        defaultValue: defaultValue,
-        index: index,
-        autoIncrement: autoIncrement,
-        primaryKey: primaryKey,
-        nullable: nullable,
+  FieldSQL $table(String aliasTable) => FieldSQL(
+        $name,
+        alias: $alias,
+        aliasTable: $aliasTable,
+        type: $type,
+        defaultValue: $defaultValue,
+        index: $index,
+        autoIncrement: $autoIncrement,
+        primaryKey: $primaryKey,
+        nullable: $nullable,
       );
 
-  String get aliasName {
+  String get $aliasName {
     var first = true;
 
-    return alias.split('_').map((e) {
+    return $alias.split('_').map((e) {
       if (first) {
         first = false;
         return e;
@@ -161,23 +172,23 @@ class FieldMySQL {
   @override
   bool operator ==(other) =>
       identical(this, other) ||
-      other is FieldMySQL &&
-          name == other.name &&
-          alias == other.alias &&
-          aliasTable == other.aliasTable &&
-          type == other.type &&
-          defaultValue == other.defaultValue &&
-          index == other.index &&
-          autoIncrement != other.autoIncrement &&
-          primaryKey != other.primaryKey &&
-          nullable != other.nullable;
+      other is FieldSQL &&
+          $name == other.$name &&
+          $alias == other.$alias &&
+          $aliasTable == other.$aliasTable &&
+          $type == other.$type &&
+          $defaultValue == other.$defaultValue &&
+          $index == other.$index &&
+          $autoIncrement != other.$autoIncrement &&
+          $primaryKey != other.$primaryKey &&
+          $nullable != other.$nullable;
 
   @override
   String toString() =>
-      'FieldMySQL(name: $name, alias: $alias, aliasTable: $aliasTable, type: $type, defaultValue: $defaultValue, index: $index, autoIncrement: $autoIncrement, primaryKey: $primaryKey, nullable: $nullable)';
+      'FieldSQL(name: ${$name}, alias: ${$alias}, aliasTable: ${$aliasTable}, type: ${$type}, defaultValue: ${$defaultValue}, index: ${$index}, autoIncrement: ${$autoIncrement}, primaryKey: ${$primaryKey}, nullable: ${$nullable})';
 
-  factory FieldMySQL.fromDescribeTable(Map<String, dynamic> object) => FieldMySQL(
-        name: object['Field'],
+  factory FieldSQL.fromDescribeTable(Map<String, dynamic> object) => FieldSQL(
+        object['Field'],
         type: FieldType.fromString(object['Type']),
         nullable: object['Null'] == 'YES',
         defaultValue: object['Default'] == null ? null : object['Default'].toString(),
@@ -185,22 +196,22 @@ class FieldMySQL {
         primaryKey: object['Key'] == 'PRI',
       );
 
-  String get defaultValueString {
-    if (defaultValue == null) {
+  String get $defaultValueString {
+    if ($defaultValue == null) {
       return null;
-    } else if (defaultValue is String) {
-      return defaultValue;
-    } else if (defaultValue is bool) {
-      return defaultValue == true ? '1' : '0';
-    } else if (defaultValue is num) {
-      return defaultValue.toString();
+    } else if ($defaultValue is String) {
+      return $defaultValue;
+    } else if ($defaultValue is bool) {
+      return $defaultValue == true ? '1' : '0';
+    } else if ($defaultValue is num) {
+      return $defaultValue.toString();
     } else {
-      throw Exception('defaultValue type not implemented: $defaultValue');
+      throw Exception('defaultValue type not implemented: ${$defaultValue}');
     }
   }
 }
 
-abstract class BuiltModelMySQL<T> {
+abstract class BuiltModelSQL<T> {
   static String limitSQL(int offset, int count) {
     if (offset == null && count == null) {
       return '';
@@ -214,21 +225,21 @@ abstract class BuiltModelMySQL<T> {
   }
 }
 
-enum JoinTypeMySQL { inner, left, right }
+enum JoinTypeSQL { inner, left, right }
 
-class ModelQueryMySQL {
+class ModelQuerySQL {
   final String table;
-  final QueryMySQL queryWhere;
-  final QueryMySQL querySet;
+  final QuerySQL queryWhere;
+  final QuerySQL querySet;
   final int offset;
   final int count;
-  final OrderMySQL<FieldMySQL> order;
-  final List<FieldMySQL> select;
-  final List<ModelQueryMySQL> joinList;
-  final JoinTypeMySQL joinType;
+  final OrderSQL<FieldSQL> order;
+  final List<FieldSQL> select;
+  final List<ModelQuerySQL> joinList;
+  final JoinTypeSQL joinType;
   final String alias;
 
-  const ModelQueryMySQL({
+  const ModelQuerySQL({
     @required this.table,
     this.queryWhere,
     this.querySet,
@@ -248,26 +259,44 @@ class ModelQueryMySQL {
       if (select != null)
         select
             .map((e) => [
-                  if ((e.aliasTable ?? alias) != null) '${e.aliasTable ?? alias}.',
-                  '`${e.name}`',
-                  if ((e.aliasTable ?? alias) != null) ' AS ${e.aliasTable ?? alias}__${e.name}',
+                  if ((e.$aliasTable ?? alias) != null) '${e.$aliasTable ?? alias}.',
+                  '`${e.$name}`',
+                  if ((e.$aliasTable ?? alias) != null) ' AS ${e.$aliasTable ?? alias}__${e.$name}',
                 ].join())
             .join(', '),
       'FROM',
       '`$table`',
       if (alias != null) 'AS $alias',
-      if (joinList != null)
-        for (var join in joinList) _selectJoin(join),
+      if (joinList != null) for (var join in joinList) _selectJoin(join),
       'WHERE',
       queryWhere.sql(alias),
       if (order != null) 'ORDER BY',
       if (order != null) order.sql(alias),
-      BuiltModelMySQL.limitSQL(offset, count),
+      BuiltModelSQL.limitSQL(offset, count),
     ].join(' ');
 
     print('selectSql: $selectSql');
 
     return selectSql;
+  }
+
+  String get deleteSql {
+    final deleteSql = [
+      'DELETE',
+      'FROM',
+      '`$table`',
+      if (alias != null) 'AS $alias',
+      if (joinList != null) for (var join in joinList) _selectJoin(join),
+      'WHERE',
+      queryWhere.sql(alias),
+      if (order != null) 'ORDER BY',
+      if (order != null) order.sql(alias),
+      BuiltModelSQL.limitSQL(offset, count),
+    ].join(' ');
+
+    print('deleteSql: $deleteSql');
+
+    return deleteSql;
   }
 
   String get updateSql {
@@ -282,7 +311,7 @@ class ModelQueryMySQL {
       ],
       if (order != null) 'ORDER BY',
       if (order != null) order.sql(),
-      BuiltModelMySQL.limitSQL(offset, count),
+      BuiltModelSQL.limitSQL(offset, count),
     ].join(' ');
 
     print('updateSql: $updateSql');
@@ -313,6 +342,16 @@ class ModelQueryMySQL {
     return selectValues;
   }
 
+  List<Object> get deleteValues {
+    final deleteValues = joinList?.isNotEmpty == true
+        ? [...joinList.map((e) => e.deleteValues).where((el) => el != null).toList(), ...queryWhere.values]
+        : queryWhere.values;
+
+    print('deleteValues: $deleteValues');
+
+    return deleteValues;
+  }
+
   List<Object> get updateValues {
     final updateValues = [...querySet.values, ...?queryWhere?.values];
 
@@ -329,7 +368,7 @@ class ModelQueryMySQL {
     return insertValues;
   }
 
-  String _selectJoin(ModelQueryMySQL join) {
+  String _selectJoin(ModelQuerySQL join) {
     return [
       _mapperJoinType(join.joinType),
       'JOIN',
@@ -339,32 +378,32 @@ class ModelQueryMySQL {
     ].join(' ');
   }
 
-  String _mapperJoinType(JoinTypeMySQL type) {
+  String _mapperJoinType(JoinTypeSQL type) {
     switch (type) {
-      case JoinTypeMySQL.inner:
+      case JoinTypeSQL.inner:
         return 'INNER';
-      case JoinTypeMySQL.left:
+      case JoinTypeSQL.left:
         return 'LEFT';
-      case JoinTypeMySQL.right:
+      case JoinTypeSQL.right:
         return 'RIGHT';
       default:
-        throw Exception('invalidate JoinTypeMySQL: $type');
+        throw Exception('invalidate JoinTypeSQL: $type');
     }
   }
 }
 
-class QueryMySQL {
+class QuerySQL {
   final String connector;
-  final List<QueryMySQL> list;
+  final List<QuerySQL> list;
 
   final String _sql;
   final List<Object> _values;
 
-  const QueryMySQL(this._sql, [this._values])
+  const QuerySQL(this._sql, [this._values])
       : list = null,
         connector = null;
 
-  const QueryMySQL.list(this.connector, this.list)
+  const QuerySQL.list(this.connector, this.list)
       : _sql = null,
         _values = null;
 
@@ -389,27 +428,27 @@ class QueryMySQL {
   }
 }
 
-class OrderMySQL<T> {
+class OrderSQL<T> {
   final String sort;
-  final List<OrderMySQL<T>> children;
-  final List<FieldMySQL> fields;
+  final List<OrderSQL<T>> children;
+  final List<FieldSQL> fields;
 
-  const OrderMySQL(this.children)
+  const OrderSQL(this.children)
       : fields = null,
         sort = null;
 
-  const OrderMySQL.asc(this.fields)
+  const OrderSQL.asc(this.fields)
       : children = null,
         sort = 'ASC';
 
-  const OrderMySQL.desc(this.fields)
+  const OrderSQL.desc(this.fields)
       : children = null,
         sort = 'DESC';
 
   String sql([String aliasTable]) {
     if (fields != null) {
       return [
-        fields.map((e) => [if (aliasTable != null) aliasTable, '`${e.name}`'].join('.')).join(','),
+        fields.map((e) => [if (aliasTable != null) aliasTable, '`${e.$name}`'].join('.')).join(','),
         sort
       ].join(' ');
     } else {
@@ -418,11 +457,11 @@ class OrderMySQL<T> {
   }
 }
 
-class ExceptionTableMySQL implements Exception {
+class ExceptionTableSQL implements Exception {
   String table;
   String msg;
 
-  ExceptionTableMySQL(this.table, this.msg);
+  ExceptionTableSQL(this.table, this.msg);
 
-  String toString() => 'ExceptionTableMySQL "$table": $msg';
+  String toString() => 'ExceptionTableSQL "$table": $msg';
 }

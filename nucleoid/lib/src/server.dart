@@ -14,14 +14,16 @@ class Server with Loggable {
   final Router router;
   final int port;
 
-  Server({this.address = 'localhost', this.port, @required this.router}) : assert(router != null);
+  Server({this.address, this.port, @required this.router}) : assert(router != null);
 
   Future<void> start(List<String> args) async {
-    var parser = ArgParser()..addOption('port', abbr: 'p');
+    var parser = ArgParser()..addOption('port', abbr: 'p')..addOption('address', abbr: 'a');
     var result = parser.parse(args);
 
-    var portStr = result['port'] ?? this.port ?? Platform.environment['PORT'] ?? 8080;
+    var portStr = result['port'] ?? this.port ?? Platform.environment['NUCLEOID_PORT'] ?? 8080;
     var port = portStr.runtimeType == String ? int.tryParse(portStr) : portStr;
+
+    var addressStr = result['address'] ?? this.address ?? Platform.environment['NUCLEOID_ADDRESS'] ?? 'localhost';
 
     if (port == null) {
       stdout.writeln('Could not parse port value "$portStr" into a number.');
@@ -32,7 +34,7 @@ class Server with Loggable {
 
     var handler = const Pipeline().addMiddleware(logRequests()).addHandler(router.build);
 
-    var server = await io.serve(handler, address, port);
+    var server = await io.serve(handler, addressStr, port);
     log.fine('Start at http://${server.address.host}:${server.port}');
   }
 }

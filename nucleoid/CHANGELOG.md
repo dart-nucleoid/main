@@ -1,3 +1,8 @@
+## 0.2.3
+
+- Change MySQLDataBase to SQLDataBase; remove dependency package mysql1
+- Add supported platform environments: NUCLEOID_ADDRESS, NUCLEOID_PORT
+
 ## 0.2.2
 
 - MySQL model generator features: test table; auto correct table; set and insert operation.

@@ -9,14 +9,14 @@ dependencies:
   args: ^1.5.0
   shelf: ^0.7.2
   loggable: ^1.0.1
-  nucleoid: ^0.2.0
-  nucleoid_crm: ^0.2.0
-  nucleoid_built: ^0.2.0
+  nucleoid: ^0.2.2
+  nucleoid_crm: ^0.2.2
+  nucleoid_built: ^0.2.2
 
 dev_dependencies:
   pedantic: ^1.7.0
   build_runner: ^1.7.4
-  nucleoid_generator: ^0.2.0
+  nucleoid_generator: ^0.2.2
 
 nucleoid:
   assets:

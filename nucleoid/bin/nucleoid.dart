@@ -41,7 +41,7 @@ void _help(String action) {
   print('');
 }
 
-void _build(ArgResults args) async {
+Future<void> _build(ArgResults args) async {
   print('NUCLEOID START BUILD:');
 
   try {
@@ -161,12 +161,16 @@ void _copyAssets(Directory dir, YamlList list) {
 
 Future<void> _buildScripts(Directory dir, YamlList list) async {
   await Future.forEach(list, (script) async {
-    print('build scripts: $script');
+    if (script is String) {
+      print('build scripts: $script');
 
-    var fileScript = File(script);
+      var fileScript = File(script);
 
-    if (fileScript.existsSync()) {
-      await JavascriptData.dart2js(fileScript, dir.path);
+      if (fileScript.existsSync()) {
+        await JavascriptData.dart2js(fileScript, dir.path);
+      }
+    } else {
+      print('error build scripts: $script');
     }
   });
 }
