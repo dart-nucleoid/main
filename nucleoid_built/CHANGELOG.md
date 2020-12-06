@@ -1,3 +1,7 @@
+## 0.2.4
+
+- Update design BuiltModelSQL: model and field expands, builder
+
 ## 0.2.3
 
 - Change MySQL to SQL

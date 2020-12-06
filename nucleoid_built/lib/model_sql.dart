@@ -211,19 +211,7 @@ class FieldSQL {
   }
 }
 
-abstract class BuiltModelSQL<T> {
-  static String limitSQL(int offset, int count) {
-    if (offset == null && count == null) {
-      return '';
-    } else if (offset != null && count != null) {
-      return 'LIMIT $offset, $count';
-    } else if (offset == null && count != null) {
-      return 'LIMIT $count';
-    } else {
-      throw Exception('invalid value: offset: $offset, count: $count');
-    }
-  }
-}
+abstract class BuiltModelSQL {}
 
 enum JoinTypeSQL { inner, left, right }
 
@@ -272,7 +260,7 @@ class ModelQuerySQL {
       queryWhere.sql(alias),
       if (order != null) 'ORDER BY',
       if (order != null) order.sql(alias),
-      BuiltModelSQL.limitSQL(offset, count),
+      limitSQL(offset, count),
     ].join(' ');
 
     print('selectSql: $selectSql');
@@ -291,7 +279,7 @@ class ModelQuerySQL {
       queryWhere.sql(alias),
       if (order != null) 'ORDER BY',
       if (order != null) order.sql(alias),
-      BuiltModelSQL.limitSQL(offset, count),
+      limitSQL(offset, count),
     ].join(' ');
 
     print('deleteSql: $deleteSql');
@@ -311,7 +299,7 @@ class ModelQuerySQL {
       ],
       if (order != null) 'ORDER BY',
       if (order != null) order.sql(),
-      BuiltModelSQL.limitSQL(offset, count),
+      limitSQL(offset, count),
     ].join(' ');
 
     print('updateSql: $updateSql');
@@ -388,6 +376,18 @@ class ModelQuerySQL {
         return 'RIGHT';
       default:
         throw Exception('invalidate JoinTypeSQL: $type');
+    }
+  }
+
+  String limitSQL(int offset, int count) {
+    if (offset == null && count == null) {
+      return '';
+    } else if (offset != null && count != null) {
+      return 'LIMIT $offset, $count';
+    } else if (offset == null && count != null) {
+      return 'LIMIT $count';
+    } else {
+      throw Exception('invalid value: offset: $offset, count: $count');
     }
   }
 }

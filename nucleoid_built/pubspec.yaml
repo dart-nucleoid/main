@@ -1,7 +1,7 @@
 name: nucleoid_built
 description: nucleoid_built package
 homepage: https://github.com/dart-nucleoid/main
-version: 0.2.3+1
+version: 0.2.4
 
 environment:
   sdk: '>=2.7.0 <3.0.0'

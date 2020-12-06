@@ -15,109 +15,179 @@ class SQLModelGenerator extends Generator {
     for (var element in library.allElements.whereType<ClassElement>()) {
       if (element.allSupertypes.any((interfaceType) => interfaceType.element.name == 'BuiltModelSQL')) {
         // Element Model
-        var elementNameModel =  [element.name, 'Model'].join();
+        final bool isAbstractClass = element.getField('builder') == null;
+        final String expandedClass = element.allSupertypes.first.element.name;
+        final bool isExpanded = expandedClass != 'Object' && expandedClass != 'BuiltModelSQL';
+
+        var elementNameModel = [element.name, 'Model'].join();
+        var elementNameBuilder = [element.name, 'Builder'].join();
         var elementNameQuery = [element.name, 'Query'].join();
         var elementNameField = [element.name, 'Field'].join();
-        var elementNameTest = [element.name, 'Test'].join();
-
-        var generic = element.allSupertypes
-            .firstWhere((element) => element.element.name == 'BuiltModelSQL', orElse: () => null)
-            .typeArguments
-            .first;
+        final List<FieldSQL> elementFields = _listFieldsFromElement(element);
         var fields = <FieldSQL>[];
 
-        if (generic != null) {
-          var genericElement = generic.element;
-          if (genericElement is ClassElementImpl) {
-            fields.addAll(_listFieldsFromElement(genericElement));
+        final lengthSupertypes = element.allSupertypes.length;
+
+        for (var i = lengthSupertypes; i > 0; i-- ) {
+          var superElement = element.allSupertypes[i - 1].element;
+          if (superElement is ClassElementImpl) {
+            fields.addAll(_listFieldsFromElement(superElement));
           }
         }
 
-        fields.addAll(_listFieldsFromElement(element));
+        fields.addAll(elementFields);
 
         result.writeln('// Code for "$element"');
-        result.writeln('class $elementNameModel implements ${element.name} {');
+        result.writeln('${isAbstractClass ? 'abstract ' : ''}class $elementNameModel ${isExpanded ? 'extends ${expandedClass}Model ':''}{');
         result.writeln();
         var constructorFields = <String>[];
+        var superConstructorFields = <String>[];
         var bodyFields = <String>[];
 
         fields.forEach((el) {
-          constructorFields.add('this.${el.$aliasName}');
-          bodyFields.add('final ${el.$type.type.name} ${el.$aliasName};');
+          if (elementFields.contains(el)) {
+            constructorFields.add('this.${el.$aliasName}');
+            bodyFields.add('final ${el.$type.type.name} ${el.$aliasName};');
+          } else {
+            constructorFields.add('${el.$type.type.name} ${el.$aliasName}');
+            superConstructorFields.add('${el.$aliasName}: ${el.$aliasName}');
+          }
         });
 
-        result.writeln('const $elementNameModel(\{${constructorFields.join(',')}\});\n');
+        result.writeln('const $elementNameModel(\{${constructorFields.join(',')},\})${superConstructorFields.isNotEmpty ? ' : super(${superConstructorFields.join(',')},)' :''};\n');
 
         result.writeln(bodyFields.join('\n'));
+        result.writeln();
+        result.writeln('factory $elementNameModel.fromJSON(Map<String, dynamic> json, [String aliasTable])');
+        if (isAbstractClass) {
+          result.writeln('{throw UnimplementedError();}');
+        } else {
+          result.writeln(
+              '{final prefix = aliasTable != null ? \'\${aliasTable}__\' : \'\'; return $elementNameModel(${_inputFieldsBuildConstructorFromSQL(fields)});}');
+        }
+
+        result.writeln('}');
+
+        result.writeln();
+
+        result.writeln('${isAbstractClass ? 'abstract ' : ''}class $elementNameBuilder {');
+        result.writeln('final String table;');
+        result.writeln('final SQLDataBase db;');
+        result.writeln();
+        result.writeln('$elementNameBuilder(this.table, this.db);');
 
         var primaryKeyList = fields.where((el) => el.$primaryKey ?? false);
 
         if (primaryKeyList.isNotEmpty) {
           result.writeln();
 
-          result.writeln('static Future<$elementNameModel> by${primaryKeyList.map((e) => [
+          result.writeln('Future<$elementNameModel> by${primaryKeyList.map((e) => [
                 e.$aliasName.substring(0, 1).toUpperCase(),
                 e.$aliasName.substring(1)
-              ].join()).join()}(${primaryKeyList.map((e) => [e.$type.type.name, e.$aliasName].join(' ')).join(',')}) async {');
+              ].join()).join()}(${primaryKeyList.map((e) => [e.$type.type.name, e.$aliasName].join(' ')).join(',')})');
 
-          result.writeln(
-              'var results = await ${element.name}.db.query(\'SELECT * FROM `\$\{${element.name}.table\}\` WHERE ${primaryKeyList.map((e) => [
-                    '`${e.$name}`',
-                    '=',
-                    '?'
-                  ].join(' ')).join(' AND ')} LIMIT 1\', [${primaryKeyList.map((e) => e.$aliasName).join(',')}]);');
+          if (isAbstractClass) {
+            result.writeln(';');
+          } else {
+            result.writeln(' async {');
 
-          result.writeln('if (results.isNotEmpty) {');
-          result.writeln('var json = results.first;');
+            result.writeln(
+                'var results = await db.query(\'SELECT * FROM `\$\{table\}\` WHERE ${primaryKeyList.map((e) => [
+                      '`${e.$name}`',
+                      '=',
+                      '?'
+                    ].join(' ')).join(' AND ')} LIMIT 1\', [${primaryKeyList.map((e) => e.$aliasName).join(',')}]);');
+
+            result.writeln('if (results.isNotEmpty) {');
+            result.writeln('var json = results.first;');
+            result.writeln();
+            result.writeln('return $elementNameModel.fromJSON(json.fields);');
+
+            result.writeln('} else {');
+            result.writeln('return null;');
+            result.writeln('}');
+            result.writeln('}');
+          }
+
           result.writeln();
-          result.writeln('return $elementNameModel.fromJSON(json.fields);');
-
-          result.writeln('} else {');
-          result.writeln('return null;');
-          result.writeln('}');
-          result.writeln('}');
         }
 
         result.writeln(
-            'static Future<List<$elementNameModel>> select({@required $elementNameQuery where, int offset, int count, OrderSQL<$elementNameField> order, List<$elementNameField> select,})'
-            ' => selectJoin<$elementNameModel>(where: where, builder: (json) => $elementNameModel.fromJSON(json), offset: offset, count: count, order: order, select: select,);');
-
+            'Future<List<$elementNameModel>> select({@required $elementNameQuery where, int offset, int count, OrderSQL<$elementNameField> order, List<$elementNameField> select,})');
+        if (isAbstractClass) {
+          result.writeln(';');
+        } else {
+          result.writeln(
+              ' => selectJoin<$elementNameModel>(where: where, builder: (json) => $elementNameModel.fromJSON(json), offset: offset, count: count, order: order, select: select,);');
+        }
         result.writeln();
         result.writeln(
-            'static Future<List<T>> selectJoin<T>({@required $elementNameQuery where, @required FunctionBuilderFromJson<T> builder, int offset, int count, OrderSQL<FieldSQL> order, List<FieldSQL> select, List<ModelQuerySQL> joinList, JoinTypeSQL joinType, String alias,}) async {'
-            'final modelQuerySQL = ModelQuerySQL(table: ${element.name}.table, queryWhere: where, offset: offset, count: count, order: order, select: select, joinList: joinList, joinType: joinType, alias: alias);'
-            'var results = await ${element.name}.db.query(modelQuerySQL.selectSql, modelQuerySQL.selectValues);'
-            'return [for (var row in results) builder(row.fields)];'
-            '}');
-
-        result.writeln();
-
-        result.writeln(
-            'static Future<SQLResults> delete({@required $elementNameQuery where, int offset, int count, OrderSQL<$elementNameField> order,})'
-            ' => deleteJoin<$elementNameModel>(where: where, builder: (json) => $elementNameModel.fromJSON(json), offset: offset, count: count, order: order,);');
-
-        result.writeln();
-        result.writeln(
-            'static Future<SQLResults> deleteJoin<T>({@required $elementNameQuery where, @required FunctionBuilderFromJson<T> builder, int offset, int count, OrderSQL<FieldSQL> order, List<ModelQuerySQL> joinList, JoinTypeSQL joinType, String alias,}) {'
-            'final modelQuerySQL = ModelQuerySQL(table: ${element.name}.table, queryWhere: where, offset: offset, count: count, order: order, joinList: joinList, joinType: joinType, alias: alias);'
-            'return ${element.name}.db.query(modelQuerySQL.deleteSql, modelQuerySQL.deleteValues);'
-            '}');
-
+            'Future<List<T>> selectJoin<T>({@required $elementNameQuery where, @required FunctionBuilderFromJson<T> builder, int offset, int count, OrderSQL<FieldSQL> order, List<FieldSQL> select, List<ModelQuerySQL> joinList, JoinTypeSQL joinType, String alias,})');
+        if (isAbstractClass) {
+          result.writeln(';');
+        } else {
+          result.writeln(' async {'
+              'final modelQuerySQL = ModelQuerySQL(table: table, queryWhere: where, offset: offset, count: count, order: order, select: select, joinList: joinList, joinType: joinType, alias: alias);'
+              'var results = await db.query(modelQuerySQL.selectSql, modelQuerySQL.selectValues);'
+              'return [for (var row in results) builder(row.fields)];'
+              '}');
+        }
         result.writeln();
 
         result.writeln(
-            'static Future<SQLResults> updateQuery({@required $elementNameQuery set, $elementNameQuery where, int offset, int count, OrderSQL<FieldSQL> order,}) {'
-            'final modelQuerySQL = ModelQuerySQL(table: ${element.name}.table, queryWhere: where, querySet: set, offset: offset, count: count, order: order);'
-            'return ${element.name}.db.query(modelQuerySQL.updateSql, modelQuerySQL.updateValues);'
-            '}');
-        result.writeln();
-        result.writeln('static Future<SQLResults> insertSql({@required $elementNameQuery insert,}) {'
-            'final modelQuerySQL = ModelQuerySQL(table: ${element.name}.table,querySet: insert);'
-            'return ${element.name}.db.query(modelQuerySQL.insertSql, modelQuerySQL.insertValues);'
-            '}');
+            'Future<SQLResults> delete({@required $elementNameQuery where, int offset, int count, OrderSQL<$elementNameField> order,})');
+        if (isAbstractClass) {
+          result.writeln(';');
+        } else {
+          result.writeln(
+              ' => deleteJoin<$elementNameModel>(where: where, builder: (json) => $elementNameModel.fromJSON(json), offset: offset, count: count, order: order,);');
+        }
         result.writeln();
         result.writeln(
-            'factory $elementNameModel.fromJSON(Map<String, dynamic> json, [String aliasTable]) {final prefix = aliasTable != null ? \'\${aliasTable}__\' : \'\'; return $elementNameModel(${_inputFieldsBuildConstructorFromSQL(fields)});}');
+            'Future<SQLResults> deleteJoin<T>({@required $elementNameQuery where, @required FunctionBuilderFromJson<T> builder, int offset, int count, OrderSQL<FieldSQL> order, List<ModelQuerySQL> joinList, JoinTypeSQL joinType, String alias,})');
+        if (isAbstractClass) {
+          result.writeln(';');
+        } else {
+          result.writeln('{'
+              'final modelQuerySQL = ModelQuerySQL(table: table, queryWhere: where, offset: offset, count: count, order: order, joinList: joinList, joinType: joinType, alias: alias);'
+              'return db.query(modelQuerySQL.deleteSql, modelQuerySQL.deleteValues);'
+              '}');
+        }
+
+        result.writeln();
+
+        result.writeln(
+            'Future<SQLResults> updateQuery({@required $elementNameQuery set, $elementNameQuery where, int offset, int count, OrderSQL<FieldSQL> order,})');
+        if (isAbstractClass) {
+          result.writeln(';');
+        } else {
+          result.writeln('{'
+              'final modelQuerySQL = ModelQuerySQL(table: table, queryWhere: where, querySet: set, offset: offset, count: count, order: order);'
+              'return db.query(modelQuerySQL.updateSql, modelQuerySQL.updateValues);'
+              '}');
+        }
+        result.writeln();
+        result.writeln('Future<SQLResults> insertSql({@required $elementNameQuery insert,})');
+        if (isAbstractClass) {
+          result.writeln(';');
+        } else {
+          result.writeln('{'
+              'final modelQuerySQL = ModelQuerySQL(table: table,querySet: insert);'
+              'return db.query(modelQuerySQL.insertSql, modelQuerySQL.insertValues);'
+              '}');
+        }
+        result.writeln();
+
+        result.writeln('Future<void> testTable({@required bool autoCorrect}) ');
+        if (isAbstractClass) {
+          result.writeln(';');
+        } else {
+          result.writeln('=> SQLDataBase.testTable(db, table, fields, autoCorrect: autoCorrect);');
+        }
+
+        result.writeln();
+        result.writeln(
+            'static const List<FieldSQL> fields = [${fields.map((e) => _mapperStringFieldSQL(e)).join(',')}];');
 
         result.writeln('}');
         result.writeln();
@@ -151,22 +221,13 @@ class SQLModelGenerator extends Generator {
         result.writeln('}');
 
         // Element Fields
-        result.writeln('class $elementNameField extends FieldSQL {');
+        result.writeln('class $elementNameField extends ${isExpanded ? '${expandedClass}Field': 'FieldSQL'} {');
         result.writeln('const $elementNameField(String name):super(name);');
 
         result.writeln('static const ALL = [${fields.map((e) => e.$aliasName).join(',')}];');
         fields.forEach((el) {
           result.writeln('static const ${el.$aliasName} = $elementNameField(\'${el.$name}\');');
         });
-        result.writeln('}');
-
-        // Test Table
-        result.writeln('class $elementNameTest {');
-        result.writeln(
-            'static Future<void> testTable({@required bool autoCorrect}) => SQLDataBase.testTable(${element.name}.db, ${element.name}.table, fields, autoCorrect: autoCorrect);');
-        result.writeln();
-        result.writeln(
-            'static const List<FieldSQL> fields = [${fields.map((e) => _mapperStringFieldSQL(e)).join(',')}];');
         result.writeln('}');
       }
     }
@@ -215,7 +276,8 @@ class SQLModelGenerator extends Generator {
         fields
             .map((el) => [
                   'if (${el.$aliasName} != null) \'\${alias != null ? \'\$alias.\' : \'\'}`${el.$name}` \$operator ?\'',
-                  if (el.$nullable) ', if (${el.$aliasName} == null && ${el.$aliasName}ISNULL != null) \'`${el.$name}` \${${el.$aliasName}ISNULL ? \'IS NULL\' : \'IS NOT NULL\'}\'',
+                  if (el.$nullable)
+                    ', if (${el.$aliasName} == null && ${el.$aliasName}ISNULL != null) \'`${el.$name}` \${${el.$aliasName}ISNULL ? \'IS NULL\' : \'IS NOT NULL\'}\'',
                 ].join(' '))
             .join(','),
         '].join(\' $connector \'), [',
@@ -251,8 +313,10 @@ class SQLModelGenerator extends Generator {
   String _mapperFieldFromSQL(FieldSQL field) {
     if (field.$type == FieldType.bool) {
       return '${field.$aliasName}: FieldType.bool.fromSQL(json[\'\${prefix}${field.$name}\'])';
-    } else if (field.$type == FieldType.text || field.$type == FieldType.mediumtext || field.$type == FieldType.longtext) {
-      return '${field.$aliasName}: json[\'\${prefix}${field.$name}\'].toString()';
+    } else if (field.$type == FieldType.text ||
+        field.$type == FieldType.mediumtext ||
+        field.$type == FieldType.longtext) {
+      return '${field.$aliasName}: json[\'\${prefix}${field.$name}\']?.toString()';
     } else {
       return '${field.$aliasName}: json[\'\${prefix}${field.$name}\']';
     }
