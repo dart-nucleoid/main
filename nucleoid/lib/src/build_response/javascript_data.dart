@@ -32,15 +32,15 @@ class JavascriptData extends BuildResponse {
         [if (pathPrefix != null) pathPrefix, path.dirname(_outputCache(file).path)].join(Platform.pathSeparator);
     var outputFilePath = [if (pathPrefix != null) pathPrefix, _outputCache(file).path].join(Platform.pathSeparator);
 
-    print('dart2js: ${file.path} -> $outputFilePath');
+    print('dart compile js: ${file.path} -> $outputFilePath');
 
     final outputDir = Directory(rootPath);
 
     if (! await outputDir.exists()) await outputDir.create(recursive: true);
 
-    var result2js = await Process.run('dart2js', ['-O2', '-o', outputFilePath, file.path], runInShell: true);
+    var result2js = await Process.run('dart', ['compile', 'js', '-O2', '-o', outputFilePath, file.path], runInShell: true);
 
-    if (result2js.stdout.toString().isNotEmpty) print('dart2js result: ${result2js.stdout}');
-    if (result2js.stderr.toString().isNotEmpty) print('Error dart2js: ${result2js.stderr.toString()}');
+    if (result2js.stdout.toString().isNotEmpty) print('dart compile js result: ${result2js.stdout}');
+    if (result2js.stderr.toString().isNotEmpty) print('Error dart compile js: ${result2js.stderr.toString()}');
   }
 }
