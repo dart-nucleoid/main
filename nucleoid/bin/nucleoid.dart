@@ -76,13 +76,13 @@ void _build(ArgResults args) async {
       }
     }
 
-    /// Run: dart2native
+    /// Run: dart compile exe
     var result2native =
-        Process.runSync('dart2native', [args['target'] ?? 'bin/main.dart', '-o', tempFileOutput], runInShell: true);
+        Process.runSync('dart compile exe', [args['target'] ?? 'bin/main.dart', '-o', tempFileOutput], runInShell: true);
 
-    if (result2native.stdout.toString().isNotEmpty) print('dart2native result: ${result2native.stdout}');
+    if (result2native.stdout.toString().isNotEmpty) print('dart compile exe result: ${result2native.stdout}');
     if (result2native.stderr.toString().isNotEmpty) {
-      print('Error dart2native: ${result2native.stderr.toString()}');
+      print('Error dart compile exe: ${result2native.stderr.toString()}');
     } else {
       /// Kill running before process:
       if (Platform.isWindows) {
