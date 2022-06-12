@@ -78,7 +78,7 @@ void _build(ArgResults args) async {
 
     /// Run: dart compile exe
     var result2native =
-        Process.runSync('dart compile exe', [args['target'] ?? 'bin/main.dart', '-o', tempFileOutput], runInShell: true);
+        Process.runSync('dart', ['compile', 'exe', args['target'] ?? 'bin/main.dart', '-o', tempFileOutput], runInShell: true);
 
     if (result2native.stdout.toString().isNotEmpty) print('dart compile exe result: ${result2native.stdout}');
     if (result2native.stderr.toString().isNotEmpty) {
