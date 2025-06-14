@@ -1,7 +1,7 @@
 name: nucleoid_generator
 description: nucleoid_generator package
 homepage: https://github.com/dart-nucleoid/main
-version: 0.2.2
+version: 1.0.0
 
 environment:
   sdk: ^3.8.0
@@ -12,7 +12,8 @@ dependencies:
   source_gen: ^2.0.0
   analyzer: ^7.4.0
   meta: ^1.1.8
-  nucleoid_built: ^0.2.2
+  nucleoid_built: ^1.0.0
+  collection: ^1.19.0
 
 dev_dependencies:
   test: ^1.26.0

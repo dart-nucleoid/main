@@ -191,21 +191,21 @@ packages:
       path: "../../packages/nucleoid"
       relative: true
     source: path
-    version: "0.2.2"
+    version: "1.0.0"
   nucleoid_built:
     dependency: "direct overridden"
     description:
       path: "../../packages/nucleoid_built"
       relative: true
     source: path
-    version: "0.2.2"
+    version: "1.0.0"
   nucleoid_generator:
     dependency: "direct overridden"
     description:
       path: "../../packages/nucleoid_generator"
       relative: true
     source: path
-    version: "0.2.2"
+    version: "1.0.0"
   package_config:
     dependency: transitive
     description:

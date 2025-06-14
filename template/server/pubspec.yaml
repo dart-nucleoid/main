@@ -1,12 +1,12 @@
 name: server_template
 description: nucleoid server template project
-version: 0.0.2
+version: 1.0.0
 
 environment:
   sdk: ^3.8.0
 
 dependencies:
-  nucleoid: ^0.2.0
+  nucleoid: ^1.0.0
 
 dependency_overrides:
   nucleoid:
