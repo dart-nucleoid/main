@@ -23,8 +23,11 @@ class Style extends BuildResponse with Loggable {
   Style(Request request) : super(request: request);
 
   @override
-  Response build() {
-    return Response.ok(echoAllStyleClass(_styleClassList), headers: {'Content-Type': 'text/css'});
+  Response buildResponse() {
+    return Response.ok(
+      echoAllStyleClass(_styleClassList),
+      headers: {'Content-Type': 'text/css'},
+    );
   }
 }
 
@@ -67,12 +70,8 @@ final _hAllTagStyle = StyleElement(
 
 final _h1Style = StyleElement(
   name: 'h1',
-  style: StyleCSS(
-    fontSize: h1Size,
-  ),
-  width: {
-    600: StyleCSS(fontSize: h1Size - 0.2.em),
-  },
+  style: StyleCSS(fontSize: h1Size),
+  width: {600: StyleCSS(fontSize: h1Size - 0.2.em)},
 );
 
 final _contentStyle = StyleElement(
@@ -102,7 +101,10 @@ final underlineStyle = StyleClass(
   name: 'underline',
   style: StyleCSS(
     textDecoration: TextDecorationCSS(
-        color: ColorsCSS.red, type: TextDecorationTypeCSS.underline, style: TextDecorationStyleCSS.wavy),
+      color: ColorsCSS.red,
+      type: TextDecorationTypeCSS.underline,
+      style: TextDecorationStyleCSS.wavy,
+    ),
   ),
 );
 

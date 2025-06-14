@@ -1,9 +1,19 @@
-import 'dart:html';
+import 'package:web/web.dart';
 
-void main () {
-  var contentElements = querySelector('#content');
+void main() {
+  final contentElements = document.querySelector('#content')!;
 
-  contentElements.appendHtml('<h2>dart2js</h2>');
-  contentElements.appendHtml('<p>Code: lib/script/main.dart</p>');
-  contentElements.appendHtml('<code>DateTime.now();</code>\nresult: ${DateTime.now()}');
+  contentElements.append(HTMLHeadingElement.h2()..textContent = 'dart2js');
+  contentElements.append(
+    HTMLParagraphElement()..textContent = 'Code: lib/script/main.dart',
+  );
+  contentElements.append(
+    HTMLParagraphElement()
+      ..appendChild(
+        HTMLParagraphElement()..textContent = 'code: DateTime.now();',
+      )
+      ..appendChild(
+        HTMLParagraphElement()..textContent = 'result: ${DateTime.now()}',
+      ),
+  );
 }

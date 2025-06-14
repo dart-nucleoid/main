@@ -1,0 +1,17 @@
+name: nucleoid_built
+description: nucleoid_built package
+homepage: https://github.com/dart-nucleoid/main
+version: 0.2.2
+
+environment:
+  sdk: ^3.8.0
+resolution: workspace
+
+dependencies:
+  build: ^2.1.0
+  meta: ^1.1.8
+
+dev_dependencies:
+  test: ^1.26.0
+  build_runner: ^2.4.0
+  build_test: ^2.2.0

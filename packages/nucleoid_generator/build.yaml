@@ -1,0 +1,15 @@
+targets:
+  $default:
+    builders:
+      node_element_generator|node_element:
+        enabled: true
+
+builders:
+  node_element:
+    target: ":node_element_generator"
+    import: "package:nucleoid_generator/builder.dart"
+    builder_factories: ["nodeElement"]
+    build_extensions: {".dart": [".node_element.g.part"]}
+    auto_apply: dependents
+    build_to: cache
+    applies_builders: ["source_gen|combining_builder"]

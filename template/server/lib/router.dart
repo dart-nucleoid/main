@@ -12,17 +12,26 @@ class ServerTemplateRouter extends Router {
     var route = Route.formRequest(request);
 
     if (route == Routes.home) {
-      return HomePage(request).build();
+      return HomePage(request).buildResponse();
     } else if (route == Routes.style) {
-      return Style(request).build();
+      return Style(request).buildResponse();
     } else if (route == Routes.script) {
-      return JavascriptData.path('lib/script/main.dart', request: request).build();
+      return JavascriptData.path(
+        'lib/script/main.dart',
+        request: request,
+      ).buildResponse();
     } else if (route == Routes.favicon) {
-      return FileData.path('assets/icons/favicon.ico', request: request).build();
+      return FileData.path(
+        'assets/icons/favicon.ico',
+        request: request,
+      ).buildResponse();
     } else if (route.name.startsWith(Routes.imagesPath.name)) {
-      return FileData.path('assets${route.url}', request: request).build();
+      return FileData.path(
+        'assets${route.url}',
+        request: request,
+      ).buildResponse();
     } else {
-      return NotFoundPage(request).build();
+      return NotFoundPage(request).buildResponse();
     }
   }
 }

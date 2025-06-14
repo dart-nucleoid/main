@@ -17,7 +17,11 @@ class NotFoundPage extends TemplatePage {
   @override
   List<NodeElement> content() {
     return [
-      A(href: Routes.home.url, classList: [centerStyle, underlineStyle], child: Text('Go home page'))
+      A(
+        href: Routes.home.url,
+        classList: [centerStyle, underlineStyle],
+        child: Text('Go home page'),
+      ),
     ];
   }
 }

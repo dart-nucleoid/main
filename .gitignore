@@ -5,6 +5,4 @@
 .settings/
 *.iml
 **/build
-**/packages
-**/pubspec.lock
 **/.packages
