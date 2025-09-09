@@ -1,3 +1,11 @@
+## 1.0.1
+
+- Fix build app in Docker container
+
+## 1.0.0
+
+- Migration to Dart 3.8
+
 ## 0.2.2
 
 - MySQL model generator features: test table; auto correct table; set and insert operation.

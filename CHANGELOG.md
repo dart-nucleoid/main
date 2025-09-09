@@ -1,3 +1,7 @@
+## 1.0.1
+
+- Fix build app in Docker container
+
 ## 1.0.0
 
 - Migration to Dart 3.8
