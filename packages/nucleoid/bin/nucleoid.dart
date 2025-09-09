@@ -95,7 +95,9 @@ Future<void> _build(ArgResults args) async {
     }
 
     /// Run: dart2native
-    var result2native = Process.runSync('dart compile exe', [
+    var result2native = Process.runSync('dart', [
+      'compile',
+      'exe',
       args['target'] ?? 'bin/main.dart',
       '-o',
       tempFileOutput,

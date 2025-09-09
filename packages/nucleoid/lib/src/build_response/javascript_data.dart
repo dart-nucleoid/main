@@ -53,7 +53,9 @@ class JavascriptData extends BuildResponse {
 
     if (!await outputDir.exists()) await outputDir.create(recursive: true);
 
-    var result2js = await Process.run('dart compile js', [
+    var result2js = await Process.run('dart', [
+      'compile',
+      'js',
       '-O2',
       '-o',
       outputFilePath,
